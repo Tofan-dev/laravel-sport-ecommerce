@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,16 @@ require __DIR__.'/auth.php';
 
 /* ALL PRODUCTS ROUTES */
 
-Route::get('/products', function(){
-    return view('admin.product.products');
-})->name('products');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 
+Route::get('/addProduct', function () {
+    return view('admin.addProduct');
+})->name('addProduct');
+
+Route::post('/addProduct', [ProductController::class, 'store'])->name('storeProduct');
+
+Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('editProduct');
+
+Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->name('updateProduct');
+
+Route::delete('/deleteProduct/{id}', [ProductController::class, 'delete'])->name('deleteProduct');

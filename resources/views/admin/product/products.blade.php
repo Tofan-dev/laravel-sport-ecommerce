@@ -84,34 +84,37 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Id</th>
+                            <th scope="col">Category Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Category</th>
                             <th scope="col">Image</th>
                             <th scope="col">Price</th>
                             <th scope="col">Price With Discount</th>
                             <th scope="col">Stock</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Total reviews</th>
                             <th scope="col">Created_at</th>
                             <th scope="col">Updated_at</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($products as $product)
+                         @foreach ($products as $product)
                             <tr>
                                 <th scope="col">{{ $product->id }}</th>
+                                <th scope="col">{{ $product->categories->title}}</th>
                                 <th scope="col">{{ $product->name }}</th>
                                 <th scope="col">{{ $product->description }}</th>
-                                <th scope="col">{{ $product->category }}</th>
                                 <th scope="col">
                                     <img src="{{ asset($product->image) }}" style="height:70px; width:70px">
                                 </th>
                                 <th scope="col">{{ $product->price }}</th>
                                 <th scope="col">{{ $product->priceWithDiscount }}</th>
                                 <th scope="col">{{ $product->stock }}</th>
+                                <th scope="col">{{ $product->rating}}</th>
+                                <th scope="col">{{ $product->total_reviws }}</th>
                                 <th scope="col">{{ $product->created_at }}</th>
                                 <th scope="col">{{ $product->updated_at }}</th>
-                                <th scope="col">{{ $product->deleted_at }}</th>
                                 <th scope="col">
 
                                     <a class="btn btn-success" href="{{ route('editProduct', $product->id) }}">Edit
@@ -127,11 +130,11 @@
 
                                 </th>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
 
-                {{-- {{ $products->links() }} --}}
+                {{ $products->links() }}
 
             </div>
         </div>
