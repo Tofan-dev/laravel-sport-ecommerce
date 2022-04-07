@@ -22,3 +22,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+/* ALL PRODUCTS ROUTES */
+
+Route::get('/products', function(){
+    return view('admin.product.products');
+})->name('products');
+
