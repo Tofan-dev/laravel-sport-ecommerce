@@ -22,4 +22,26 @@ class Product extends Model
         'rating',
         'total_reviews',
     ];
+
+    //  Get the category that owns the product
+
+    public function categories()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'Orders_products', 'product_id', 'order_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function sales()
+    {
+        return $this->belongsTo(Sale::class, 'sale_id');
+    }
 }

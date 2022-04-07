@@ -41,4 +41,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // The informations that belong to the user.
+
+
+    public function informations()
+    {
+        return $this->hasOne(User::class, 'user_id');
+    }
+
+    // The orders that belong to the user.
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
