@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -17,10 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(8);
+        $products = Product::with('category', 'orders', 'reviews', 'sale')->paginate(8);
         // dd($products);
         return view('admin.product.products', compact('products'));
-        
     }
 
     /**
@@ -33,46 +34,39 @@ class ProductController extends Controller
         $products = Product::all();
         $categories = Category::all();
         $sales = Sale::all();
-        return view('admin.product.addProduct', compact('categories','products','sales'));
+        return view('admin.product.addProduct', compact('categories', 'products', 'sales'));
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProductRequest $request)
     {
-        dd('test');
+        $product                    = new Product;
+        $product->name              = $request->name;
+        $product->description       = $request->description;
+        $product->category_id       = $request->category;
+        $product->sale_id           = $request->sale;
+        $product->price             = $request->price;
+        $product->priceWithDiscount = $request->priceWithDiscount;
+        $product->stock             = $request->stock;
 
-        dd($request->all());
-        $product = new Product;
-        $product->name = $request->product_name;
-        dd($product);
-        $product->description = $request->product_description;
-        $product->category_id = $request->product_category_id;
-        $product->sale_id = $request->product_sale_id;
-        $product->price = $request->product_price;
-        $product->priceWithDiscount = $request->product_priceWithDiscount;
-        $product->stock = $request->product_stock;
+        if ($request->hasFile('image')) {
+            // get image original name and add currect time for an overall unique name
+            $imgFileName = time() . '_' . $request->image->getClientOriginalName();
 
-        $product_image = $request->file('product_image');
-        $name_gen = hexdec(uniqid());
-        $img_ext = strtolower($product_image->getClientOriginalExtension());
-        $img_name = $name_gen . '.' . $img_ext;
-        $up_location = 'image/product/';
-        $last_img = $up_location . $img_name;
-        $product_image->move($up_location, $img_name);
-        $product->image = $last_img;
+            $product->image = $request->image->storeAs('productImages', $imgFileName, 'public');
+        }
 
-        dd($product);
         $product->save();
 
-        return redirect(route('products'))->with('successMsg', 'Product successfully added.');
+        return redirect('/products')->with('successMsg', 'Product successfully added.');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -91,9 +85,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::all();
+        $sales = Sale::all();
+        return view('admin.product.editProduct', compact('product', 'categories', 'sales'));
     }
 
     /**
@@ -103,9 +100,40 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect('/products');
+        }
+
+        $product->name              = $request->name;
+        $product->description       = $request->description;
+        $product->category_id       = $request->category;
+        $product->sale_id           = $request->sale;
+        $product->price             = $request->price;
+        $product->priceWithDiscount = $request->priceWithDiscount;
+        $product->stock             = $request->stock;
+
+        // old image
+        $imagePath = public_path('/storage/' . $product->image);
+
+        if (!$request->hasFile('image')) {
+            $request->except(['image']);
+        } else {
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+
+            $imgFileName = time() . '_' . $request->image->getClientOriginalName();
+
+            $product->image = $request->image->storeAs('productImages', $imgFileName, 'public');
+        }
+
+        $product->save();
+
+        return redirect('/products')->with('successMsg', 'Product successfully updated.');
     }
 
     /**
@@ -114,8 +142,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product) {
+            $product->delete();
+        }
+
+        return redirect('/products')->with('successMsg', 'Product successfully deleted.');
     }
 }

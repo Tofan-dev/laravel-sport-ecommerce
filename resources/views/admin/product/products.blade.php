@@ -46,7 +46,6 @@
             /* Scrollable contents if viewport is shorter than content. */
         }
 
-
     </style>
 
     <header>
@@ -81,66 +80,66 @@
             @endif
             <div class="container pt-4">
                 <h1>All products</h1>
-                    <table class="table" >
-                        <thead class="thead-dark">
+                <a class="btn btn-outline-primary" href="/products/create">Add product</a>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Category Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Price With Discount</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Total reviews</th>
+                            <th scope="col">Created_at</th>
+                            <th scope="col">Updated_at</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($products as $product)
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Category Id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Price With Discount</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Rating</th>
-                                <th scope="col">Total reviews</th>
-                                <th scope="col">Created_at</th>
-                                <th scope="col">Updated_at</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">{{ $product->id }}</th>
+                                <th scope="col">{{ $product->category->title }}</th>
+                                <th scope="col">{{ $product->name }}</th>
+                                <th scope="col">{{ $product->description }}</th>
+                                <th scope="col">
+                                    <img src="{{ asset('storage/' . $product->image) }}" style="height:70px; width:70px">
+                                </th>
+                                <th scope="col">{{ $product->price }}</th>
+                                <th scope="col">{{ $product->priceWithDiscount }}</th>
+                                <th scope="col">{{ $product->stock }}</th>
+                                <th scope="col">{{ $product->rating }}</th>
+                                <th scope="col">{{ $product->total_reviws }}</th>
+                                <th scope="col">{{ $product->created_at }}</th>
+                                <th scope="col">{{ $product->updated_at }}</th>
+                                <th scope="col">
+
+                                    <a class="btn btn-success" href="/products/{{$product->id}}/edit">Edit
+                                    </a>
+
+                                    <form action="/products/{{$product->id}}" method="POST"
+                                        onclick="return confirm('Are you sure you want to delete this product?')">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+
+
+                                </th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($products as $product)
-                                <tr>
-                                    <th scope="col">{{ $product->id }}</th>
-                                    <th scope="col">{{ $product->categories->title }}</th>
-                                    <th scope="col">{{ $product->name }}</th>
-                                    <th scope="col">{{ $product->description }}</th>
-                                    <th scope="col">
-                                        <img src="{{ asset($product->image) }}" style="height:70px; width:70px">
-                                    </th>
-                                    <th scope="col">{{ $product->price }}</th>
-                                    <th scope="col">{{ $product->priceWithDiscount }}</th>
-                                    <th scope="col">{{ $product->stock }}</th>
-                                    <th scope="col">{{ $product->rating }}</th>
-                                    <th scope="col">{{ $product->total_reviws }}</th>
-                                    <th scope="col">{{ $product->created_at }}</th>
-                                    <th scope="col">{{ $product->updated_at }}</th>
-                                    <th scope="col">
+                        @endforeach
+                    </tbody>
+                </table>
 
-                                        <a class="btn btn-success"
-                                            href="{{ route('editProduct', $product->id) }}">Edit
-                                        </a>
+                {{ $products->links() }}
 
-                                        <form action="{{ route('deleteProduct', [$product->id]) }}" method="POST"
-                                            onclick="return confirm('Are you sure you want to delete this product?')">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
-
-
-                                    </th>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    {{ $products->links() }}
-
-                        <a class="btn btn-outline-primary" href="{{ url('addProduct') }}">Add product</a>
-                </div>
+                
             </div>
+        </div>
     </main>
 
 </x-app-layout>

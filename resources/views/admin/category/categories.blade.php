@@ -81,9 +81,9 @@
             @endif
             <div class="container pt-4">
                 <h1>Add new category</h1>
-                <form action="{{ route('storeCategory') }}" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                <form action="categories/" method="POST" enctype="multipart/form-data">
                     @method('POST')
+                    @csrf
                     <div class="form-group">
                         <label for="category_title">Title</label>
                         <input type="text" name="category_title" class="form-control">
@@ -118,17 +118,15 @@
                                     <th scope="col">
 
                                         <a class="btn btn-success"
-                                            href="{{ route('editCategory', $category->id) }}">Edit
+                                            href="categories/{{ $category->id }}/edit">Edit
                                         </a>
 
-                                        <form action="{{ route('deleteProduct', $category->id) }}" method="POST"
+                                        <form action="categories/{{ $category->id }}" method="POST"
                                             onclick="return confirm('Are you sure you want to delete this category?')">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn btn-danger" type="submit">Delete</button>
                                         </form> 
-
-
                                     </th>
                                 </tr>
                             @endforeach

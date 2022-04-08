@@ -53,14 +53,15 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="{{ url('dashboard') }}" class="list-group-item list-group-item-action py-2 ripple active"
+                    <a href="{{ url('/dashboard') }}" class="list-group-item list-group-item-action py-2 ripple active"
                         aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
                     </a>
-                    <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple">
+                    {{-- {{ url('admin/product/products.blade.php') }} --}}
+                    <a href="{{ url('/products') }}" class="list-group-item list-group-item-action py-2 ripple"> 
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
-                    <a href="{{ url('categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="{{ url('/categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>

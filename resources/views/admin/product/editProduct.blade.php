@@ -46,7 +46,6 @@
             /* Scrollable contents if viewport is shorter than content. */
         }
 
-
     </style>
 
     <header>
@@ -58,10 +57,11 @@
                         aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
                     </a>
-                    <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple active">
+                    <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple ">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
-                    <a href="{{ url('categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="{{ url('categories') }}"
+                        class="list-group-item list-group-item-action py-2 ripple active"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
                     <a href="{{ url('users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
@@ -73,7 +73,7 @@
 
     <!--Main layout-->
     <main style="margin-top: 58px;">
-        
+
         <div class="container">
 
             @if (session('successMsg'))
@@ -84,20 +84,21 @@
 
         </div>
         <div class="container pt-4">
-            <h1>Add new product</h1>
-            <form action="/products" method="POST" enctype="multipart/form-data">
-                @method('POST')
+
+            <h1>Edit product</h1>
+            <form action="/products/{{$product->id}}" method="POST" enctype="multipart/form-data">
+                @method('PATCH')
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="form-control" value={{$product->name}}>
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" name="description" class="form-control">
+                    <input type="text" name="description" class="form-control" value={{$product->description}}>
                     @error('description')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -109,7 +110,7 @@
                    
                     <select name="category" id="category">
                         @foreach($categories as $category)
-                        <option value="{{$category->id}}">{{$category->title}}</option>
+                        <option value="{{$category->id}}" selected={{$product->category_id == $category->id ? 'selected' : ''}}>{{$category->title}}</option>
                         @endforeach
                     </select>
                    
@@ -122,10 +123,10 @@
                     <label for="sale">Sale available</label>
                     <br>
                    
-                    <select name="sale" id="sale">
+                    <select name="sale" id="sale" >
                         {{-- <option value="">No sale</option> --}}
                         @foreach($sales as $sale)
-                        <option value="{{$sale->id}}">{{$sale->description}}</option>
+                        <option value="{{$sale->id}}" selected={{$product->sale_id == $sale->id ? 'selected' : ''}}>{{$sale->description}}</option>
                         @endforeach
                     </select>
                    
@@ -135,6 +136,8 @@
                 </div>
 
                 <div class="form-group">
+                    <h2>Old Image</h2>
+                    <img src={{asset('/storage/' . $product->image)}} />
                     <label for="image">Image</label>
                     <input type="file" name="image" class="form-control" multiple>
                     @error('image')
@@ -143,21 +146,21 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" name="price" class="form-control">
+                    <input type="number" name="price" class="form-control" value={{$product->price}}>
                     @error('price')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="priceWithDiscount">Price with discount</label>
-                    <input type="number" name="priceWithDiscount" class="form-control">
+                    <input type="number" name="priceWithDiscount" class="form-control" value={{$product->priceWithDiscount}}>
                     @error('priceWithDiscount')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="stock">Stock</label>
-                    <input type="number" name="stock" class="form-control">
+                    <input type="number" name="stock" class="form-control" value={{$product->stock}}>
                     @error('stock')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror

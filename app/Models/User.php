@@ -45,9 +45,9 @@ class User extends Authenticatable
     // The informations that belong to the user.
 
 
-    public function informations()
+    public function information()
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->hasOne(Information::class);
     }
 
     // The orders that belong to the user.

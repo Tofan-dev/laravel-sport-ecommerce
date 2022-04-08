@@ -25,14 +25,14 @@ class Product extends Model
 
     //  Get the category that owns the product
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'Orders_products', 'product_id', 'order_id');
+        return $this->belongsToMany(Order::class, 'orders_products', 'product_id', 'order_id');
     }
 
     public function reviews()
@@ -40,7 +40,7 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function sales()
+    public function sale()
     {
         return $this->belongsTo(Sale::class, 'sale_id');
     }

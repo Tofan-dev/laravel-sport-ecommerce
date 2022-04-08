@@ -46,7 +46,6 @@
             /* Scrollable contents if viewport is shorter than content. */
         }
 
-
     </style>
 
     <header>
@@ -61,7 +60,8 @@
                     <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple ">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
-                    <a href="{{ url('categories') }}" class="list-group-item list-group-item-action py-2 ripple active"><i
+                    <a href="{{ url('categories') }}"
+                        class="list-group-item list-group-item-action py-2 ripple active"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
                     <a href="{{ url('users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
@@ -73,7 +73,7 @@
 
     <!--Main layout-->
     <main style="margin-top: 58px;">
-        
+
         <div class="container">
 
             @if (session('successMsg'))
@@ -86,17 +86,17 @@
         <div class="container pt-4">
 
             <h1>Edit category</h1>
-            <form action="{{route('updateCategory', $category->id)}}" method="POST">
-            {{csrf_field()}}
-            @method('POST')
-            <div class="form-group">
-                <label for="category_title">Title</label>
-                <input type="text" name="category_title" class="form-control" value="{{$category->title}}">
-                @error('category_title')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <form action="/categories/{{ $category->id }}" method="POST">
+                @method('PATCH')
+                @csrf
+                <div class="form-group">
+                    <label for="category_title">Title</label>
+                    <input type="text" name="category_title" class="form-control" value="{{ $category->title }}">
+                    @error('category_title')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-primary">Edit</button>
 
             </form>
         </div>

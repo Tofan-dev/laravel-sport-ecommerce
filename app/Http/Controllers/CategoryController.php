@@ -44,15 +44,14 @@ class CategoryController extends Controller
             [
                 'category_title.required' => "Please input the category title."
             ]
-            );
+        );
 
-            $category = new Category;
-            $category->title = $request->category_title;
+        $category = new Category;
+        $category->title = $request->category_title;
 
-            $category->save();
+        $category->save();
 
-            return redirect(route('categories'))->with('successMsg', 'Category successfully added.');
-
+        return redirect('/categories')->with('successMsg', 'Category successfully added.');
     }
 
     /**
@@ -87,29 +86,37 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'category_title' => 'required',
         ]);
 
         $category = Category::find($id);
+
+        if (!$category) {
+            return redirect('/categories')->with('succcessMsg', 'Category id doesn\'t exist.');
+        }
+
         $category->title = $request->category_title;
 
         $category->save();
 
-        return redirect(route('categories'))->with('succcessMsg','Category successfully updated.');
+        return redirect('/categories')->with('succcessMsg', 'Category successfully updated.');
     }
 
-/**
+    /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    
-    //Permanent delete using forceDelete.
-    public function delete($id)
+    public function destroy($id)
     {
-        Category::find($id)->forceDelete();
-        return redirect(route('categories'))->with('successMsg', 'Category successfully deleted.');
+        $category = Category::find($id);
+
+        if ($category) {
+            $category->delete();
+        }
+
+        return redirect('/categories')->with('successMsg', 'Category successfully deleted.');
     }
 }
