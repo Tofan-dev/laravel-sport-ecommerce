@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 
-Route::get('/addProduct', function () {
-    return view('admin.addProduct');
-})->name('addProduct');
+Route::get('/addProduct', [ProductController::class, 'create'])->name('addProduct');
 
 Route::post('/addProduct', [ProductController::class, 'store'])->name('storeProduct');
 
@@ -39,3 +38,15 @@ Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('editP
 Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->name('updateProduct');
 
 Route::delete('/deleteProduct/{id}', [ProductController::class, 'delete'])->name('deleteProduct');
+
+/* ALL CATEGORES ROUTES */
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
+Route::post('/categories', [CategoryController::class, 'store'])->name('storeCategory');
+
+Route::get('/editCategory/{id}', [CategoryController::class, 'edit'])->name('editCategory');
+
+Route::post('/updateCategory/{id}', [CategoryController::class, 'update'])->name('updateCategory');
+
+Route::delete('/deleteCategory/{id}', [CategoryController::class, 'delete'])->name('deleteCategory');

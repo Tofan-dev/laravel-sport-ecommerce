@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::paginate(7);
+        return view('admin.category.categories', compact('categories'));
     }
 
     /**
@@ -35,7 +36,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'category_title' => 'required|string|max:50'
+            ],
+            [
+                'category_title.required' => "Please input the category title."
+            ]
+            );
+
+            $category = new Category;
+            $category->title = $request->category_title;
+
+            $category->save();
+
+            return redirect(route('categories'))->with('successMsg', 'Category successfully added.');
+
     }
 
     /**
@@ -55,9 +72,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.editCategory', compact('category'));
     }
 
     /**
@@ -67,19 +85,31 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'category_title' => 'required',
+        ]);
+
+        $category = Category::find($id);
+        $category->title = $request->category_title;
+
+        $category->save();
+
+        return redirect(route('categories'))->with('succcessMsg','Category successfully updated.');
     }
 
-    /**
+/**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    
+    //Permanent delete using forceDelete.
+    public function delete($id)
     {
-        //
+        Category::find($id)->forceDelete();
+        return redirect(route('categories'))->with('successMsg', 'Category successfully deleted.');
     }
 }
