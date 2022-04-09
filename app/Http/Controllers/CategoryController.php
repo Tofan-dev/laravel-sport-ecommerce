@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -31,21 +32,11 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $this->validate(
-            $request,
-            [
-                'category_title' => 'required|string|max:50'
-            ],
-            [
-                'category_title.required' => "Please input the category title."
-            ]
-        );
-
         $category = new Category;
         $category->title = $request->category_title;
 
