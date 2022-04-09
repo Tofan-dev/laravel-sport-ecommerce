@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Add new product') }}
         </h2>
     </x-slot>
 
@@ -53,18 +53,19 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="{{ url('/dashboard') }}" class="list-group-item list-group-item-action py-2 ripple active"
+                    <a href="{{ url('dashboard') }}" class="list-group-item list-group-item-action py-2 ripple"
                         aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
                     </a>
-                    <a href="{{ url('/products') }}" class="list-group-item list-group-item-action py-2 ripple">
+                    <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple ">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
-                    <a href="{{ url('/categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="{{ url('categories') }}"
+                        class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
-                    <a href="{{ url('sales') }}" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-chart-line fa-fw me-3"></i><span>Sales</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="{{ url('sales') }}" class="list-group-item list-group-item-action py-2 ripple active"><i
+                            class="fas fa-lock fa-fw me-3"></i><span>Sales</span></a>
+                    <a href="{{ url('users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
                 </div>
             </div>
@@ -74,9 +75,41 @@
 
     <!--Main layout-->
     <main style="margin-top: 58px;">
-        <div class="container pt-4">
+
+        <div class="container">
+
+            @if (session('successMsg'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('successMsg') }}
+                </div>
+            @endif
 
         </div>
+        <div class="container pt-4">
+
+            <h1>Edit sale</h1>
+            <form action="/sales/{{ $sale->id }}" method="POST">
+                @method('PATCH')
+                @csrf
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" class="form-control" value="{{ $sale->description }}">
+                    @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="percent">Percent</label>
+                    <input type="number" name="percent" class="form-control" value="{{ $sale->percent }}">
+                    @error('percent')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-primary">Edit</button>
+
+            </form>
+        </div>
+
     </main>
 
 </x-app-layout>

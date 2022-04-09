@@ -84,14 +84,14 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if (!$category) {
-            return redirect('/categories')->with('succcessMsg', 'Category id doesn\'t exist.');
+            return redirect('/categories')->with('successMsg', 'Category id doesn\'t exist.');
         }
 
         $category->title = $request->category_title;
 
         $category->save();
 
-        return redirect('/categories')->with('succcessMsg', 'Category successfully updated.');
+        return redirect('/categories')->with('successMsg', 'Category successfully updated.');
     }
 
     /**

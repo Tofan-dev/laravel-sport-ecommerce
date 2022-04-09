@@ -14,7 +14,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::paginate(7);
+        return view('admin.sale.sales', compact('sales'));
     }
 
     /**
@@ -24,7 +25,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.sale.addSale');
     }
 
     /**
@@ -35,7 +36,12 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sale = new Sale;
+        $sale->description          = $request->description;
+        $sale->percent              = $request->percent;
+        $sale->save();
+
+        return redirect('/sales')->with('successMsg', 'Sale successfully added.');
     }
 
     /**
@@ -55,9 +61,10 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sale $sale)
+    public function edit($id)
     {
-        //
+        $sale = Sale::find($id);
+        return view('admin.sale.editSale', compact('sale'));
     }
 
     /**
@@ -67,9 +74,21 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(Request $request, $id)
     {
-        //
+ 
+        $sale = Sale::find($id);
+
+        if (!$sale) {
+            return redirect('/sales')->with('successMsg', 'Sale id doesn\'t exist.');
+        }
+
+        $sale->description = $request->description;
+        $sale->percent = $request->percent;
+
+        $sale->save();
+
+        return redirect('/sales')->with('successMsg', 'Sale successfully updated.');
     }
 
     /**
@@ -78,8 +97,14 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sale $sale)
+    public function destroy($id)
     {
-        //
+        $sale = Sale::find($id);
+
+        if ($sale) {
+            $sale->delete();
+        }
+
+        return redirect('/sales')->with('successMsg', 'Sale successfully deleted.');
     }
 }

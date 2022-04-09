@@ -63,6 +63,8 @@
                     <a href="{{ url('categories') }}"
                         class="list-group-item list-group-item-action py-2 ripple active"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
+                    <a href="{{ url('sales') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-lock fa-fw me-3"></i><span>Sales</span></a>
                     <a href="{{ url('users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
                 </div>

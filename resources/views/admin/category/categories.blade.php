@@ -46,7 +46,6 @@
             /* Scrollable contents if viewport is shorter than content. */
         }
 
-
     </style>
 
     <header>
@@ -61,8 +60,11 @@
                     <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
-                    <a href="{{ url('categories') }}" class="list-group-item list-group-item-action py-2 ripple active"><i
+                    <a href="{{ url('categories') }}"
+                        class="list-group-item list-group-item-action py-2 ripple active"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
+                    <a href="{{ url('sales') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-chart-line fa-fw me-3"></i><span>Sales</span></a>
                     <a href="{{ url('users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
                 </div>
@@ -91,52 +93,51 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-    
+
                     <button type="submit" class="btn btn-primary">Add</button>
-    
+
                 </form>
             </div>
             <div class="container pt-4">
                 <h1>All categories</h1>
-                    <table class="table" >
-                        <thead class="thead-dark">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Created_at</th>
+                            <th scope="col">Updated_at</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($categories as $category)
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Created_at</th>
-                                <th scope="col">Updated_at</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">{{ $category->id }}</th>
+                                <th scope="col">{{ $category->title }}</th>
+                                <th scope="col">{{ $category->created_at }}</th>
+                                <th scope="col">{{ $category->updated_at }}</th>
+                                <th scope="col">
+
+                                    <a class="btn btn-success" href="categories/{{ $category->id }}/edit">Edit
+                                    </a>
+
+                                    <form action="categories/{{ $category->id }}" method="POST"
+                                        onclick="return confirm('Are you sure you want to delete this category?')">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($categories as $category)
-                                <tr>
-                                    <th scope="col">{{$category->id}}</th>
-                                    <th scope="col">{{$category->title}}</th>
-                                    <th scope="col">{{$category->created_at}}</th>
-                                    <th scope="col">{{$category->updated_at}}</th>
-                                    <th scope="col">
+                        @endforeach
+                    </tbody>
+                </table>
 
-                                        <a class="btn btn-success"
-                                            href="categories/{{ $category->id }}/edit">Edit
-                                        </a>
-
-                                        <form action="categories/{{ $category->id }}" method="POST"
-                                            onclick="return confirm('Are you sure you want to delete this category?')">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form> 
-                                    </th>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    {{ $categories->links() }}
-                </div>
+                {{ $categories->links() }}
             </div>
-        
+        </div>
+
     </main>
 
 </x-app-layout>
