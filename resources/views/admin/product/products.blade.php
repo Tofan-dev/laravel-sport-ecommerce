@@ -53,19 +53,23 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="{{ url('dashboard') }}" class="list-group-item list-group-item-action py-2 ripple"
-                        aria-current="true">
-                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-                    </a>
-                    <a href="{{ url('products') }}" class="list-group-item list-group-item-action py-2 ripple active">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
-                    </a>
-                    <a href="{{ url('categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
-                     <a href="{{ url('sales') }}" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-chart-line fa-fw me-3"></i><span>Sales</span></a>
-                    <a href="{{ url('users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
+                    <a href="{{ url('/dashboard') }}" class="list-group-item list-group-item-action py-2 ripple"
+                    aria-current="true">
+                    <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+                </a>
+                <a href="{{ url('/products') }}" class="list-group-item list-group-item-action py-2 ripple active">
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
+                </a>
+                <a href="{{ url('/reviews') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                        class="fas fa-chart-line fa-fw me-3"></i><span>Review</span></a>
+                <a href="{{ url('/categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                        class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
+                <a href="{{ url('/users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                        class="fas fa-chart-line fa-fw me-3"></i><span>Users</span></a>
+                <a href="{{ url('/orders') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                        class="fas fa-chart-line fa-fw me-3"></i><span>Orders</span></a>
+                <a href="{{ url('/sales') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                        class="fas fa-chart-line fa-fw me-3"></i><span>Sales</span></a>
                 </div>
             </div>
         </nav>
@@ -109,21 +113,34 @@
                                 <th scope="col">{{ $product->name }}</th>
                                 <th scope="col">{{ $product->description }}</th>
                                 <th scope="col">
-                                    <img src="{{ asset('storage/' . $product->image) }}" style="height:70px; width:70px">
+                                    <img src="{{ asset('storage/' . $product->image) }}"
+                                        style="height:70px; width:70px">
                                 </th>
                                 <th scope="col">{{ $product->price }}</th>
                                 <th scope="col">{{ $product->priceWithDiscount }}</th>
                                 <th scope="col">{{ $product->stock }}</th>
-                                <th scope="col">{{ $product->rating }}</th>
-                                <th scope="col">{{ $product->total_reviws }}</th>
+                                <th scope="col">{{ round($product->reviews->avg('rating'), 2) }} </th>
+                                <th scope="col">
+
+
+                                    <form action="/reviews/{{ $product->id }}" method="POST">
+                                        @method('SHOW')
+                                        @csrf
+                                        <a href="{{ url('reviews') }}"><span> {{ count($product->reviews) }}</span></a>
+                                    </form>
+                                   
+                                
+
+
+                                </th>
                                 <th scope="col">{{ $product->created_at }}</th>
                                 <th scope="col">{{ $product->updated_at }}</th>
                                 <th scope="col">
 
-                                    <a class="btn btn-success" href="/products/{{$product->id}}/edit">Edit
+                                    <a class="btn btn-success" href="/products/{{ $product->id }}/edit">Edit
                                     </a>
 
-                                    <form action="/products/{{$product->id}}" method="POST"
+                                    <form action="/products/{{ $product->id }}" method="POST"
                                         onclick="return confirm('Are you sure you want to delete this product?')">
                                         @method('DELETE')
                                         @csrf
@@ -139,7 +156,7 @@
 
                 {{ $products->links() }}
 
-                
+
             </div>
         </div>
     </main>

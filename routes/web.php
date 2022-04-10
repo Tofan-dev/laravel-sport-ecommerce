@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SaleController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,3 +57,11 @@ Route::resource('categories', CategoryController::class);
 /* ALL SALES ROUTES */
 
 Route::resource('sales', SaleController::class);
+
+/* ALL REVIEWS ROUTES */
+
+Route::resource('reviews', ReviewController::class);
+
+/* ALL USERS ROUTES */
+
+

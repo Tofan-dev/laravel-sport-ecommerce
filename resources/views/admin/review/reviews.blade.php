@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('All products') }}
         </h2>
     </x-slot>
 
@@ -53,14 +53,14 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="{{ url('/dashboard') }}" class="list-group-item list-group-item-action py-2 ripple active"
+                    <a href="{{ url('/dashboard') }}" class="list-group-item list-group-item-action py-2 ripple"
                         aria-current="true">
                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
                     </a>
                     <a href="{{ url('/products') }}" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
-                    <a href="{{ url('/reviews') }}" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="{{ url('/reviews') }}" class="list-group-item list-group-item-action py-2 ripple active"><i
                             class="fas fa-chart-line fa-fw me-3"></i><span>Review</span></a>
                     <a href="{{ url('/categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
@@ -79,7 +79,58 @@
     <!--Main layout-->
     <main style="margin-top: 58px;">
         <div class="container pt-4">
+            @if (session('successMsg'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('successMsg') }}
+                </div>
+            @endif
+            <div class="container pt-4">
+                <h1>All reviews</h1>
 
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Product Id</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">User_name</th>
+                            <th scope="col">User_comment</th>
+                            <th scope="col">Created_at</th>
+                            <th scope="col">Updated_at</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($reviews as $review)
+                            <tr>
+                                <th scope="col">{{ $review->id }}</th>
+                                <th scope="col">{{ $review->product_id }}</th>
+                                <th scope="col">{{ $review->user_id }}</th>
+                                <th scope="col">{{ $review->rating }}</th>
+                                <th scope="col">{{ $review->user_name }}</th>
+                                <th scope="col">{{ $review->user_comment }}</th>
+                                <th scope="col">{{ $review->created_at }}</th>
+                                <th scope="col">{{ $review->updated_at }}</th>
+                               
+                                <th scope="col">
+                                    <form action="/reviews/{{$review->id}}" method="POST"
+                                        onclick="return confirm('Are you sure you want to delete this review?')">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+
+                                </th>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                {{ $reviews->links() }}
+
+                
+            </div>
         </div>
     </main>
 
