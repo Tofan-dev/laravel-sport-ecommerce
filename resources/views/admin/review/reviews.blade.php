@@ -61,7 +61,7 @@
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Products</span>
                     </a>
                     <a href="{{ url('/reviews') }}" class="list-group-item list-group-item-action py-2 ripple active"><i
-                            class="fas fa-chart-line fa-fw me-3"></i><span>Review</span></a>
+                            class="fas fa-chart-line fa-fw me-3"></i><span>Reviews</span></a>
                     <a href="{{ url('/categories') }}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a>
                     <a href="{{ url('/users') }}" class="list-group-item list-group-item-action py-2 ripple"><i
