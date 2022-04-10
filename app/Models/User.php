@@ -45,7 +45,7 @@ class User extends Authenticatable
     // The informations that belong to the user.
 
 
-    public function information()
+    public function information() // just information
     {
         return $this->hasOne(Information::class);
     }

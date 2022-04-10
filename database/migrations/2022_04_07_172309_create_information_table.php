@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('informations', function (Blueprint $table) {
+        Schema::create('information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('country');
-            $table->string('city');
-            $table->string('adress');
-            $table->string('postal_code');
-            $table->string('phone_number');
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('adress')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('phone_number')->nullable();
             $table->timestamps();
         });
     }
