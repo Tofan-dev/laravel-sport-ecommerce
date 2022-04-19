@@ -71,3 +71,7 @@ Route::resource('users', UserController::class);
 /* ALL ORDERS ROUTES */
 
 Route::resource('orders', OrderController::class);
+
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
