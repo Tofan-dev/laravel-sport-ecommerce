@@ -1,9 +1,9 @@
-import { Button, ButtonGroup, Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import React from "react";
 import "../../css/homepage.css";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ShopIcon from "@mui/icons-material/Shop";
-import { red } from "@mui/material/colors";
+import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
     return (
@@ -13,19 +13,21 @@ const HomeScreen = () => {
             alignItems="center"
             justifyContent="center"
         >
-            <Button
-                variant="contained"
-                size="large"
-                startIcon={<AdminPanelSettingsIcon />}
-                sx={{
-                    backgroundColor: "#DA1212",
-                    "&:hover": {
-                        backgroundColor: "#b30d0d",
-                    },
-                }}
-            >
-                Admin Panel
-            </Button>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }} >
+                <Button
+                    variant="contained"
+                    size="large"
+                    startIcon={<AdminPanelSettingsIcon />}
+                    sx={{
+                        backgroundColor: "#DA1212",
+                        "&:hover": {
+                            backgroundColor: "#b30d0d",
+                        },
+                    }}
+                >
+                    Admin Panel
+                </Button>
+            </Link>
             <Button
                 variant="contained"
                 size="large"

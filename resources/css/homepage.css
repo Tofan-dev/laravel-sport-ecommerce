@@ -24,5 +24,7 @@
 .background-image{
       left: 50%;
       margin-left: -512px;   /* 50% */
+      color: #144c91;
     }
   }
+  
