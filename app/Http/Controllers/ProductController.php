@@ -22,7 +22,8 @@ class ProductController extends Controller
     {
         $products = Product::with('category', 'orders', 'reviews', 'sale')->paginate(8);
         // dd($count);
-        return view('admin.product.products', compact('products'));
+        // return view('admin.product.products', compact('products'));
+        return response()->json($products);
     }
 
     /**
