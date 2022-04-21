@@ -1,7 +1,7 @@
 .sidebar{
     flex:1;
     height: calc(100vh - 50px);
-    background-color: #fffbfb;
+    background-color: #fff8f8;
     position: sticky;
     top: 50px;
 }
@@ -16,14 +16,14 @@
 }
 
 .sidebarTitle{
-    font-size: 23px;
-    color: #4b4848;
+    font-size: 19px;
+    color: gray;
 }
 
 .sidebarList{
     list-style: none;
     padding: 5px;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .sidebarListItem{

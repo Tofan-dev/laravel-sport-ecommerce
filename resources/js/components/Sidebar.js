@@ -27,6 +27,48 @@ const Sidebar = () => {
                         </li>
                     </ul>
                 </div>
+                <div className="sidebarMenu">
+                    <h3 className="sidebarTitle">Example</h3>
+                    <ul className="sidebarList">
+                        <li className="sidebarListItem">
+                          <Home className="sidebarIcon" />
+                          Example
+                        </li>
+                        <li className="sidebarListItem">
+                          <Inventory className="sidebarIcon"/>
+                          Example
+                        </li>
+                        <li className="sidebarListItem">
+                          <BorderColor className="sidebarIcon"/>
+                          Example
+                        </li>
+                        <li className="sidebarListItem">
+                          <SupervisedUserCircle className="sidebarIcon"/>
+                          Example
+                        </li>
+                    </ul>
+                </div>
+                <div className="sidebarMenu">
+                    <h3 className="sidebarTitle">Example</h3>
+                    <ul className="sidebarList">
+                        <li className="sidebarListItem">
+                          <Home className="sidebarIcon" />
+                          Example
+                        </li>
+                        <li className="sidebarListItem">
+                          <Inventory className="sidebarIcon"/>
+                          Example
+                        </li>
+                        <li className="sidebarListItem">
+                          <BorderColor className="sidebarIcon"/>
+                          Example
+                        </li>
+                        <li className="sidebarListItem">
+                          <SupervisedUserCircle className="sidebarIcon"/>
+                          Example
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     );
