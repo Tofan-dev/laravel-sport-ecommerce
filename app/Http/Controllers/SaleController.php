@@ -14,8 +14,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::paginate(7);
-        return view('admin.sale.sales', compact('sales'));
+        $sales = Sale::all();
+        return response()->json($sales);
     }
 
     /**

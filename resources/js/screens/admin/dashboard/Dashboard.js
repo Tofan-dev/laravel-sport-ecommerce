@@ -1,7 +1,6 @@
-import React from 'react'
+import { Outlet, Router } from 'react-router-dom'
 import Navbar from '../../../components/Navbar'
 import Sidebar from '../../../components/Sidebar'
-import Home from '../home/home'
 import "./dashboard.css"
 
 const Dashboard = () => {
@@ -9,10 +8,10 @@ const Dashboard = () => {
     <div>
         <Navbar />
         <div className='container'>
-          <Sidebar />
-          <Home /> 
+          <Sidebar />  
+          <Outlet/>
+          </div>
         </div>
-    </div>
   )
 }
 

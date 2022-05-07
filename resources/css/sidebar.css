@@ -42,4 +42,6 @@
 .sidebarIcon{
     font-size: 20px;
     margin-right: 10px;
+    position: relative;
+    top: 4px;
 }

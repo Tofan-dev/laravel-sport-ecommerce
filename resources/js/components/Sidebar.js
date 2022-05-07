@@ -1,5 +1,10 @@
-
-import { BorderColor, Home, Inventory, SupervisedUserCircle } from "@mui/icons-material";
+import {
+    BorderColor,
+    Home,
+    Inventory,
+    SupervisedUserCircle,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import "../../css/sidebar.css";
 
 const Sidebar = () => {
@@ -9,42 +14,38 @@ const Sidebar = () => {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
-                        <li className="sidebarListItem active">
-                          <Home className="sidebarIcon" />
-                          Home
+                        <li className="sidebarListItem">
+                            <Link
+                                to="/admin/home"
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                }}
+                            >
+                                <Home className="sidebarIcon" />
+                                Home
+                            </Link>
+                        </li>
+
+                        <li className="sidebarListItem">
+                            <Link
+                                to="/admin/products"
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                }}
+                            >
+                                <Inventory className="sidebarIcon" />
+                                Products
+                            </Link>
                         </li>
                         <li className="sidebarListItem">
-                          <Inventory className="sidebarIcon"/>
-                          Products
+                            <BorderColor className="sidebarIcon" />
+                            Orders
                         </li>
                         <li className="sidebarListItem">
-                          <BorderColor className="sidebarIcon"/>
-                          Orders
-                        </li>
-                        <li className="sidebarListItem">
-                          <SupervisedUserCircle className="sidebarIcon"/>
-                          Users
-                        </li>
-                    </ul>
-                </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Example</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem">
-                          <Home className="sidebarIcon" />
-                          Example
-                        </li>
-                        <li className="sidebarListItem">
-                          <Inventory className="sidebarIcon"/>
-                          Example
-                        </li>
-                        <li className="sidebarListItem">
-                          <BorderColor className="sidebarIcon"/>
-                          Example
-                        </li>
-                        <li className="sidebarListItem">
-                          <SupervisedUserCircle className="sidebarIcon"/>
-                          Example
+                            <SupervisedUserCircle className="sidebarIcon" />
+                            Users
                         </li>
                     </ul>
                 </div>
@@ -52,20 +53,41 @@ const Sidebar = () => {
                     <h3 className="sidebarTitle">Example</h3>
                     <ul className="sidebarList">
                         <li className="sidebarListItem">
-                          <Home className="sidebarIcon" />
-                          Example
+                            <Home className="sidebarIcon" />
+                            Example
                         </li>
                         <li className="sidebarListItem">
-                          <Inventory className="sidebarIcon"/>
-                          Example
+                            <Inventory className="sidebarIcon" />
+                            Example
                         </li>
                         <li className="sidebarListItem">
-                          <BorderColor className="sidebarIcon"/>
-                          Example
+                            <BorderColor className="sidebarIcon" />
+                            Example
                         </li>
                         <li className="sidebarListItem">
-                          <SupervisedUserCircle className="sidebarIcon"/>
-                          Example
+                            <SupervisedUserCircle className="sidebarIcon" />
+                            Example
+                        </li>
+                    </ul>
+                </div>
+                <div className="sidebarMenu">
+                    <h3 className="sidebarTitle">Example</h3>
+                    <ul className="sidebarList">
+                        <li className="sidebarListItem">
+                            <Home className="sidebarIcon" />
+                            Example
+                        </li>
+                        <li className="sidebarListItem">
+                            <Inventory className="sidebarIcon" />
+                            Example
+                        </li>
+                        <li className="sidebarListItem">
+                            <BorderColor className="sidebarIcon" />
+                            Example
+                        </li>
+                        <li className="sidebarListItem">
+                            <SupervisedUserCircle className="sidebarIcon" />
+                            Example
                         </li>
                     </ul>
                 </div>

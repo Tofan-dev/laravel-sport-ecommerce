@@ -15,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(7);
-        return view('admin.category.categories', compact('categories'));
+        $categories = Category::all();
+        return response()->json($categories);
     }
 
     /**

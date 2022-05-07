@@ -1,5 +1,4 @@
 import { Button, Grid } from "@mui/material";
-import React from "react";
 import "../../css/homepage.css";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ShopIcon from "@mui/icons-material/Shop";
@@ -13,7 +12,7 @@ const HomeScreen = () => {
             alignItems="center"
             justifyContent="center"
         >
-            <Link to="/dashboard" style={{ textDecoration: 'none' }} >
+            <Link to="/admin/home" style={{ textDecoration: 'none' }} >
                 <Button
                     variant="contained"
                     size="large"

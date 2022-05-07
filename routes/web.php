@@ -43,27 +43,27 @@ Route::any('{path}', function($page) {
 
 // /* ALL PRODUCTS ROUTES */
 
-// // Route::get('/products', [ProductController::class, 'index'])->name('products');
+// Route::get('/products', [ProductController::class, 'index'])->name('products');
 
-// // Route::get('/addProduct', [ProductController::class, 'create'])->name('addProduct');
+// Route::get('/addProduct', [ProductController::class, 'create'])->name('addProduct');
 
-// // Route::post('/addProduct', [ProductController::class, 'store'])->name('storeProduct');
+// Route::post('/addProduct', [ProductController::class, 'store'])->name('storeProduct');
 
-// // Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('editProduct');
+// Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('editProduct');
 
-// // Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->name('updateProduct');
+// Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->name('updateProduct');
 
-// // Route::delete('/deleteProduct/{id}', [ProductController::class, 'delete'])->name('deleteProduct');
+// Route::delete('/deleteProduct/{id}', [ProductController::class, 'delete'])->name('deleteProduct');
 // Route::resource('products', ProductController::class);
 
-// /* ALL CATEGORES ROUTES */
+/* ALL CATEGORES ROUTES */
 
-// // Route::group(['prefix' => 'categories'], function() {
-//     //     Route::get('/', [CategoryController::class, 'index']);
-// //     Route::post('/', [CategoryController::class, 'store']);
-// //     Route::get('/{id}', [CategoryController::class, 'edit']);
-// //     Route::patch('/{id}', [CategoryController::class, 'update']);
-// //     Route::delete('delete/{id}', [CategoryController::class, 'destroy']);
+// Route::group(['prefix' => 'categories'], function() {
+    //     Route::get('/', [CategoryController::class, 'index']);
+//     Route::post('/', [CategoryController::class, 'store']);
+//     Route::get('/{id}', [CategoryController::class, 'edit']);
+//     Route::patch('/{id}', [CategoryController::class, 'update']);
+//     Route::delete('delete/{id}', [CategoryController::class, 'destroy']);
 // // });
 
 // Route::resource('categories', CategoryController::class);

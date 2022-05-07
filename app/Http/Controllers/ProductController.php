@@ -51,22 +51,29 @@ class ProductController extends Controller
         $product                    = new Product;
         $product->name              = $request->name;
         $product->description       = $request->description;
-        $product->category_id       = $request->category;
-        $product->sale_id           = $request->sale;
+        $product->category_id       = $request->categoryId;
+        $product->sale_id           = $request->saleId;
         $product->price             = $request->price;
-        $product->priceWithDiscount = $request->priceWithDiscount;
-        $product->stock             = $request->stock;
+        $product->stock             = $request->quantity;
 
-        if ($request->hasFile('image')) {
-            // get image original name and add currect time for an overall unique name
-            $imgFileName = time() . '_' . $request->image->getClientOriginalName();
+        $sale = Sale::where('id', $request->saleId)->first();
+        $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
 
-            $product->image = $request->image->storeAs('productImages', $imgFileName, 'public');
+        $product->priceWithDiscount = $priceWithDiscount;
+
+        if ($request->hasFile('images')) {
+            foreach($request->images as $image) {
+                // get image original name and add currect time for an overall unique name
+                $imgFileName = time() . '_' . $image->getClientOriginalName();
+
+                $product->image = $image->storeAs('productImages', $imgFileName, 'public');
+            }
         }
 
         $product->save();
 
-        return redirect('/products')->with('successMsg', 'Product successfully added.');
+        return response()->json(['success' => 'Product succesfully added!']);
+        // return redirect('/products')->with('successMsg', 'Product successfully added.');
     }
 
 
