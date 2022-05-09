@@ -95,14 +95,10 @@ const AddProduct = () => {
         // });
     };
 
-
     return (
         <>
             <div className="productAdd">
-           { error &&
-                                        <Message variant="error">
-                                            {error}
-                                        </Message>}
+                {error && <Message variant="error">{error}</Message>}
                 <Grid>
                     <Card
                         style={{
@@ -158,13 +154,18 @@ const AddProduct = () => {
                                             <Select
                                                 labelId="Category Title"
                                                 value={categoryId}
-                                                label="Title"
+                                                label="Choose category"
+                                                displayEmpty
                                                 onChange={(e) =>
-                                                    setCategoryId(e.target.value)
+                                                    setCategoryId(
+                                                        e.target.value
+                                                    )
                                                 }
                                                 sx={{ width: 1 }}
                                             >
-                                                <option disabled selected={'selected'}>select</option>
+                                                <MenuItem value="" disabled>
+                                                    Choose category title
+                                                </MenuItem>
                                                 {Object.keys(categories).map(
                                                     function (key) {
                                                         return (
@@ -203,12 +204,20 @@ const AddProduct = () => {
                                             <Select
                                                 labelId="Sale"
                                                 value={saleId}
-                                                label="Title"
+                                                label="Description"
+                                                displayEmpty
                                                 onChange={(e) =>
                                                     setSaleId(e.target.value)
                                                 }
                                                 sx={{ width: 1 }}
                                             >
+                                                <MenuItem value="" disabled>
+                                                    Choose sale title
+                                                </MenuItem>
+                                                {/* <MenuItem value="">
+                                                    <em>None</em>
+                                                </MenuItem>
+                                                 */}
                                                 {Object.keys(sales).map(
                                                     function (key) {
                                                         return (
@@ -238,7 +247,9 @@ const AddProduct = () => {
                                             fullWidth
                                             customInput={TextField}
                                             decimalScale={2}
-                                            onChange={(e) => setPrice(e.target.value)}
+                                            onChange={(e) =>
+                                                setPrice(e.target.value)
+                                            }
                                             required
                                             renderText={(formattedValue) => (
                                                 <Text>{formattedValue}</Text>

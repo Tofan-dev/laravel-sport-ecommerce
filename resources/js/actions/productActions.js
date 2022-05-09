@@ -14,15 +14,16 @@ import {
 export const getProductsList = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
-
+        
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-
+        
+        // console.log("salut");
         const { data } = await axios.get("/api/products", config);
-
+        
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

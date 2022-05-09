@@ -1,4 +1,3 @@
-import { DeleteOutline } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { isEmpty, isNull } from "lodash";
@@ -9,8 +8,6 @@ import { getProductsList } from "../../../actions/productActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import "./productList.css";
-import Moment from "react-moment";
-
 const ProductListScreen = () => {
     const dispatch = useDispatch();
 
@@ -35,8 +32,6 @@ const ProductListScreen = () => {
         return `${params.row.created_at || "-"}`;
     }
 
-    let date = '2022-04-10T18:27:44.000000Z';
-
     const columns = [
         { field: "id", headerName: "ID", width: 70 },
         {
@@ -44,6 +39,7 @@ const ProductListScreen = () => {
             headerName: "Category Title",
             width: 130,
             valueGetter: (params) => {
+                console.log(params);
                 return params.value.title;
             },
         },
@@ -87,21 +83,25 @@ const ProductListScreen = () => {
                             <button className="productListEdit">Edit</button>
                         </Link>
 
-                        {/* <button className="productListEdit" onClick={deleteProduct(params.row.id)}>Delete</button> */}
+                        <button className="productListEdit" onClick={deleteProduct(params.row.id)}>Delete</button>
                     </>
                 );
             },
         },
     ];
 
-    const rows = !isEmpty(products) ? products.data : [];
+    const rows = !isEmpty(products) ? products : [];
+
+    const [pageSize, setPageSize] = React.useState(15);
+
 
     // const deleteProduct = (id) => {
 
     //     setProductId(id)
     // }
 
-    console.log('productId', productId);
+    console.log(rows);
+
     return (
         <>
             <div className="productList">
@@ -121,10 +121,15 @@ const ProductListScreen = () => {
                         </Link>
 
                         <DataGrid
+                            pageSize={pageSize}
+                            onPageSizeChange={(newPageSize) =>
+                                setPageSize(newPageSize)
+                            }
+                            rowsPerPageOptions={[10, 15, 25]}
+                            pagination
+                            columns={columns}
                             rows={rows}
                             disableSelectionOnClick
-                            columns={columns}
-                            checkboxSelection
                         />
                     </>
                 )}

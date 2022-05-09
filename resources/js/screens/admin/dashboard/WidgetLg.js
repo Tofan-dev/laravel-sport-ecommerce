@@ -8,12 +8,15 @@ const WidgetLg = () => {
         <div className="widgetLg">
            <h3 className="widgetLgTitle">Latest transcations</h3>
            <table className="widgetLgTable">
+               <thead>
                <tr className="widgetLgTr">
                    <th className="widgetLgTh">Customer</th>
                    <th className="widgetLgTh">Date</th>
                    <th className="widgetLgTh">Amount</th>
                    <th className="widgetLgTh">Status</th>
                </tr>
+               </thead>
+               <tbody>
                <tr className="widgetLgTr">
                    <td className="widgetLgUser">
                         <img src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
@@ -47,6 +50,7 @@ const WidgetLg = () => {
                        <Button type="Pending"/>
                    </td>
                </tr>
+               </tbody>
            </table>
         </div>
     );

@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Review;
 use App\Models\Sale;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -20,8 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category', 'orders', 'reviews', 'sale')->paginate(8);
-        // dd($count);
+        $products = Product::with('category', 'sale')->get();
         // return view('admin.product.products', compact('products'));
         return response()->json($products);
     }
