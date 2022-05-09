@@ -9,6 +9,8 @@ import store from "./store";
 import Home from "./screens/admin/home/Home"
 import AddProduct from "./screens/admin/products/AddProduct";
 import EditProduct from "./screens/admin/products/EditProduct";
+import CategoryListScreen from "./screens/admin/categories/CategoryListScreen";
+import AddCategory from "./screens/admin/categories/AddCategory";
 const Index = () => {
     return (
         <>
@@ -22,6 +24,10 @@ const Index = () => {
                         <Route path="products" element={<ProductListScreen />} exact />
                         <Route path="product/add" element={<AddProduct />}/>
                         <Route path="product/edit/:id" element={<EditProduct />}/>
+
+                        <Route path="categories" element={<CategoryListScreen />} exact />
+                        <Route path="category/add" element={<AddCategory />}/>
+                        <Route path="category/edit/:id" element={<EditProduct />}/>
                     </Route>
                   
                 </Routes>

@@ -42,7 +42,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('/categories')->with('successMsg', 'Category successfully added.');
+        return response()->json(['success' => 'Category succesfully added!']);
     }
 
     /**

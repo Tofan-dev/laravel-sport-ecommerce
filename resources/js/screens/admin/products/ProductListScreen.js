@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { isEmpty, isNull } from "lodash";
-import React, { useEffect, useState, createRef } from "react";
+import { isEmpty } from "lodash";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getProductsList } from "../../../actions/productActions";
+import { deleteProduct, getProductsList } from "../../../actions/productActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import "./productList.css";
@@ -39,7 +39,6 @@ const ProductListScreen = () => {
             headerName: "Category Title",
             width: 130,
             valueGetter: (params) => {
-                console.log(params);
                 return params.value.title;
             },
         },
@@ -79,11 +78,12 @@ const ProductListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/product/edit/" + params.row.id}>
+                        {/* <Link to={"/product/edit/" + params.row.id}>
                             <button className="productListEdit">Edit</button>
                         </Link>
-
-                        <button className="productListEdit" onClick={deleteProduct(params.row.id)}>Delete</button>
+                        <Link to={"/product/delete/" + params.row.id}>
+                            <button className="productListDelete" onClick={deleteProduct(params.row.id)}>Delete</button>                 
+                        </Link> */}
                     </>
                 );
             },
@@ -100,7 +100,7 @@ const ProductListScreen = () => {
     //     setProductId(id)
     // }
 
-    console.log(rows);
+    // console.log(rows);
 
     return (
         <>

@@ -14,35 +14,44 @@ const Sidebar = () => {
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
-                        <li className="sidebarListItem">
-                            <Link
-                                to="/admin/home"
-                                style={{
-                                    textDecoration: "none",
-                                    color: "black",
-                                }}
-                            >
+                        <Link
+                            to="/admin/home"
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                        >
+                            <li className="sidebarListItem">
                                 <Home className="sidebarIcon" />
                                 Home
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
 
-                        <li className="sidebarListItem">
-                            <Link
-                                to="/admin/products"
-                                style={{
-                                    textDecoration: "none",
-                                    color: "black",
-                                }}
-                            >
+                        <Link
+                            to="/admin/products"
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                        >
+                            <li className="sidebarListItem">
                                 <Inventory className="sidebarIcon" />
                                 Products
-                            </Link>
-                        </li>
-                        <li className="sidebarListItem">
-                            <BorderColor className="sidebarIcon" />
-                            Orders
-                        </li>
+                            </li>
+                        </Link>
+
+                        <Link
+                            to="/admin/categories"
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                        >
+                            <li className="sidebarListItem">
+                                <Inventory className="sidebarIcon" />
+                                Categories
+                            </li>
+                        </Link>
                         <li className="sidebarListItem">
                             <SupervisedUserCircle className="sidebarIcon" />
                             Users
