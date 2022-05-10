@@ -4,7 +4,7 @@ import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteProduct, getProductsList } from "../../../actions/productActions";
+import {deleteProduct, getProductsList, updateProduct} from "../../../actions/productActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import "./productList.css";

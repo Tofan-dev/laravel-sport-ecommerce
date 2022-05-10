@@ -139,7 +139,9 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/products')->with('successMsg', 'Product successfully updated.');
+        return response()->json(['success' => 'Product updated succesfully!']);
+
+        // return redirect('/products')->with('successMsg', 'Product successfully updated.');
     }
 
     /**
@@ -156,6 +158,8 @@ class ProductController extends Controller
             $product->delete();
         }
 
-        return redirect('/products')->with('successMsg', 'Product successfully deleted.');
+        return response()->json(['success' => 'Product deleted succesfully!']);
+
+        // return redirect('/products')->with('successMsg', 'Product successfully deleted.');
     }
 }
