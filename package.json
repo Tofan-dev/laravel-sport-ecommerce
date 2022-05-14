@@ -45,6 +45,7 @@
         "recharts": "^2.1.9",
         "redux": "^4.2.0",
         "redux-devtools-extension": "^2.13.9",
-        "redux-thunk": "^2.4.1"
+        "redux-thunk": "^2.4.1",
+        "sweetalert2": "^11.4.14"
     }
 }

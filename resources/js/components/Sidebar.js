@@ -18,7 +18,7 @@ const Sidebar = () => {
                             to="/admin/home"
                             style={{
                                 textDecoration: "none",
-                                color: "black",
+                                color: "white",
                             }}
                         >
                             <li className="sidebarListItem">
@@ -31,7 +31,7 @@ const Sidebar = () => {
                             to="/admin/products"
                             style={{
                                 textDecoration: "none",
-                                color: "black",
+                                color: "white",
                             }}
                         >
                             <li className="sidebarListItem">
@@ -44,7 +44,7 @@ const Sidebar = () => {
                             to="/admin/categories"
                             style={{
                                 textDecoration: "none",
-                                color: "black",
+                                color: "white",
                             }}
                         >
                             <li className="sidebarListItem">

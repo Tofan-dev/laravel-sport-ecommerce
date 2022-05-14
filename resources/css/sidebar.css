@@ -1,32 +1,35 @@
-.sidebar{
-    flex:1;
+.sidebar {
+    flex: 1;
     height: calc(100vh - 50px);
-    background-color: #fff8f8;
+    background: #ED213A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
     position: sticky;
     top: 50px;
+    border-radius: 15px;
 }
 
-.sidebarWrapper{
+.sidebarWrapper {
     padding: 20px;
-    color: #252222;
+    color: white;
 }
 
-.sidebarMenu{
+.sidebarMenu {
     margin-bottom: 10px;
 }
 
-.sidebarTitle{
+.sidebarTitle {
     font-size: 19px;
-    color: gray;
+    color: white;
 }
 
-.sidebarList{
+.sidebarList {
     list-style: none;
     padding: 5px;
     font-size: 18px;
 }
 
-.sidebarListItem{
+.sidebarListItem {
     padding: 5px;
     cursor: pointer;
     display: flex;
@@ -34,14 +37,16 @@
     border-radius: 10px;
 }
 
-.sidebarListItem.active, .sidebarListItem:hover{
-    background-color: #cb373744;
+.sidebarListItem.active,
+.sidebarListItem:hover {
+    background-color: rgb(228, 147, 147);
     transition: background-color 0.3s;
 }
 
-.sidebarIcon{
+.sidebarIcon {
     font-size: 20px;
     margin-right: 10px;
     position: relative;
     top: 4px;
+    color: white;
 }

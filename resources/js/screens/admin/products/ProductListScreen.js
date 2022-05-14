@@ -4,14 +4,16 @@ import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {deleteProduct, getProductsList, updateProduct} from "../../../actions/productActions";
+import {
+    deleteProduct,
+    getProductsList,
+    updateProduct,
+} from "../../../actions/productActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import "./productList.css";
 const ProductListScreen = () => {
     const dispatch = useDispatch();
-
-    const [productId, setProductId] = useState("");
 
     const productList = useSelector((state) => state.productList);
     const { products, loading, error } = productList;
@@ -42,7 +44,14 @@ const ProductListScreen = () => {
                 return params.value.title;
             },
         },
-        { field: "sale_id", headerName: "Sale ID", width: 130 },
+        {
+            field: "sale",
+            headerName: "Sale ID",
+            width: 130,
+            valueGetter: (params) => {
+                return params.value.description;
+            },
+        },
         { field: "name", headerName: "Name", width: 130 },
         { field: "description", headerName: "Description", width: 120 },
         { field: "price", headerName: "Price", width: 100 },
@@ -51,17 +60,17 @@ const ProductListScreen = () => {
             headerName: "PriceWithDiscount",
             width: 120,
         },
-        { field: "stock", headerName: "Stock", width: 120 },
+        { field: "stock", headerName: "Stock", width: 60 },
         {
             field: "rating",
             headerName: "Rating",
-            width: 120,
+            width: 60,
             valueGetter: getRating,
         },
         {
             field: "totalReviews",
             headerName: "Total Reviews",
-            width: 120,
+            width: 60,
             valueGetter: getReview,
         },
         {
@@ -78,12 +87,14 @@ const ProductListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        {/* <Link to={"/product/edit/" + params.row.id}>
+                        <Link to={"/admin/product/edit/" + params.row.id}>
                             <button className="productListEdit">Edit</button>
                         </Link>
-                        <Link to={"/product/delete/" + params.row.id}>
-                            <button className="productListDelete" onClick={deleteProduct(params.row.id)}>Delete</button>                 
-                        </Link> */}
+                        <Link to={"/admin/product/delete/" + params.row.id}>
+                            <button className="productListDelete">
+                                Delete
+                            </button>
+                        </Link>
                     </>
                 );
             },
@@ -93,7 +104,6 @@ const ProductListScreen = () => {
     const rows = !isEmpty(products) ? products : [];
 
     const [pageSize, setPageSize] = React.useState(15);
-
 
     // const deleteProduct = (id) => {
 
@@ -113,14 +123,30 @@ const ProductListScreen = () => {
                     <>
                         <Link
                             to="/admin/product/add"
-                            style={{ textDecoration: "none" }}
-                        >
-                            <Button variant="contained" size="large">
+                            style={{
+                                textDecoration: "none",
+                                margin: '1%', 
+                            }}
+                            >
+                            <Button variant="contained" size="large" color="error">
                                 Add new product
                             </Button>
                         </Link>
 
                         <DataGrid
+                            sx={{
+                                color: "white",
+                                height: "90%",
+                                margin: '1%',
+                                backgroundColor: '#1d1c1c',
+                                ".MuiTablePagination-toolbar": {
+                                    color:"white",
+                                  },
+                                ".MuiSelect-icon": {
+                                    color:"white",
+                                  },
+                            }}
+                            
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>
                                 setPageSize(newPageSize)

@@ -19,6 +19,7 @@ import Dropzone from "react-dropzone";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
 import { createProduct } from "../../../actions/productActions";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
     const dispatch = useDispatch();
@@ -81,18 +82,22 @@ const AddProduct = () => {
 
         dispatch(createProduct(formData));
 
-        // setRequestData(new Date());
-        // setSuccessModal(true);
-        // setOpenAddDialog(false);
-
-        // Swal.fire({
-        //     position: "center",
-        //     icon: "success",
-        //     title: `Product created successfully`,
-        //     showConfirmButton: false,
-        //     timer: 2500,
-        //     width: "65rem",
-        // });
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product added successfully",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "See products list",
+            denyButtonText: `Add another product`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location = "/admin/products";
+            } else if (result.isDenied) {
+                window.location = "/admin/product/add";
+            }
+        });
     };
 
     return (
@@ -100,19 +105,22 @@ const AddProduct = () => {
             <div className="productAdd">
                 {error && <Message variant="error">{error}</Message>}
                 <Grid>
-                    <Card
-                        style={{
-                            maxWidth: 450,
-                            padding: "20px 5px",
-                            margin: "0 auto",
-                        }}
+                    <Card className="form"
+                        // style={{
+                        //     maxWidth: 450,
+                        //     padding: "20px 5px",
+                        //     margin: "0 auto",
+                        // }}
                     >
                         <CardContent>
                             <Typography gutterBottom variant="h5">
-                                Add new product
+                                ADD NEW PRODUCT
                             </Typography>
                             <form onSubmit={submitHandler}>
-                                <Grid container spacing={1}>
+                                <Grid
+                                    container
+                                    spacing={1}
+                                >
                                     <Grid xs={12} item>
                                         <TextField
                                             placeholder="Enter product name"
@@ -214,10 +222,7 @@ const AddProduct = () => {
                                                 <MenuItem value="" disabled>
                                                     Choose sale title
                                                 </MenuItem>
-                                                {/* <MenuItem value="">
-                                                    <em>None</em>
-                                                </MenuItem>
-                                                 */}
+
                                                 {Object.keys(sales).map(
                                                     function (key) {
                                                         return (
@@ -302,6 +307,7 @@ const AddProduct = () => {
                                                             <Button
                                                                 variant="contained"
                                                                 type="button"
+                                                                color="success"
                                                                 onClick={
                                                                     openDialog
                                                                 }
@@ -342,7 +348,7 @@ const AddProduct = () => {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            color="primary"
+                                            color="success"
                                             fullWidth
                                         >
                                             Submit

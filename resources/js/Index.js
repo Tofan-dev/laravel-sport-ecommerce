@@ -11,6 +11,7 @@ import AddProduct from "./screens/admin/products/AddProduct";
 import EditProduct from "./screens/admin/products/EditProduct";
 import CategoryListScreen from "./screens/admin/categories/CategoryListScreen";
 import AddCategory from "./screens/admin/categories/AddCategory";
+import DeleteProduct from "./screens/admin/products/DeleteProduct";
 const Index = () => {
     return (
         <>
@@ -21,15 +22,22 @@ const Index = () => {
                     {/* Admin Section */}
                     <Route path="/admin" element={<Dashboard />} exact >
                         <Route path="home" element={<Home />} />
-                        <Route path="products" element={<ProductListScreen />} exact />
+                        <Route path="products" element={<ProductListScreen />} exact/>
+                        <Route path="categories" element={<CategoryListScreen />} exact />
+                    {/* Products Section */}
                         <Route path="product/add" element={<AddProduct />}/>
                         <Route path="product/edit/:id" element={<EditProduct />}/>
+                        <Route path="product/delete/:id" element={<DeleteProduct />}/>
+                    {/* Products Section */}
 
-                        <Route path="categories" element={<CategoryListScreen />} exact />
+                    {/* Categories Section */}
                         <Route path="category/add" element={<AddCategory />}/>
                         <Route path="category/edit/:id" element={<EditProduct />}/>
-                    </Route>
                   
+                    {/* Categories Section */}
+                    </Route>
+                    {/* Admin Section */}
+
                 </Routes>
             </Router>
         </>
