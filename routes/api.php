@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SaleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +46,10 @@ Route::patch('/sale/update/{id}', [SaleController::class, 'update']);
 Route::delete('/sale/delete/{id}', [SaleController::class, 'destroy']);
 // Sale routes
 
+// Review routes
+Route::get('/reviews', [ReviewController::class, 'index']);
+Route::post('/reviews', [ReviewController::class, 'store']);
+Route::get('/review/edit/{id}', [ReviewController::class, 'edit']);
+Route::patch('/review/update/{id}', [ReviewController::class, 'update']);
+Route::delete('/review/delete/{id}', [ReviewController::class, 'destroy']);
+// Review routes

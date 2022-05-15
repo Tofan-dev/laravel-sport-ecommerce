@@ -14,6 +14,7 @@ import AddCategory from "./screens/admin/categories/AddCategory";
 import DeleteProduct from "./screens/admin/products/DeleteProduct";
 import SaleListScreen from "./screens/admin/sales/SaleListScreen";
 import AddSale from "./screens/admin/sales/AddSale";
+import ReviewListScreen from "./screens/admin/reviews/ReviewListScreen";
 const Index = () => {
     return (
         <>
@@ -27,6 +28,7 @@ const Index = () => {
                         <Route path="products" element={<ProductListScreen />} exact/>
                         <Route path="categories" element={<CategoryListScreen />} exact />
                         <Route path="sales" element={<SaleListScreen />} exact />
+                        <Route path="reviews" element={<ReviewListScreen />} exact />
                    
                     {/* Products Section */}
                         <Route path="product/add" element={<AddProduct />}/>
@@ -45,6 +47,14 @@ const Index = () => {
                         {/* <Route path="sale/edit/:id" element={<EditSale />}/> */}
                   
                     {/* Sales Section */}
+
+                    {/* Reviews Section */}
+                        {/* <Route path="sale/add" element={<AddSale />}/> */}
+                        {/* <Route path="sale/edit/:id" element={<EditSale />}/> */}
+                  
+                    {/* Reviews Section */}
+                    
+                    
                     </Route>
                     {/* Admin Section */}
 

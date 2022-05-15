@@ -15,8 +15,9 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::with('user','product','orders_products')->orderBy('created_at', 'DESC')->paginate('7');
-        return view('admin.review.reviews', compact('reviews'));
+        $reviews = Review::with('user','product')->get();
+        // return view('admin.review.reviews', compact('reviews'));
+        return response()->json($reviews);
     }
 
     /**
@@ -88,6 +89,7 @@ class ReviewController extends Controller
             $review->delete();
         }
 
-        return redirect('/reviews')->with('successMsg', 'Review successfully deleted.');
+        // return redirect('/reviews')->with('successMsg', 'Review successfully deleted.');
+        return response()->json(['success' => 'Review deleted succesfully!']);
     }
 }

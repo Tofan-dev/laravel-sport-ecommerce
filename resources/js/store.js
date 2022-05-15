@@ -22,6 +22,13 @@ import {
     saleUpdateReducer
 } from './reducers/saleReducers'
 
+import {
+    reviewListReducer,
+    reviewCreateReducer,
+    reviewDeleteReducer,
+    reviewUpdateReducer
+} from './reducers/reviewReducers'
+
 const reducer = combineReducers({
     productList    : productListReducer,
     productCreate  : productCreateReducer,
@@ -37,6 +44,11 @@ const reducer = combineReducers({
     saleCreate     : saleCreateReducer,
     saleDelete     : saleDeleteReducer,
     saleUpdate     : saleUpdateReducer,
+
+    reviewList       : reviewListReducer,
+    reviewCreate     : reviewCreateReducer,
+    reviewDelete     : reviewDeleteReducer,
+    reviewUpdate     : reviewUpdateReducer,
 });
 
 const initialState = {};
