@@ -88,13 +88,7 @@ const EditProduct = () => {
             <div className="productEdit">
                 {error && <Message variant="error">{error}</Message>}
                 <Grid>
-                    <Card
-                        style={{
-                            maxWidth: 450,
-                            padding: "20px 5px",
-                            margin: "0 auto",
-                        }}
-                    >
+                    <Card className="form">
                         <CardContent>
                             <Typography gutterBottom variant="h5">
                                 Add new product

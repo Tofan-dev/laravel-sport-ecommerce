@@ -1,18 +1,14 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, {useState} from "react";
 import {
     Button,
     Card,
     CardContent,
     Grid,
-    InputLabel,
-    MenuItem,
-    Select,
     TextField,
     Typography,
 } from "@mui/material";
 import "../categories/addCategory.css";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import { createCategory } from "../../../actions/categoryActions";
 
@@ -41,13 +37,7 @@ const AddCategory = () => {
                 {error && <Message variant="error">{error}</Message>}
                 {error && <Message variant="success">{error}</Message>}
                 <Grid>
-                    <Card
-                        style={{
-                            maxWidth: 450,
-                            padding: "20px 5px",
-                            margin: "0 auto",
-                        }}
-                    >
+                    <Card className="form">
                         <CardContent>
                             <Typography gutterBottom variant="h5">
                                 Add new category
@@ -71,7 +61,7 @@ const AddCategory = () => {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            color="primary"
+                                            color="success"
                                             fullWidth
                                         >
                                             Submit

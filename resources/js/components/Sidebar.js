@@ -52,52 +52,54 @@ const Sidebar = () => {
                                 Categories
                             </li>
                         </Link>
-                        <li className="sidebarListItem">
-                            <SupervisedUserCircle className="sidebarIcon" />
-                            Users
-                        </li>
-                    </ul>
-                </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Example</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem">
-                            <Home className="sidebarIcon" />
-                            Example
-                        </li>
-                        <li className="sidebarListItem">
-                            <Inventory className="sidebarIcon" />
-                            Example
-                        </li>
-                        <li className="sidebarListItem">
-                            <BorderColor className="sidebarIcon" />
-                            Example
-                        </li>
-                        <li className="sidebarListItem">
-                            <SupervisedUserCircle className="sidebarIcon" />
-                            Example
-                        </li>
-                    </ul>
-                </div>
-                <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Example</h3>
-                    <ul className="sidebarList">
-                        <li className="sidebarListItem">
-                            <Home className="sidebarIcon" />
-                            Example
-                        </li>
-                        <li className="sidebarListItem">
-                            <Inventory className="sidebarIcon" />
-                            Example
-                        </li>
-                        <li className="sidebarListItem">
-                            <BorderColor className="sidebarIcon" />
-                            Example
-                        </li>
-                        <li className="sidebarListItem">
-                            <SupervisedUserCircle className="sidebarIcon" />
-                            Example
-                        </li>
+                        <Link
+                            to="/admin/sales"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}
+                        >
+                            <li className="sidebarListItem">
+                                <Inventory className="sidebarIcon" />
+                                Sales
+                            </li>
+                        </Link>
+                        <Link
+                            to="/admin/reviews"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}
+                        >
+                            <li className="sidebarListItem">
+                                <Inventory className="sidebarIcon" />
+                                Reviews
+                            </li>
+                        </Link>
+                        <Link
+                            to="/admin/orders"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}
+                        >
+                            <li className="sidebarListItem">
+                                <Inventory className="sidebarIcon" />
+                                Orders
+                            </li>
+                        </Link>
+                        <Link
+                            to="/admin/users"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}
+                        >
+                            <li className="sidebarListItem">
+                                <Inventory className="sidebarIcon" />
+                                Users
+                            </li>
+                        </Link>
                     </ul>
                 </div>
             </div>

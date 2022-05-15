@@ -1,31 +1,27 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import React from 'react'
+import Swal from 'sweetalert2';
 import "./deleteproduct.css";
+
+// Swal.fire({
+//   position: "center",
+//   icon: "question",
+//   title: "Are you sure you want to delete this product?",
+//   showDenyButton: true,
+//   confirmButtonText: "Yes",
+//   denyButtonText: `No`,
+// }).then((result) => {
+//   /* Read more about isConfirmed, isDenied below */
+//   if (result.isConfirmed) {
+//       window.location = "/admin/products";
+//   } else if (result.isDenied) {
+//       window.location = "/admin/products";
+//   }
+// });
 
 const DeleteProduct = () => {
   return (
     <div className='productDelete'>
-        <Dialog
-        open={open}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button>Disagree</Button>
-          <Button autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
+       
     </div>
   )
 }

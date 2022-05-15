@@ -41,7 +41,7 @@ class SaleController extends Controller
         $sale->percent              = $request->percent;
         $sale->save();
 
-        return redirect('/sales')->with('successMsg', 'Sale successfully added.');
+        return response()->json(['success' => 'Sale succesfully added!']);
     }
 
     /**

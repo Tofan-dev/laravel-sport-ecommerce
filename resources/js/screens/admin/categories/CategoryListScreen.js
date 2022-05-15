@@ -4,10 +4,10 @@ import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCategoriesList} from "../../../actions/categoryActions";
+import { getCategoriesList } from "../../../actions/categoryActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
-import "./CategoryListScreen.css"
+import "./CategoryListScreen.css";
 
 const CategoryListScreen = () => {
     const dispatch = useDispatch();
@@ -20,14 +20,6 @@ const CategoryListScreen = () => {
     useEffect(() => {
         dispatch(getCategoriesList());
     }, [dispatch]);
-
-    // function getRating(params) {
-    //     return `${params.row.rating || "-"}`;
-    // }
-
-    // function getReview(params) {
-    //     return `${params.row.totalReviews || "-"}`;
-    // }
 
     function getDate(params) {
         return `${params.row.created_at || "-"}`;
@@ -50,12 +42,14 @@ const CategoryListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        {/* <Link to={"/product/edit/" + params.row.id}>
-                            <button className="productListEdit">Edit</button>
+                        <Link to={"/admin/category/edit/" + params.row.id}>
+                            <button className="categoryListEdit">Edit</button>
                         </Link>
-                        <Link to={"/product/delete/" + params.row.id}>
-                            <button className="productListDelete" onClick={deleteProduct(params.row.id)}>Delete</button>                 
-                        </Link> */}
+                        <Link to={"/admin/category/delete/" + params.row.id}>
+                            <button className="categoryListDelete">
+                                Delete
+                            </button>
+                        </Link>
                     </>
                 );
             },
@@ -79,14 +73,36 @@ const CategoryListScreen = () => {
                     <>
                         <Link
                             to="/admin/category/add"
-                            style={{ textDecoration: "none" }}
+                            style={{ textDecoration: "none", margin: "1%" }}
                         >
-                            <Button variant="contained" size="large">
+                            <Button
+                                variant="contained"
+                                color="error"
+                                size="large"
+                            >
                                 Add new category
                             </Button>
                         </Link>
 
                         <DataGrid
+                            sx={{
+                                color: "white",
+                                height: "90%",
+                                margin: "1%",
+                                backgroundColor: "#1d1c1c",
+                                ".MuiTablePagination-toolbar": {
+                                    color: "white",
+                                },
+                                ".MuiSelect-icon": {
+                                    color: "white",
+                                },
+                                ".MuiSvgIcon-fontSizeSmall": {
+                                    color: "white",
+                                },
+                                ".MuiSvgIcon-root": {
+                                    color: "white",
+                                },
+                            }}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>
                                 setPageSize(newPageSize)

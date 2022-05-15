@@ -105,13 +105,7 @@ const AddProduct = () => {
             <div className="productAdd">
                 {error && <Message variant="error">{error}</Message>}
                 <Grid>
-                    <Card className="form"
-                        // style={{
-                        //     maxWidth: 450,
-                        //     padding: "20px 5px",
-                        //     margin: "0 auto",
-                        // }}
-                    >
+                    <Card className="form">
                         <CardContent>
                             <Typography gutterBottom variant="h5">
                                 ADD NEW PRODUCT

@@ -19,14 +19,14 @@
 }
 
 .sidebarTitle {
-    font-size: 19px;
+    font-size: 25px;
     color: white;
 }
 
 .sidebarList {
     list-style: none;
     padding: 5px;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .sidebarListItem {
@@ -44,9 +44,9 @@
 }
 
 .sidebarIcon {
-    font-size: 20px;
+    font-size: 30px;
     margin-right: 10px;
     position: relative;
-    top: 4px;
+    top: -2px;
     color: white;
 }

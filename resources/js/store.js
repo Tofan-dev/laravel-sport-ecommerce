@@ -9,24 +9,34 @@ import {
 } from './reducers/productReducers'
 
 import {
+    categoryListReducer,
     categoryCreateReducer,
-    categoryListReducer
+    categoryDeleteReducer,
+    categoryUpdateReducer
 } from './reducers/categoryReducers'
 
 import {
-    saleListReducer
+    saleListReducer,
+    saleCreateReducer,
+    saleDeleteReducer,
+    saleUpdateReducer
 } from './reducers/saleReducers'
 
 const reducer = combineReducers({
-    productList: productListReducer,
-    productCreate: productCreateReducer,
-    productDeletet: productDeleteReducer,
-    productUpdate: productUpdateReducer,
-
-    categoryList: categoryListReducer,
-    categoryCreate: categoryCreateReducer,
-
-    saleList: saleListReducer
+    productList    : productListReducer,
+    productCreate  : productCreateReducer,
+    productDelete  : productDeleteReducer,
+    productUpdate  : productUpdateReducer,
+    
+    categoryList   : categoryListReducer,
+    categoryCreate : categoryCreateReducer,
+    categoryDelete : categoryDeleteReducer,
+    categoryUpdate : categoryUpdateReducer,
+    
+    saleList       : saleListReducer,
+    saleCreate     : saleCreateReducer,
+    saleDelete     : saleDeleteReducer,
+    saleUpdate     : saleUpdateReducer,
 });
 
 const initialState = {};
