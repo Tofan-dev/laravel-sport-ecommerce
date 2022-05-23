@@ -88,7 +88,11 @@ const ProductListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link className="productListEdit" 
+                        <Link
+                            className="productListEdit"
+                            style={{
+                                textDecoration: "none",
+                            }}
                             to={{
                                 pathname: `/admin/product/edit/${params.row.id}`,
                                 state: {
@@ -99,8 +103,11 @@ const ProductListScreen = () => {
                             Edit
                         </Link>
 
-                        
-                        <Link className="productListDelete" 
+                        <Link
+                            className="productListDelete"
+                            style={{
+                                textDecoration: "none",
+                            }}
                             to={{
                                 pathname: `/admin/product/delete/${params.row.id}`,
                                 state: {

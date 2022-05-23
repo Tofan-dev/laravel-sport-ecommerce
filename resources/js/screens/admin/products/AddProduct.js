@@ -44,7 +44,7 @@ const AddProduct = () => {
     const { sales, loading: loadingSales, error: errorSales } = saleList;
 
     const productCreate = useSelector((state) => state.productCreate);
-    const { loading, success, message, error } = productCreate;
+    const { loading, success, error } = productCreate;
 
     useEffect(() => {
         dispatch(getCategoriesList());
@@ -52,8 +52,6 @@ const AddProduct = () => {
     }, [dispatch]);
 
     const openDialog = () => {
-        // Note that the ref is set async,
-        // so it might be null at some point
         if (dropzoneRef.current) {
             dropzoneRef.current.open();
         }
@@ -63,9 +61,42 @@ const AddProduct = () => {
         setImages(acceptedFiles);
     };
 
-    useEffect(() => {
-       
-    }, [success, error]);
+    function successMsg(){
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product added successfully",
+            showDenyButton: true,
+            confirmButtonText: "See products list",
+            denyButtonText: `Add another product`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/admin/products";
+            } else if (result.isDenied) {
+                window.location = "/admin/product/add";
+            }
+        });
+    }
+    
+    function errorMsg(){
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Oops...",
+            text: `${error}`,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "See products list",
+            denyButtonText: `Try again`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/admin/products";
+            } else if (result.isDenied) {
+                window.location = "/admin/product/add";
+            }
+        });
+    }
+
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -85,40 +116,6 @@ const AddProduct = () => {
         }
 
         dispatch(createProduct(formData));
-
-        if (success) {
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Product added successfully",
-                showDenyButton: true,
-                confirmButtonText: "See products list",
-                denyButtonText: `Add another product`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "/admin/products";
-                } else if (result.isDenied) {
-                    window.location = "/admin/product/add";
-                }
-            });
-        } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Oops...",
-                text: `${error}`,
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: "See products list",
-                denyButtonText: `Try again`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location = "/admin/products";
-                } else if (result.isDenied) {
-                    window.location = "/admin/product/add";
-                }
-            });
-        }
     };
 
     return (
@@ -126,6 +123,10 @@ const AddProduct = () => {
             <div className="productAdd">
                 {loading ? (
                     <Loader />
+                ) : error ? (
+                    <>{errorMsg()}</>
+                ) : success ? (
+                    <>{successMsg()}</>
                 ) : (
                     <Grid>
                         <Card className="form">

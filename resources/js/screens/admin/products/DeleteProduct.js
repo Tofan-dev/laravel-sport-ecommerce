@@ -43,7 +43,7 @@ const DeleteProduct = () => {
 
                 Swal.fire(
                     "Deleted!",
-                    "If all went well, the product with the id "+ id +"should be deleted.",
+                    "If all went well, the product with the id "+ id +" should be deleted.",
                     "success"
                 );
                 setTimeout(function () {
