@@ -1,3 +1,4 @@
+import { daDK } from "@mui/x-data-grid";
 import axios from "axios";
 import {
     PRODUCT_CREATE_FAIL,
@@ -79,9 +80,11 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
                 "Content-Type": "application/json",
             },
         };
+        // console.log('from actions')
 
-        const { data } = await axios.delete(`/api/products/${id}`, config);
+        const { data } = await axios.delete(`/api/product/delete/${id}`, config);
 
+        
         dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

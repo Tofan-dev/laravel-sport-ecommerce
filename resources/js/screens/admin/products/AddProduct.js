@@ -44,7 +44,7 @@ const AddProduct = () => {
     const { sales, loading: loadingSales, error: errorSales } = saleList;
 
     const productCreate = useSelector((state) => state.productCreate);
-    const { loading, success, error } = productCreate;
+    const { loading, success, message, error } = productCreate;
 
     useEffect(() => {
         dispatch(getCategoriesList());
@@ -62,6 +62,10 @@ const AddProduct = () => {
     const handleImages = (acceptedFiles) => {
         setImages(acceptedFiles);
     };
+
+    useEffect(() => {
+       
+    }, [success, error]);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -82,94 +86,113 @@ const AddProduct = () => {
 
         dispatch(createProduct(formData));
 
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Product added successfully",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "See products list",
-            denyButtonText: `Add another product`,
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                window.location = "/admin/products";
-            } else if (result.isDenied) {
-                window.location = "/admin/product/add";
-            }
-        });
+        if (success) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Product added successfully",
+                showDenyButton: true,
+                confirmButtonText: "See products list",
+                denyButtonText: `Add another product`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/admin/products";
+                } else if (result.isDenied) {
+                    window.location = "/admin/product/add";
+                }
+            });
+        } else {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Oops...",
+                text: `${error}`,
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "See products list",
+                denyButtonText: `Try again`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = "/admin/products";
+                } else if (result.isDenied) {
+                    window.location = "/admin/product/add";
+                }
+            });
+        }
     };
 
     return (
         <>
             <div className="productAdd">
-                {error && <Message variant="error">{error}</Message>}
-                <Grid>
-                    <Card className="form">
-                        <CardContent>
-                            <Typography gutterBottom variant="h5">
-                                ADD NEW PRODUCT
-                            </Typography>
-                            <form onSubmit={submitHandler}>
-                                <Grid
-                                    container
-                                    spacing={1}
-                                >
-                                    <Grid xs={12} item>
-                                        <TextField
-                                            placeholder="Enter product name"
-                                            label="Product Name"
-                                            variant="outlined"
-                                            fullWidth
-                                            required
-                                            onChange={(e) =>
-                                                setName(e.target.value)
-                                            }
-                                        />
-                                    </Grid>
-                                    <Grid xs={12} item>
-                                        <TextField
-                                            placeholder="Enter product description"
-                                            multiline
-                                            rows={4}
-                                            label="Product Description"
-                                            variant="outlined"
-                                            fullWidth
-                                            required
-                                            onChange={(e) =>
-                                                setDescription(e.target.value)
-                                            }
-                                        />
-                                    </Grid>
-
-                                    {loadingCategories ? (
-                                        <Loader />
-                                    ) : errorCategories ? (
-                                        <Message variant="error">
-                                            {errorCategories}
-                                        </Message>
-                                    ) : (
-                                        <Grid xs={12} item width={"100%"}>
-                                            <InputLabel id="Category Title">
-                                                Category
-                                            </InputLabel>
-                                            <Select
-                                                labelId="Category Title"
-                                                value={categoryId}
-                                                label="Choose category"
-                                                displayEmpty
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <Grid>
+                        <Card className="form">
+                            <CardContent>
+                                <Typography variant="h5">
+                                    ADD NEW PRODUCT
+                                </Typography>
+                                <form onSubmit={submitHandler}>
+                                    <Grid container spacing={1}>
+                                        <Grid xs={12} item>
+                                            <TextField
+                                                placeholder="Enter product name"
+                                                label="Product Name"
+                                                variant="outlined"
+                                                fullWidth
+                                                required
                                                 onChange={(e) =>
-                                                    setCategoryId(
+                                                    setName(e.target.value)
+                                                }
+                                            />
+                                        </Grid>
+                                        <Grid xs={12} item>
+                                            <TextField
+                                                placeholder="Enter product description"
+                                                multiline
+                                                rows={4}
+                                                label="Product Description"
+                                                variant="outlined"
+                                                fullWidth
+                                                required
+                                                onChange={(e) =>
+                                                    setDescription(
                                                         e.target.value
                                                     )
                                                 }
-                                                sx={{ width: 1 }}
-                                            >
-                                                <MenuItem value="" disabled>
-                                                    Choose category title
-                                                </MenuItem>
-                                                {Object.keys(categories).map(
-                                                    function (key) {
+                                            />
+                                        </Grid>
+
+                                        {loadingCategories ? (
+                                            <Loader />
+                                        ) : errorCategories ? (
+                                            <Message variant="error">
+                                                {errorCategories}
+                                            </Message>
+                                        ) : (
+                                            <Grid xs={12} item width={"100%"}>
+                                                <InputLabel id="Category Title">
+                                                    Category
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="Category Title"
+                                                    value={categoryId}
+                                                    label="Choose category"
+                                                    displayEmpty
+                                                    onChange={(e) =>
+                                                        setCategoryId(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    sx={{ width: 1 }}
+                                                >
+                                                    <MenuItem value="" disabled>
+                                                        Choose category title
+                                                    </MenuItem>
+                                                    {Object.keys(
+                                                        categories
+                                                    ).map(function (key) {
                                                         return (
                                                             <MenuItem
                                                                 key={key}
@@ -186,173 +209,188 @@ const AddProduct = () => {
                                                                 }
                                                             </MenuItem>
                                                         );
-                                                    }
-                                                )}
-                                            </Select>
-                                        </Grid>
-                                    )}
+                                                    })}
+                                                </Select>
+                                            </Grid>
+                                        )}
 
-                                    {loadingSales ? (
-                                        <Loader />
-                                    ) : errorSales ? (
-                                        <Message variant="error">
-                                            {errorSales}
-                                        </Message>
-                                    ) : (
+                                        {loadingSales ? (
+                                            <Loader />
+                                        ) : errorSales ? (
+                                            <Message variant="error">
+                                                {errorSales}
+                                            </Message>
+                                        ) : (
+                                            <Grid xs={12} item>
+                                                <InputLabel id="Sale">
+                                                    Sale
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="Sale"
+                                                    value={saleId}
+                                                    label="Description"
+                                                    displayEmpty
+                                                    onChange={(e) =>
+                                                        setSaleId(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    sx={{ width: 1 }}
+                                                >
+                                                    <MenuItem value="" disabled>
+                                                        Choose sale title
+                                                    </MenuItem>
+
+                                                    {Object.keys(sales).map(
+                                                        function (key) {
+                                                            return (
+                                                                <MenuItem
+                                                                    key={key}
+                                                                    value={
+                                                                        sales[
+                                                                            key
+                                                                        ].id
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        sales[
+                                                                            key
+                                                                        ]
+                                                                            .description
+                                                                    }
+                                                                </MenuItem>
+                                                            );
+                                                        }
+                                                    )}
+                                                </Select>
+                                            </Grid>
+                                        )}
                                         <Grid xs={12} item>
-                                            <InputLabel id="Sale">
-                                                Sale
-                                            </InputLabel>
-                                            <Select
-                                                labelId="Sale"
-                                                value={saleId}
-                                                label="Description"
-                                                displayEmpty
+                                            <NumberFormat
+                                                variant="outlined"
+                                                name="price"
+                                                label="Price €"
+                                                fullWidth
+                                                customInput={TextField}
+                                                decimalScale={2}
                                                 onChange={(e) =>
-                                                    setSaleId(e.target.value)
+                                                    setPrice(e.target.value)
                                                 }
-                                                sx={{ width: 1 }}
-                                            >
-                                                <MenuItem value="" disabled>
-                                                    Choose sale title
-                                                </MenuItem>
-
-                                                {Object.keys(sales).map(
-                                                    function (key) {
-                                                        return (
-                                                            <MenuItem
-                                                                key={key}
-                                                                value={
-                                                                    sales[key]
-                                                                        .id
-                                                                }
-                                                            >
-                                                                {
-                                                                    sales[key]
-                                                                        .description
-                                                                }
-                                                            </MenuItem>
-                                                        );
-                                                    }
+                                                required
+                                                renderText={(
+                                                    formattedValue
+                                                ) => (
+                                                    <Text>
+                                                        {formattedValue}
+                                                    </Text>
                                                 )}
-                                            </Select>
+                                            />
                                         </Grid>
-                                    )}
-                                    <Grid xs={12} item>
-                                        <NumberFormat
-                                            variant="outlined"
-                                            name="price"
-                                            label="Price €"
-                                            fullWidth
-                                            customInput={TextField}
-                                            decimalScale={2}
-                                            onChange={(e) =>
-                                                setPrice(e.target.value)
-                                            }
-                                            required
-                                            renderText={(formattedValue) => (
-                                                <Text>{formattedValue}</Text>
-                                            )}
-                                        />
-                                    </Grid>
 
-                                    <Grid xs={12} item>
-                                        <TextField
-                                            type="number"
-                                            placeholder="Enter product stock"
-                                            label="Stock"
-                                            variant="outlined"
-                                            fullWidth
-                                            required
-                                            onChange={(e) =>
-                                                setQuantity(e.target.value)
-                                            }
-                                        />
-                                    </Grid>
+                                        <Grid xs={12} item>
+                                            <TextField
+                                                type="number"
+                                                placeholder="Enter product stock"
+                                                label="Stock"
+                                                variant="outlined"
+                                                fullWidth
+                                                required
+                                                onChange={(e) =>
+                                                    setQuantity(e.target.value)
+                                                }
+                                            />
+                                        </Grid>
 
-                                    <Grid xs={12} item>
-                                        <Dropzone
-                                            ref={dropzoneRef}
-                                            noClick
-                                            noKeyboard
-                                            onDrop={handleImages}
-                                        >
-                                            {({
-                                                getRootProps,
-                                                getInputProps,
-                                                acceptedFiles,
-                                            }) => {
-                                                return (
-                                                    <div className="drop">
-                                                        <div
-                                                            {...getRootProps({
-                                                                className:
-                                                                    "dropzone",
-                                                            })}
-                                                        >
-                                                            <input
-                                                                {...getInputProps()}
-                                                            />
-                                                            <p>
-                                                                Drag and drop
-                                                                the product
-                                                                images here
-                                                            </p>
-                                                            <Button
-                                                                variant="contained"
-                                                                type="button"
-                                                                color="success"
-                                                                onClick={
-                                                                    openDialog
-                                                                }
-                                                            >
-                                                                Open File Dialog
-                                                            </Button>
-                                                        </div>
-                                                        <aside>
-                                                            <h4>Files</h4>
-                                                            <ul>
-                                                                {acceptedFiles.map(
-                                                                    (file) => (
-                                                                        <li
-                                                                            key={
-                                                                                file.path
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                file.path
-                                                                            }{" "}
-                                                                            -{" "}
-                                                                            {
-                                                                                file.size
-                                                                            }{" "}
-                                                                            bytes
-                                                                        </li>
-                                                                    )
+                                        <Grid xs={12} item>
+                                            <Dropzone
+                                                ref={dropzoneRef}
+                                                noClick
+                                                noKeyboard
+                                                onDrop={handleImages}
+                                            >
+                                                {({
+                                                    getRootProps,
+                                                    getInputProps,
+                                                    acceptedFiles,
+                                                }) => {
+                                                    return (
+                                                        <div className="drop">
+                                                            <div
+                                                                {...getRootProps(
+                                                                    {
+                                                                        className:
+                                                                            "dropzone",
+                                                                    }
                                                                 )}
-                                                            </ul>
-                                                        </aside>
-                                                    </div>
-                                                );
-                                            }}
-                                        </Dropzone>
-                                    </Grid>
+                                                            >
+                                                                <input
+                                                                    {...getInputProps()}
+                                                                />
+                                                                <p>
+                                                                    Drag and
+                                                                    drop the
+                                                                    product
+                                                                    images here
+                                                                </p>
+                                                                <Button
+                                                                    variant="contained"
+                                                                    type="button"
+                                                                    color="success"
+                                                                    onClick={
+                                                                        openDialog
+                                                                    }
+                                                                >
+                                                                    Open File
+                                                                    Dialog
+                                                                </Button>
+                                                            </div>
+                                                            <aside>
+                                                                <h4>Files</h4>
+                                                                <ul>
+                                                                    {acceptedFiles.map(
+                                                                        (
+                                                                            file
+                                                                        ) => (
+                                                                            <li
+                                                                                key={
+                                                                                    file.path
+                                                                                }
+                                                                            >
+                                                                                {
+                                                                                    file.path
+                                                                                }{" "}
+                                                                                -{" "}
+                                                                                {
+                                                                                    file.size
+                                                                                }{" "}
+                                                                                bytes
+                                                                            </li>
+                                                                        )
+                                                                    )}
+                                                                </ul>
+                                                            </aside>
+                                                        </div>
+                                                    );
+                                                }}
+                                            </Dropzone>
+                                        </Grid>
 
-                                    <Grid item xs={12}>
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            color="success"
-                                            fullWidth
-                                        >
-                                            Submit
-                                        </Button>
+                                        <Grid item xs={12}>
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                color="success"
+                                                fullWidth
+                                            >
+                                                Submit
+                                            </Button>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </form>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                )}
             </div>
         </>
     );

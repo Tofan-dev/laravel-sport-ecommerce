@@ -19,6 +19,7 @@ import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
 import { createProduct } from "../../../actions/productActions";
 import "../products/editProduct.css";
+import { WindowSharp } from "@mui/icons-material";
 
 const EditProduct = () => {
     const dispatch = useDispatch();
@@ -48,6 +49,12 @@ const EditProduct = () => {
     useEffect(() => {
         dispatch(getCategoriesList());
         dispatch(getSalesList());
+
+        // if (product &&) {
+        //     setName(product.name)
+        //     setCategoryId(product.categoryId)
+        //     setSaleId()
+        // }
     }, [dispatch]);
 
     const openDialog = () => {
@@ -79,7 +86,8 @@ const EditProduct = () => {
             }
         }
 
-        dispatch(createProduct(formData));
+        dispatch(editProduct(formData));
+        
 
     };
 
@@ -102,6 +110,7 @@ const EditProduct = () => {
                                             variant="outlined"
                                             fullWidth
                                             required
+                                            value={name}
                                             onChange={(e) =>
                                                 setName(e.target.value)
                                             }

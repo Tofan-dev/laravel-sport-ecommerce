@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
     deleteProduct,
@@ -88,13 +88,27 @@ const ProductListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/admin/product/edit/" + params.row.id}>
-                            <button className="productListEdit">Edit</button>
+                        <Link className="productListEdit" 
+                            to={{
+                                pathname: `/admin/product/edit/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Edit
                         </Link>
-                        <Link to={"/admin/product/delete/" + params.row.id}>
-                            <button className="productListDelete">
-                                Delete
-                            </button>
+
+                        
+                        <Link className="productListDelete" 
+                            to={{
+                                pathname: `/admin/product/delete/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Delete
                         </Link>
                     </>
                 );
@@ -105,11 +119,6 @@ const ProductListScreen = () => {
     const rows = !isEmpty(products) ? products : [];
 
     const [pageSize, setPageSize] = React.useState(15);
-
-    // const deleteProduct = (id) => {
-
-    //     setProductId(id)
-    // }
 
     // console.log(rows);
 
