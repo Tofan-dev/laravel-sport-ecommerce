@@ -1,13 +1,13 @@
-.navbar{
+.navbar {
     width: 100%;
     height: 50px;
-    background-color: #131414;
+    background-color: #eff7f6;
     position: sticky;
     top: 0;
     z-index: 999;
 }
 
-.navbarWrapper{
+.navbarWrapper {
     height: 100%;
     padding: 0px 20px;
     display: flex;
@@ -15,35 +15,35 @@
     justify-content: space-between;
 }
 
-.logo{
+.logo {
     font-weight: bold;
     font-size: 35px;
     letter-spacing: 3px;
-    background: linear-gradient(to bottom, #93291E, #ED213A);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #3454d1;
     cursor: pointer;
+    position: relative;
+    left: 10%;
 }
 
-.topRight{
+.topRight {
     display: flex;
     align-items: center;
 }
 
-.navbarIcons{
+.navbarIcons {
     position: relative;
     cursor: pointer;
     margin-right: 10px;
-    color: white;
+    color: #3454d1;
 }
 
-.topIconBag{
+.topIconBag {
     width: 15px;
     height: 15px;
     position: absolute;
     top: -5px;
     right: 10px;
-    background-color: #CB3737;
+    background-color: #cb3737;
     color: white;
     border-radius: 50%;
     display: flex;

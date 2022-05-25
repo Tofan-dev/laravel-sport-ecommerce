@@ -24,7 +24,7 @@ const Index = () => {
 
                     {/* Admin Section */}
                     <Route path="/admin" element={<Dashboard />} exact >
-                        <Route path="home" element={<Home />} />
+                        <Route path="" element={<Home />} />
                         <Route path="products" element={<ProductListScreen />} exact/>
                         <Route path="categories" element={<CategoryListScreen />} exact />
                         <Route path="sales" element={<SaleListScreen />} exact />

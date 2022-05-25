@@ -17,11 +17,14 @@ import NumberFormat from "react-number-format";
 import Dropzone from "react-dropzone";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
-import { createProduct } from "../../../actions/productActions";
+import { getProductEditInfo } from "../../../actions/productActions";
 import "../products/editProduct.css";
-import { WindowSharp } from "@mui/icons-material";
+import { useParams } from "react-router-dom";
+
 
 const EditProduct = () => {
+    let { id } = useParams();
+
     const dispatch = useDispatch();
     const dropzoneRef = createRef();
 
@@ -43,23 +46,29 @@ const EditProduct = () => {
     const saleList = useSelector((state) => state.saleList);
     const { sales, loading: loadingSales, error: errorSales } = saleList;
 
-    const productCreate = useSelector((state) => state.productCreate);
-    const { loading, success, error } = productCreate;
+    const productShow = useSelector((state) => state.productShow); // pe viitor pune variabile care se inteleg, nu productEdit, productEdit la ce? pui productEdit, nimic mai mult sau productShow
+    const { product, loading, error } = productShow;
 
     useEffect(() => {
         dispatch(getCategoriesList());
         dispatch(getSalesList());
 
-        // if (product &&) {
-        //     setName(product.name)
-        //     setCategoryId(product.categoryId)
-        //     setSaleId()
-        // }
-    }, [dispatch]);
+        if (Object.keys(product).length === 0) {
+            dispatch(getProductEditInfo(id));
+        } else {
+            setName(product.name);
+            setDescription(product.description);
+            setQuantity(product.stock);
+            setPrice(product.price);
+            // setCategoryId(product.categoryId)
+            // setSaleId(product.saleId)
+        }
+
+    }, [dispatch, product]);
+
+    // console.log(product);
 
     const openDialog = () => {
-        // Note that the ref is set async,
-        // so it might be null at some point
         if (dropzoneRef.current) {
             dropzoneRef.current.open();
         }
@@ -87,14 +96,19 @@ const EditProduct = () => {
         }
 
         dispatch(editProduct(formData));
-        
-
     };
 
     return (
         <>
             <div className="productEdit">
-                {error && <Message variant="error">{error}</Message>}
+            {loading ? (
+                    <Loader />
+                ) : (
+                //  error ? (
+                //     <>{errorMsg()}</>
+                // ) : success ? (
+                //     <>{successMsg()}</>
+                // ) : (
                 <Grid>
                     <Card className="form">
                         <CardContent>
@@ -124,6 +138,7 @@ const EditProduct = () => {
                                             label="Product Description"
                                             variant="outlined"
                                             fullWidth
+                                            value={description}
                                             required
                                             onChange={(e) =>
                                                 setDescription(e.target.value)
@@ -205,10 +220,6 @@ const EditProduct = () => {
                                                 <MenuItem value="" disabled>
                                                     Choose sale title
                                                 </MenuItem>
-                                                {/* <MenuItem value="">
-                                                    <em>None</em>
-                                                </MenuItem>
-                                                 */}
                                                 {Object.keys(sales).map(
                                                     function (key) {
                                                         return (
@@ -237,6 +248,7 @@ const EditProduct = () => {
                                             label="Price €"
                                             fullWidth
                                             customInput={TextField}
+                                            value={price}
                                             decimalScale={2}
                                             onChange={(e) =>
                                                 setPrice(e.target.value)
@@ -254,6 +266,7 @@ const EditProduct = () => {
                                             placeholder="Enter product stock"
                                             label="Stock"
                                             variant="outlined"
+                                            value={quantity}
                                             fullWidth
                                             required
                                             onChange={(e) =>
@@ -344,6 +357,7 @@ const EditProduct = () => {
                         </CardContent>
                     </Card>
                 </Grid>
+                )}
             </div>
         </>
     );

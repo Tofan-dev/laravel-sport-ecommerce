@@ -94,9 +94,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories = Category::all();
-        $sales = Sale::all();
-        return view('admin.product.editProduct', compact('product', 'categories', 'sales'));
+        return response()->json($product);
     }
 
     /**
@@ -120,7 +118,7 @@ class ProductController extends Controller
         $product->sale_id           = $request->sale;
         $product->price             = $request->price;
         $product->priceWithDiscount = $request->priceWithDiscount;
-        $product->stock             = $request->stock;
+        $product->stock             = $request->quantity;
 
         // old image
         $imagePath = public_path('/storage/' . $product->image);

@@ -12,7 +12,7 @@ const HomeScreen = () => {
             alignItems="center"
             justifyContent="center"
         >
-            <Link to="/admin/home" style={{ textDecoration: 'none' }} >
+            <Link to="/admin" style={{ textDecoration: 'none' }} >
                 <Button
                     variant="contained"
                     size="large"

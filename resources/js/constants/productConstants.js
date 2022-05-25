@@ -25,3 +25,9 @@ export const PRODUCT_UPDATE_SUCCESS = "PRODUCT_UPDATE_SUCCESS";
 export const PRODUCT_UPDATE_FAIL    = "PRODUCT_UPDATE_FAIL";
 export const PRODUCT_UPDATE_RESET   = "PRODUCT_UPDATE_RESET";
 // Edit product constants 
+
+// Show product info constants
+export const PRODUCT_SHOW_REQUEST   = "PRODUCT_SHOW_REQUEST";
+export const PRODUCT_SHOW_SUCCESS   = "PRODUCT_SHOW_SUCCESS";
+export const PRODUCT_SHOW_FAIL      = "PRODUCT_SHOW_FAIL";
+// Show product info constants

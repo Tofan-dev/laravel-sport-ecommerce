@@ -13,6 +13,9 @@ import {
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS,
     PRODUCT_UPDATE_RESET,
+    PRODUCT_SHOW_REQUEST,
+    PRODUCT_SHOW_SUCCESS,
+    PRODUCT_SHOW_FAIL,
 } from "../constants/productConstants";
 
 
@@ -96,3 +99,21 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
     }
 }
 // Update product reducers
+
+// Product edit info reducers
+export const productShowReducer = (state = { product: {} }, action) => {
+    switch (action.type) {
+        case PRODUCT_SHOW_REQUEST:
+            return { ...state, loading: true };
+            
+        case PRODUCT_SHOW_SUCCESS:
+            return { loading: false, product: action.payload };
+            
+        case PRODUCT_SHOW_FAIL:
+            return { loading: false, error: action.payload };
+            
+        default:
+            return state;
+    }
+};
+// Product edit info reducers

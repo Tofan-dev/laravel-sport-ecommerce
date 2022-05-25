@@ -61,7 +61,7 @@ const AddProduct = () => {
         setImages(acceptedFiles);
     };
 
-    function successMsg(){
+    function successMsg() {
         Swal.fire({
             position: "center",
             icon: "success",
@@ -77,8 +77,8 @@ const AddProduct = () => {
             }
         });
     }
-    
-    function errorMsg(){
+
+    function errorMsg() {
         Swal.fire({
             position: "center",
             icon: "error",
@@ -96,7 +96,6 @@ const AddProduct = () => {
             }
         });
     }
-
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -129,7 +128,7 @@ const AddProduct = () => {
                     <>{successMsg()}</>
                 ) : (
                     <Grid>
-                        <Card className="form">
+                        <Card className="form" id="color">
                             <CardContent>
                                 <Typography variant="h5">
                                     ADD NEW PRODUCT
@@ -336,7 +335,7 @@ const AddProduct = () => {
                                                                 <Button
                                                                     variant="contained"
                                                                     type="button"
-                                                                    color="success"
+                                                                    color="primary"
                                                                     onClick={
                                                                         openDialog
                                                                     }
@@ -380,7 +379,7 @@ const AddProduct = () => {
                                             <Button
                                                 type="submit"
                                                 variant="contained"
-                                                color="success"
+                                                color="primary"
                                                 fullWidth
                                             >
                                                 Submit

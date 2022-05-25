@@ -1,4 +1,3 @@
-import { daDK } from "@mui/x-data-grid";
 import axios from "axios";
 import {
     PRODUCT_CREATE_FAIL,
@@ -10,6 +9,9 @@ import {
     PRODUCT_LIST_FAIL,
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
+    PRODUCT_SHOW_FAIL,
+    PRODUCT_SHOW_REQUEST,
+    PRODUCT_SHOW_SUCCESS,
     PRODUCT_UPDATE_FAIL,
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS,
@@ -151,3 +153,33 @@ export const updateProduct =
         }
     };
 // Update product action 
+
+// Product edit info action
+export const getProductEditInfo = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_SHOW_REQUEST });
+        
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        
+        console.log('from action ' . id);
+        const { data } = await axios.get(`/api/product/edit/${id}`, config);
+        
+        dispatch({ type: PRODUCT_SHOW_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_SHOW_FAIL,
+            payload:
+            error.response && error.response.data.message
+            ? error.response.message
+            : error.message,
+        });
+    }
+};
+// Product edit info action
+
+
+// la productedit in sine la constante pui PRODUCT_EDIT_REQUEST etc.. si la reducer productEditReducer

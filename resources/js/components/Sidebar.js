@@ -1,8 +1,11 @@
 import {
-    BorderColor,
-    Home,
-    Inventory,
-    SupervisedUserCircle,
+    CategoryOutlined,
+    FormatListNumberedOutlined,
+    GroupOutlined,
+    HomeOutlined,
+    InventoryOutlined,
+    LoyaltyOutlined,
+    ReviewsOutlined,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import "../../css/sidebar.css";
@@ -12,17 +15,20 @@ const Sidebar = () => {
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Dashboard</h3>
+                    <h3 className="sidebarTitle">DASHBOARD</h3>
                     <ul className="sidebarList">
                         <Link
-                            to="/admin/home"
+                            to="/admin"
                             style={{
                                 textDecoration: "none",
                                 color: "white",
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Home className="sidebarIcon" />
+                                <HomeOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Home
                             </li>
                         </Link>
@@ -35,7 +41,10 @@ const Sidebar = () => {
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Inventory className="sidebarIcon" />
+                                <InventoryOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Products
                             </li>
                         </Link>
@@ -48,7 +57,10 @@ const Sidebar = () => {
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Inventory className="sidebarIcon" />
+                                <CategoryOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Categories
                             </li>
                         </Link>
@@ -60,7 +72,10 @@ const Sidebar = () => {
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Inventory className="sidebarIcon" />
+                                <LoyaltyOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Sales
                             </li>
                         </Link>
@@ -72,7 +87,10 @@ const Sidebar = () => {
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Inventory className="sidebarIcon" />
+                                <ReviewsOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Reviews
                             </li>
                         </Link>
@@ -84,7 +102,10 @@ const Sidebar = () => {
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Inventory className="sidebarIcon" />
+                                <FormatListNumberedOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Orders
                             </li>
                         </Link>
@@ -96,7 +117,10 @@ const Sidebar = () => {
                             }}
                         >
                             <li className="sidebarListItem">
-                                <Inventory className="sidebarIcon" />
+                                <GroupOutlined
+                                    className="sidebarIcon"
+                                    sx={{ fontSize: "30px" }}
+                                />
                                 Users
                             </li>
                         </Link>
