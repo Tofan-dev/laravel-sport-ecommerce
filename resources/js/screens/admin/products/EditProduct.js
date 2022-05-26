@@ -110,7 +110,7 @@ const EditProduct = () => {
                 //     <>{successMsg()}</>
                 // ) : (
                 <Grid>
-                    <Card className="form">
+                    <Card id="formStyle">
                         <CardContent>
                             <Typography gutterBottom variant="h5">
                                 Add new product

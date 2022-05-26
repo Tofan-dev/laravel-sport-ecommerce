@@ -128,11 +128,12 @@ const AddProduct = () => {
                     <>{successMsg()}</>
                 ) : (
                     <Grid>
-                        <Card className="form" id="color">
+                        <Card id="formStyle">
                             <CardContent>
                                 <Typography variant="h5">
                                     ADD NEW PRODUCT
                                 </Typography>
+                                <br />
                                 <form onSubmit={submitHandler}>
                                     <Grid container spacing={1}>
                                         <Grid xs={12} item>
@@ -330,7 +331,7 @@ const AddProduct = () => {
                                                                     Drag and
                                                                     drop the
                                                                     product
-                                                                    images here
+                                                                    images here:
                                                                 </p>
                                                                 <Button
                                                                     variant="contained"
@@ -341,7 +342,6 @@ const AddProduct = () => {
                                                                     }
                                                                 >
                                                                     Open File
-                                                                    Dialog
                                                                 </Button>
                                                             </div>
                                                             <aside>
@@ -374,7 +374,7 @@ const AddProduct = () => {
                                                 }}
                                             </Dropzone>
                                         </Grid>
-
+                                        <br />
                                         <Grid item xs={12}>
                                             <Button
                                                 type="submit"

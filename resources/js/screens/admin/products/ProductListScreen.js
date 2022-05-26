@@ -1,15 +1,10 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, Routes } from "react-router-dom";
-import Swal from "sweetalert2";
-import {
-    deleteProduct,
-    getProductsList,
-    updateProduct,
-} from "../../../actions/productActions";
+import { Link } from "react-router-dom";
+import { getProductsList } from "../../../actions/productActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import "./productList.css";
@@ -148,7 +143,7 @@ const ProductListScreen = () => {
                             <Button
                                 variant="contained"
                                 size="large"
-                                color="error"
+                                color="primary"
                             >
                                 Add new product
                             </Button>
@@ -156,22 +151,8 @@ const ProductListScreen = () => {
 
                         <DataGrid
                             sx={{
-                                color: "white",
                                 height: "90%",
                                 margin: "1%",
-                                backgroundColor: "#1d1c1c",
-                                ".MuiTablePagination-toolbar": {
-                                    color: "white",
-                                },
-                                ".MuiSelect-icon": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-fontSizeSmall": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-root": {
-                                    color: "white",
-                                },
                             }}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>
