@@ -78,7 +78,7 @@ export const deleteCategory = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/categories/${id}`, config);
+        const { data } = await axios.delete(`/api/category/delete/${id}`, config);
 
         dispatch({ type: CATEGORY_DELETE_SUCCESS, payload: data });
     } catch (error) {

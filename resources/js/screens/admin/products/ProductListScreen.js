@@ -153,6 +153,7 @@ const ProductListScreen = () => {
                             sx={{
                                 height: "90%",
                                 margin: "1%",
+                                backgroundColor: "white",
                             }}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>

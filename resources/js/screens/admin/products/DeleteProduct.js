@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./deleteproduct.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,8 +26,6 @@ const DeleteProduct = () => {
             if (result.value) {
                 dispatch(deleteProduct(id));
 
-                console.log(error);
-
                 if (error && typeof error !== "undefined") {
                     Swal.fire({
                         icon: "error",
@@ -43,7 +41,9 @@ const DeleteProduct = () => {
 
                 Swal.fire(
                     "Deleted!",
-                    "If all went well, the product with the id "+ id +" should be deleted.",
+                    "If all went well, the product with the id " +
+                        id +
+                        " should be deleted.",
                     "success"
                 );
                 setTimeout(function () {

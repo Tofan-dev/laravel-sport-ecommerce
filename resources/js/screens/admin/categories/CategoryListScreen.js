@@ -12,8 +12,6 @@ import "./CategoryListScreen.css";
 const CategoryListScreen = () => {
     const dispatch = useDispatch();
 
-    const [categoryId, setCategoryId] = useState("");
-
     const categoryList = useSelector((state) => state.categoryList);
     const { categories, loading, error } = categoryList;
 
@@ -27,14 +25,14 @@ const CategoryListScreen = () => {
 
     const columns = [
         { field: "id", headerName: "ID", width: 70 },
-        { field: "title", headerName: "Title", width: 130 },
+        { field: "title", headerName: "Title", width: 200 },
         {
             field: "created_at",
             headerName: "Created at",
-            width: 120,
+            width: 105,
             valueGetter: getDate,
         },
-        { field: "updated_at", headerName: "Updated at", width: 120 },
+        { field: "updated_at", headerName: "Updated at", width: 105 },
         {
             field: "action",
             headerName: "Actions",
@@ -42,13 +40,34 @@ const CategoryListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/admin/category/edit/" + params.row.id}>
-                            <button className="categoryListEdit">Edit</button>
+                         <Link
+                            className="categoryListEdit"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            to={{
+                                pathname: `/admin/category/edit/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Edit
                         </Link>
-                        <Link to={"/admin/category/delete/" + params.row.id}>
-                            <button className="categoryListDelete">
-                                Delete
-                            </button>
+
+                        <Link
+                            className="categoryListDelete"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            to={{
+                                pathname: `/admin/category/delete/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Delete
                         </Link>
                     </>
                 );
@@ -77,7 +96,7 @@ const CategoryListScreen = () => {
                         >
                             <Button
                                 variant="contained"
-                                color="error"
+                                color="primary"
                                 size="large"
                             >
                                 Add new category
@@ -86,22 +105,9 @@ const CategoryListScreen = () => {
 
                         <DataGrid
                             sx={{
-                                color: "white",
                                 height: "90%",
                                 margin: "1%",
-                                backgroundColor: "#1d1c1c",
-                                ".MuiTablePagination-toolbar": {
-                                    color: "white",
-                                },
-                                ".MuiSelect-icon": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-fontSizeSmall": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-root": {
-                                    color: "white",
-                                },
+                                backgroundColor: "white",
                             }}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>
