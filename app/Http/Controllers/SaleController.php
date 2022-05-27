@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSaleRequest;
 
 class SaleController extends Controller
 {
@@ -31,10 +32,10 @@ class SaleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreSaleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSaleRequest $request)
     {
         $sale = new Sale;
         $sale->description          = $request->description;
@@ -105,6 +106,5 @@ class SaleController extends Controller
             $sale->delete();
         }
 
-        return redirect('/sales')->with('successMsg', 'Sale successfully deleted.');
-    }
+        return response()->json(['success' => 'Sale deleted succesfully!']);    }
 }

@@ -13,7 +13,7 @@ class StoreSaleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'percent' => 'nullable|integer|between:0,100',
         ];
     }
 }

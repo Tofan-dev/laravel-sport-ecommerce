@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCategoriesList } from "../../../actions/categoryActions";
@@ -40,7 +40,7 @@ const CategoryListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                         <Link
+                        <Link
                             className="categoryListEdit"
                             style={{
                                 textDecoration: "none",

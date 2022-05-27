@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getSalesList } from "../../../actions/saleActions";
@@ -30,10 +30,10 @@ const SaleListScreen = () => {
         {
             field: "created_at",
             headerName: "Created at",
-            width: 120,
+            width: 105,
             valueGetter: getDate,
         },
-        { field: "updated_at", headerName: "Updated at", width: 120 },
+        { field: "updated_at", headerName: "Updated at", width: 105 },
         {
             field: "action",
             headerName: "Actions",
@@ -41,11 +41,34 @@ const SaleListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/admin/sale/edit/" + params.row.id}>
-                            <button className="saleListEdit">Edit</button>
+                        <Link
+                            className="saleListEdit"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            to={{
+                                pathname: `/admin/sale/edit/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Edit
                         </Link>
-                        <Link to={"/admin/sale/delete/" + params.row.id}>
-                            <button className="saleListDelete">Delete</button>
+
+                        <Link
+                            className="saleListDelete"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            to={{
+                                pathname: `/admin/sale/delete/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Delete
                         </Link>
                     </>
                 );
@@ -73,7 +96,7 @@ const SaleListScreen = () => {
                         >
                             <Button
                                 variant="contained"
-                                color="error"
+                                color="primary"
                                 size="large"
                             >
                                 Add new sale
@@ -82,22 +105,9 @@ const SaleListScreen = () => {
 
                         <DataGrid
                             sx={{
-                                color: "white",
                                 height: "90%",
                                 margin: "1%",
-                                backgroundColor: "#1d1c1c",
-                                ".MuiTablePagination-toolbar": {
-                                    color: "white",
-                                },
-                                ".MuiSelect-icon": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-fontSizeSmall": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-root": {
-                                    color: "white",
-                                },
+                                backgroundColor: "white",
                             }}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>

@@ -66,10 +66,10 @@ export const createSale = (formData) => async (dispatch, getState) => {
 };
 // Create sale action
 
-// Delete review action
-export const deleteReview = (id) => async (dispatch, getState) => {
+// Delete sale action
+export const deleteSale = (id) => async (dispatch, getState) => {
     try {
-        dispatch({ type: REVIEW_DELETE_REQUEST });
+        dispatch({ type: SALE_DELETE_REQUEST });
 
         const config = {
             headers: {
@@ -77,12 +77,12 @@ export const deleteReview = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/reviews/${id}`, config);
+        const { data } = await axios.delete(`/api/sale/delete/${id}`, config);
 
-        dispatch({ type: REVIEW_DELETE_SUCCESS, payload: data });
+        dispatch({ type: SALE_DELETE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
-            type: REVIEW_DELETE_FAIL,
+            type: SALE_DELETE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.message
@@ -90,13 +90,13 @@ export const deleteReview = (id) => async (dispatch, getState) => {
         });
     }
 };
-// Delete review action
+// Delete sale action
 
-// Update review action
-export const updateReview =
+// Update sale action
+export const updateSale =
     (id, description, percent) => async (dispatch, getState) => {
         try {
-            dispatch({ type: REVIEW_UPDATE_REQUEST });
+            dispatch({ type: SALE_UPDATE_REQUEST });
 
             const {
                 userLogin: { userInfo },
@@ -110,7 +110,7 @@ export const updateReview =
             };
 
             const { data } = await Axios.patch(
-                `/api/reviews/${id}`,
+                `/api/sales/${id}`,
                 {
                     id,
                     description,
@@ -119,10 +119,10 @@ export const updateReview =
                 config
             );
 
-            dispatch({ type: REVIEW_UPDATE_SUCCESS, payload: data });
+            dispatch({ type: SALE_UPDATE_SUCCESS, payload: data });
         } catch (error) {
             dispatch({
-                type: REVIEW_UPDATE_FAIL,
+                type: SALE_UPDATE_FAIL,
                 payload:
                     error.response && error.response.data.message
                         ? error.response.message
@@ -130,4 +130,4 @@ export const updateReview =
             });
         }
     };
-// Update review action
+// Update sale action

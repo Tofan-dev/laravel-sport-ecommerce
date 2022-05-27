@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import "../categories/addCategory.css";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../../components/utils/Message";
 import { createCategory } from "../../../actions/categoryActions";
 import Loader from "../../../components/utils/Loader";
 import Swal from "sweetalert2";

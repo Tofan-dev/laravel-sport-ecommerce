@@ -1,21 +1,18 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useState } from "react";
 import {
     Button,
     Card,
     CardContent,
     Grid,
-    InputLabel,
-    MenuItem,
-    Select,
     TextField,
     Typography,
 } from "@mui/material";
 import "../sales/addSale.css";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../../components/utils/Loader";
-import Message from "../../../components/utils/Message";
 import { createSale } from "../../../actions/saleActions";
 import NumberFormat from "react-number-format";
+import Loader from "../../../components/utils/Loader";
+import Swal from "sweetalert2";
 
 const AddSale = () => {
     const dispatch = useDispatch();
@@ -34,14 +31,56 @@ const AddSale = () => {
         formData.append("percent", percent);
 
         dispatch(createSale(formData));
+
     };
+    function successMsg() {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Sale added successfully",
+            showDenyButton: true,
+            confirmButtonText: "See sales list",
+            denyButtonText: `Add another sale`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/admin/sales";
+            } else if (result.isDenied) {
+                window.location = "/admin/sale/add";
+            }
+        });
+    }
+
+    function errorMsg() {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Oops...",
+            text: `${error}`,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "See sales list",
+            denyButtonText: `Try again`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/admin/sales";
+            } else if (result.isDenied) {
+                window.location = "/admin/sale/add";
+            }
+        });
+    }
+
     return (
         <>
             <div className="saleAdd">
-                {error && <Message variant="error">{error}</Message>}
-                {error && <Message variant="success">{error}</Message>}
+            {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <>{errorMsg()}</>
+                ) : success ? (
+                    <>{successMsg()}</>
+                ) : (
                 <Grid>
-                    <Card className="form">
+                    <Card id="formStyle">
                         <CardContent>
                             <Typography gutterBottom variant="h5">
                                 Add new sale
@@ -80,7 +119,7 @@ const AddSale = () => {
                                         <Button
                                             type="submit"
                                             variant="contained"
-                                            color="success"
+                                            color="primary"
                                             fullWidth
                                         >
                                             Submit
@@ -91,6 +130,7 @@ const AddSale = () => {
                         </CardContent>
                     </Card>
                 </Grid>
+                )}
             </div>
         </>
     );

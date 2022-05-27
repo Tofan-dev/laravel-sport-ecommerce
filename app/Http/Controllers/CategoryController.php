@@ -108,6 +108,5 @@ class CategoryController extends Controller
             $category->delete();
         }
 
-        return redirect('/categories')->with('successMsg', 'Category successfully deleted.');
-    }
+        return response()->json(['success' => 'Category deleted succesfully!']);    }
 }
