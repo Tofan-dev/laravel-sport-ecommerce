@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +54,11 @@ Route::get('/review/edit/{id}', [ReviewController::class, 'edit']);
 Route::patch('/review/update/{id}', [ReviewController::class, 'update']);
 Route::delete('/review/delete/{id}', [ReviewController::class, 'destroy']);
 // Review routes
+
+// User routes
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+Route::patch('/user/update/{id}', [UserController::class, 'update']);
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
+// User routes

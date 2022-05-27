@@ -43,7 +43,7 @@ export const getReviewsList = () => async (dispatch) => {
 
 
 // Create review action 
-export const createReview = (formData) => async (dispatch, getState) => {
+export const createReview = (formData) => async (dispatch) => {
     try {
         dispatch({ type: REVIEW_CREATE_REQUEST });
 
@@ -70,7 +70,7 @@ export const createReview = (formData) => async (dispatch, getState) => {
 
 
 // Delete review action 
-export const deleteReview= (id) => async (dispatch, getState) => {
+export const deleteReview= (id) => async (dispatch) => {
     try {
         dispatch({ type: REVIEW_DELETE_REQUEST });
 
@@ -80,7 +80,7 @@ export const deleteReview= (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/reviews/${id}`, config);
+        const { data } = await axios.delete(`/api/review/delete/${id}`, config);
 
         dispatch({ type: REVIEW_DELETE_SUCCESS, payload: data });
     } catch (error) {
@@ -95,56 +95,50 @@ export const deleteReview= (id) => async (dispatch, getState) => {
 };
 // Delete review action 
 
-
 // Update review action 
-// export const updateReview =
-//     (
-//         id,
-//         name,
-//         categoryId,
-//         saleId,
-//         price,
-//         quantity,
-//         description,
-//     ) =>
-//     async (dispatch, getState) => {
-//         try {
-//             dispatch({ type: REVIEW_UPDATE_REQUEST });
+export const updateReview =
+    (
+        id,
+        name,
+        categoryId,
+        saleId,
+        price,
+        quantity,
+        description,
+    ) =>
+    async (dispatch) => {
+        try {
+            dispatch({ type: REVIEW_UPDATE_REQUEST });
 
-//             const {
-//                 userLogin: { userInfo },
-//             } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
 
-//             const config = {
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     Authorization: `Bearer ${userInfo.data.access_token}`,
-//                 },
-//             };
+            const { data } = await Axios.patch(
+                `/api/reviews/${id}`,
+                {
+                    id,
+                    name,
+                    categoryId,
+                    saleId,
+                    price,
+                    quantity,
+                    description,
+                },
+                config
+            );
 
-//             const { data } = await Axios.patch(
-//                 `/api/reviews/${id}`,
-//                 {
-//                     id,
-//                     name,
-//                     categoryId,
-//                     saleId,
-//                     price,
-//                     quantity,
-//                     description,
-//                 },
-//                 config
-//             );
-
-//             dispatch({ type: REVIEW_UPDATE_SUCCESS, payload: data });
-//         } catch (error) {
-//             dispatch({
-//                 type: REVIEW_UPDATE_FAIL,
-//                 payload:
-//                     error.response && error.response.data.message
-//                         ? error.response.message
-//                         : error.message,
-//             });
-//         }
-//     };
+            dispatch({ type: REVIEW_UPDATE_SUCCESS, payload: data });
+        } catch (error) {
+            dispatch({
+                type: REVIEW_UPDATE_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.message
+                        : error.message,
+            });
+        }
+    };
 // Update review action 

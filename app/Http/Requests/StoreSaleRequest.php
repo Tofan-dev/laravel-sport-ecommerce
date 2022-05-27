@@ -24,7 +24,7 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            'percent' => 'nullable|integer|between:0,100',
+            'percent' => 'required|integer|between:0,100',
         ];
     }
 }

@@ -30,6 +30,13 @@ import {
     reviewUpdateReducer
 } from './reducers/reviewReducers'
 
+import {
+    userListReducer,
+    userCreateReducer,
+    userDeleteReducer,
+    userUpdateReducer
+} from './reducers/userReducers'
+
 const reducer = combineReducers({
     productList    : productListReducer,
     productCreate  : productCreateReducer,
@@ -51,6 +58,11 @@ const reducer = combineReducers({
     reviewCreate     : reviewCreateReducer,
     reviewDelete     : reviewDeleteReducer,
     reviewUpdate     : reviewUpdateReducer,
+
+    userList       : userListReducer,
+    userCreate     : userCreateReducer,
+    userDelete     : userDeleteReducer,
+    userUpdate     : userUpdateReducer,
 });
 
 const initialState = {};

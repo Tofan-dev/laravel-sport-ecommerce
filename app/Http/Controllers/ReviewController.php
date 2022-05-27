@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreReviewRequest;
 
 class ReviewController extends Controller
 {
@@ -15,7 +15,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::with('user','product')->get();
+        $reviews = Review::with('user', 'product')->get();
         // return view('admin.review.reviews', compact('reviews'));
         return response()->json($reviews);
     }
@@ -33,12 +33,21 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreReviewRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(StoreReviewRequest $request)
     {
+        $review = new Review;
+        $review->product_id        = $request->productId;
+        $review->user_id           = $request->userId;
+        $review->rating            = $request->rating;
+        $review->user_name         = $request->userName;
+        $review->user_comment      = $request->userComment;
 
+        $review->save();
+
+        return response()->json(['success' => 'Review succesfully added!']);
     }
 
     /**
@@ -49,7 +58,6 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-    
     }
 
     /**

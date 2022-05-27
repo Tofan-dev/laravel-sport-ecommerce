@@ -16,9 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('orders', 'reviews','information')->paginate(8);
+        $users = User::with('orders', 'reviews','information')->get();
 
-        return view('admin.user.users', compact('users'));
+        return response()->json($users);
     }
 
     /**

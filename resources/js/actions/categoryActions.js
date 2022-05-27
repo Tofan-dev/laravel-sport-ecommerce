@@ -41,7 +41,7 @@ export const getCategoriesList = () => async (dispatch) => {
 // Categories list action
 
 // Create category action 
-export const createCategory = (formData) => async (dispatch, getState) => {
+export const createCategory = (formData) => async (dispatch) => {
     try {
         dispatch({ type: CATEGORY_CREATE_REQUEST });
 
@@ -68,7 +68,7 @@ export const createCategory = (formData) => async (dispatch, getState) => {
 
 
 // Delete category action 
-export const deleteCategory = (id) => async (dispatch, getState) => {
+export const deleteCategory = (id) => async (dispatch) => {
     try {
         dispatch({ type: CATEGORY_DELETE_REQUEST });
 
@@ -100,18 +100,13 @@ export const updateCategory =
         id,
         category_title,
     ) =>
-    async (dispatch, getState) => {
+    async (dispatch) => {
         try {
             dispatch({ type: CATEGORY_UPDATE_REQUEST });
-
-            const {
-                userLogin: { userInfo },
-            } = getState();
 
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${userInfo.data.access_token}`,
                 },
             };
 

@@ -41,7 +41,7 @@ export const getSalesList = () => async (dispatch) => {
 // Sales list action
 
 // Create sale action
-export const createSale = (formData) => async (dispatch, getState) => {
+export const createSale = (formData) => async (dispatch) => {
     try {
         dispatch({ type: SALE_CREATE_REQUEST });
 
@@ -67,7 +67,7 @@ export const createSale = (formData) => async (dispatch, getState) => {
 // Create sale action
 
 // Delete sale action
-export const deleteSale = (id) => async (dispatch, getState) => {
+export const deleteSale = (id) => async (dispatch) => {
     try {
         dispatch({ type: SALE_DELETE_REQUEST });
 
@@ -94,18 +94,13 @@ export const deleteSale = (id) => async (dispatch, getState) => {
 
 // Update sale action
 export const updateSale =
-    (id, description, percent) => async (dispatch, getState) => {
+    (id, description, percent) => async (dispatch) => {
         try {
             dispatch({ type: SALE_UPDATE_REQUEST });
-
-            const {
-                userLogin: { userInfo },
-            } = getState();
 
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${userInfo.data.access_token}`,
                 },
             };
 

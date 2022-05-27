@@ -46,7 +46,7 @@ export const getProductsList = () => async (dispatch) => {
 
 
 // Create product action 
-export const createProduct = (formData) => async (dispatch, getState) => {
+export const createProduct = (formData) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_CREATE_REQUEST });
 
@@ -73,7 +73,7 @@ export const createProduct = (formData) => async (dispatch, getState) => {
 
 
 // Delete product action 
-export const deleteProduct = (id) => async (dispatch, getState) => {
+export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DELETE_REQUEST });
 
@@ -111,18 +111,13 @@ export const updateProduct =
         quantity,
         description,
     ) =>
-    async (dispatch, getState) => {
+    async (dispatch) => {
         try {
-            dispatch({ type: PRODUCT_UPDATE_REQUEST });
-
-            const {
-                userLogin: { userInfo },
-            } = getState();
+            dispatch({ type: PRODUCT_UPDATE_REQUEST });;
 
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${userInfo.data.access_token}`,
                 },
             };
 
@@ -164,7 +159,7 @@ export const getProductEditInfo = (id) => async (dispatch) => {
             },
         };
         
-        console.log('from action ' . id);
+        // console.log('from action ' . id
         const { data } = await axios.get(`/api/product/edit/${id}`, config);
         
         dispatch({ type: PRODUCT_SHOW_SUCCESS, payload: data });
@@ -179,6 +174,3 @@ export const getProductEditInfo = (id) => async (dispatch) => {
     }
 };
 // Product edit info action
-
-
-// la productedit in sine la constante pui PRODUCT_EDIT_REQUEST etc.. si la reducer productEditReducer

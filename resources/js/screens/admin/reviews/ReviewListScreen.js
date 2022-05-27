@@ -1,14 +1,12 @@
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
-    deleteReview,
     getReviewsList,
-    updateReview,
 } from "../../../actions/reviewActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
@@ -70,14 +68,35 @@ const ReviewListScreen = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        {/* <Link to={"/admin/review/edit/" + params.row.id}>
-                            <button className="reviewListEdit">Edit</button>
+                        <Link
+                            className="reviewListEdit"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            to={{
+                                pathname: `/admin/review/edit/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Edit
                         </Link>
-                        <Link to={"/admin/review/delete/" + params.row.id}>
-                            <button className="reviewListDelete">
-                                Delete
-                            </button>
-                        </Link> */}
+
+                        <Link
+                            className="reviewListDelete"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            to={{
+                                pathname: `/admin/review/delete/${params.row.id}`,
+                                state: {
+                                    id: params.row.id,
+                                },
+                            }}
+                        >
+                            Delete
+                        </Link>
                     </>
                 );
             },
@@ -88,7 +107,7 @@ const ReviewListScreen = () => {
 
     const [pageSize, setPageSize] = React.useState(15);
 
-    console.log(rows);
+    // console.log(rows);
 
     return (
         <>
@@ -109,30 +128,17 @@ const ReviewListScreen = () => {
                             <Button
                                 variant="contained"
                                 size="large"
-                                color="error"
+                                color="primary"
                             >
                                 Add new review
                             </Button>
                         </Link>
 
                         <DataGrid
-                            sx={{
-                                color: "white",
+                             sx={{
                                 height: "90%",
                                 margin: "1%",
-                                backgroundColor: "#1d1c1c",
-                                ".MuiTablePagination-toolbar": {
-                                    color: "white",
-                                },
-                                ".MuiSelect-icon": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-fontSizeSmall": {
-                                    color: "white",
-                                },
-                                ".MuiSvgIcon-root": {
-                                    color: "white",
-                                },
+                                backgroundColor: "white",
                             }}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) =>
