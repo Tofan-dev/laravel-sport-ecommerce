@@ -35,7 +35,7 @@ const ProductListScreen = () => {
         {
             field: "category",
             headerName: "Category Title",
-            width: 160,
+            width: 130,
             valueGetter: (params) => {
                 return params.value.title;
             },
@@ -50,6 +50,21 @@ const ProductListScreen = () => {
         },
         { field: "name", headerName: "Name", width: 150 },
         { field: "description", headerName: "Description", width: 170 },
+        {
+            field: "image",
+            headerName: "Image",
+            width: 90,
+            renderCell: (params) => {
+                return (
+                    <>
+                        <img
+                            src={`http://127.0.0.1:8000/storage/${params.row.image}`}
+                            alt="logo"
+                        />
+                    </>
+                );
+            },
+        },
         { field: "price", headerName: "Price", width: 90 },
         {
             field: "priceWithDiscount",
@@ -60,7 +75,7 @@ const ProductListScreen = () => {
         {
             field: "rating",
             headerName: "Rating",
-            width: 90,
+            width: 70,
             valueGetter: getRating,
         },
         {

@@ -94,7 +94,7 @@ const Sidebar = () => {
                                 Reviews
                             </li>
                         </Link>
-                        <Link
+                        {/* <Link
                             to="/admin/orders"
                             style={{
                                 textDecoration: "none",
@@ -108,7 +108,7 @@ const Sidebar = () => {
                                 />
                                 Orders
                             </li>
-                        </Link>
+                        </Link> */}
                         <Link
                             to="/admin/users"
                             style={{

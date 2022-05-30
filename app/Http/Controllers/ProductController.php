@@ -153,6 +153,10 @@ class ProductController extends Controller
         $product = Product::find($id);
         // dd($id);
 
+        $imagePath = public_path('/storage/' . $product->image);
+        
+        File::delete($imagePath);
+
         if ($product) {
             $product->delete();
         }

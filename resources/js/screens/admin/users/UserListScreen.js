@@ -28,7 +28,6 @@ const UserListScreen = () => {
         { field: "id", headerName: "ID", width: 70 },
         { field: "name", headerName: "Name", width: 200 },
         { field: "email", headerName: "Email", width: 200 },
-        { field: "password", headerName: "Password", width: 200 },
         {
             field: "created_at",
             headerName: "Created at",
@@ -36,46 +35,46 @@ const UserListScreen = () => {
             valueGetter: getDate,
         },
         { field: "updated_at", headerName: "Updated at", width: 105 },
-        {
-            field: "action",
-            headerName: "Actions",
-            width: 150,
-            renderCell: (params) => {
-                return (
-                    <>
-                        <Link
-                            className="userListEdit"
-                            style={{
-                                textDecoration: "none",
-                            }}
-                            to={{
-                                pathname: `/admin/user/edit/${params.row.id}`,
-                                state: {
-                                    id: params.row.id,
-                                },
-                            }}
-                        >
-                            Edit
-                        </Link>
+        // {
+        //     field: "action",
+        //     headerName: "Actions",
+        //     width: 150,
+        //     renderCell: (params) => {
+        //         return (
+        //             <>
+        //                 <Link
+        //                     className="userListEdit"
+        //                     style={{
+        //                         textDecoration: "none",
+        //                     }}
+        //                     to={{
+        //                         pathname: `/admin/user/edit/${params.row.id}`,
+        //                         state: {
+        //                             id: params.row.id,
+        //                         },
+        //                     }}
+        //                 >
+        //                     Edit
+        //                 </Link>
 
-                        <Link
-                            className="userListDelete"
-                            style={{
-                                textDecoration: "none",
-                            }}
-                            to={{
-                                pathname: `/admin/user/delete/${params.row.id}`,
-                                state: {
-                                    id: params.row.id,
-                                },
-                            }}
-                        >
-                            Delete
-                        </Link>
-                    </>
-                );
-            },
-        },
+        //                 <Link
+        //                     className="userListDelete"
+        //                     style={{
+        //                         textDecoration: "none",
+        //                     }}
+        //                     to={{
+        //                         pathname: `/admin/user/delete/${params.row.id}`,
+        //                         state: {
+        //                             id: params.row.id,
+        //                         },
+        //                     }}
+        //                 >
+        //                     Delete
+        //                 </Link>
+        //             </>
+        //         );
+        //     },
+        // },
     ];
 
     const rows = !isEmpty(users) ? users : [];
@@ -94,7 +93,7 @@ const UserListScreen = () => {
                     <Message variant="error">{error}</Message>
                 ) : (
                     <>
-                        <Link
+                        {/* <Link
                             to="/admin/user/add"
                             style={{ textDecoration: "none", margin: "1%" }}
                         >
@@ -105,7 +104,7 @@ const UserListScreen = () => {
                             >
                                 Add new user
                             </Button>
-                        </Link>
+                        </Link> */}
 
                         <DataGrid
                             sx={{
