@@ -21,31 +21,30 @@ import {
 export const getUsersList = () => async (dispatch) => {
     try {
         dispatch({ type: USER_LIST_REQUEST });
-        
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
-        // console.log("salut");
+
+        // console.log("from actions");
         const { data } = await axios.get("/api/users", config);
-        
+
         dispatch({ type: USER_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: USER_LIST_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };
 // Users list action
 
-
-// Create user action 
+// Create user action
 export const createUser = (formData) => async (dispatch) => {
     try {
         dispatch({ type: USER_CREATE_REQUEST });
@@ -69,10 +68,9 @@ export const createUser = (formData) => async (dispatch) => {
         });
     }
 };
-// Create user action 
+// Create user action
 
-
-// Delete user action 
+// Delete user action
 export const deleteUser = (id) => async (dispatch) => {
     try {
         dispatch({ type: USER_DELETE_REQUEST });
@@ -85,7 +83,6 @@ export const deleteUser = (id) => async (dispatch) => {
 
         const { data } = await axios.delete(`/api/user/delete/${id}`, config);
 
-        
         dispatch({ type: USER_DELETE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -97,69 +94,63 @@ export const deleteUser = (id) => async (dispatch) => {
         });
     }
 };
-// Delete user action 
+// Delete user action
 
-
-// Update user action 
-export const updateUser =
-    (
-        id,
-        name,
-    ) =>
-    async (dispatch) => {
-        try {
-            dispatch({ type: USER_UPDATE_REQUEST });;
-
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
-
-            const { data } = await Axios.patch(
-                `/api/users/${id}`,
-                {
-                    id,
-                    name,
-                },
-                config
-            );
-
-            dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
-        } catch (error) {
-            dispatch({
-                type: USER_UPDATE_FAIL,
-                payload:
-                    error.response && error.response.data.message
-                        ? error.response.message
-                        : error.message,
-            });
-        }
-    };
-// Update user action 
-
-// User edit info action
-export const getUserEditInfo = (id) => async (dispatch) => {
+// Update user action
+export const updateUser = (id, name) => async (dispatch) => {
     try {
-        dispatch({ type: USER_SHOW_REQUEST });
-        
+        dispatch({ type: USER_UPDATE_REQUEST });
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
-        // console.log('from action ' . id
+
+        const { data } = await axios.patch(
+            `/api/users/${id}`,
+            {
+                id,
+                name,
+            },
+            config
+        );
+
+        dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: USER_UPDATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
+        });
+    }
+};
+// Update user action
+
+// User edit info action
+export const getUserEditInfo = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: USER_SHOW_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        // console.log('from action ')
         const { data } = await axios.get(`/api/user/edit/${id}`, config);
-        
+
         dispatch({ type: USER_SHOW_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: USER_SHOW_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };

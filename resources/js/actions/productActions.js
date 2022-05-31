@@ -21,31 +21,30 @@ import {
 export const getProductsList = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
-        
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
-        // console.log("salut");
+
+        // console.log("from actions");
         const { data } = await axios.get("/api/products", config);
-        
+
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };
 // Products list action
 
-
-// Create product action 
+// Create product action
 export const createProduct = (formData) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_CREATE_REQUEST });
@@ -69,10 +68,9 @@ export const createProduct = (formData) => async (dispatch) => {
         });
     }
 };
-// Create product action 
+// Create product action
 
-
-// Delete product action 
+// Delete product action
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DELETE_REQUEST });
@@ -83,9 +81,11 @@ export const deleteProduct = (id) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/product/delete/${id}`, config);
+        const { data } = await axios.delete(
+            `/api/product/delete/${id}`,
+            config
+        );
 
-        
         dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -97,24 +97,14 @@ export const deleteProduct = (id) => async (dispatch) => {
         });
     }
 };
-// Delete product action 
+// Delete product action
 
-
-// Update product action 
+// Update product action
 export const updateProduct =
-    (
-        id,
-        name,
-        categoryId,
-        saleId,
-        price,
-        quantity,
-        description,
-        image,
-    ) =>
+    (id, name, categoryId, saleId, price, quantity, description, image) =>
     async (dispatch) => {
         try {
-            dispatch({ type: PRODUCT_UPDATE_REQUEST });;
+            dispatch({ type: PRODUCT_UPDATE_REQUEST });
 
             const config = {
                 headers: {
@@ -147,30 +137,30 @@ export const updateProduct =
             });
         }
     };
-// Update product action 
+// Update product action
 
 // Product edit info action
 export const getProductEditInfo = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_SHOW_REQUEST });
-        
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
-        // console.log('from action ' . id
+
+        // console.log('from action ')
         const { data } = await axios.get(`/api/product/edit/${id}`, config);
-        
+
         dispatch({ type: PRODUCT_SHOW_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: PRODUCT_SHOW_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };

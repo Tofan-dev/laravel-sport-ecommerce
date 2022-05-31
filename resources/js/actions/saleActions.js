@@ -96,61 +96,60 @@ export const deleteSale = (id) => async (dispatch) => {
 // Delete sale action
 
 // Update sale action
-export const updateSale =
-    (id, description, percent) => async (dispatch) => {
-        try {
-            dispatch({ type: SALE_UPDATE_REQUEST });
+export const updateSale = (id, description, percent) => async (dispatch) => {
+    try {
+        dispatch({ type: SALE_UPDATE_REQUEST });
 
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
 
-            const { data } = await axios.patch(
-                `/api/sale/update/${id}`,
-                {
-                    id,
-                    description,
-                    percent,
-                },
-                config
-            );
+        const { data } = await axios.patch(
+            `/api/sale/update/${id}`,
+            {
+                id,
+                description,
+                percent,
+            },
+            config
+        );
 
-            dispatch({ type: SALE_UPDATE_SUCCESS, payload: data });
-        } catch (error) {
-            dispatch({
-                type: SALE_UPDATE_FAIL,
-                payload:
-                    error.response && error.response.data.message
-                        ? error.response.message
-                        : error.message,
-            });
-        }
-    };
+        dispatch({ type: SALE_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: SALE_UPDATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
+        });
+    }
+};
 // Update sale action
 
 // Sale edit info action
 export const getSaleEditInfo = (id) => async (dispatch) => {
     try {
         dispatch({ type: SALE_SHOW_REQUEST });
-        
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
+
         const { data } = await axios.get(`/api/sale/edit/${id}`, config);
-        
+
         dispatch({ type: SALE_SHOW_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: SALE_SHOW_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };

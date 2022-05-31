@@ -21,31 +21,30 @@ import {
 export const getReviewsList = () => async (dispatch) => {
     try {
         dispatch({ type: REVIEW_LIST_REQUEST });
-        
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
-        // console.log("salut");
+
+        // console.log("from actions");
         const { data } = await axios.get("/api/reviews", config);
-        
+
         dispatch({ type: REVIEW_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: REVIEW_LIST_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };
 // Reviews list action
 
-
-// Create review action 
+// Create review action
 export const createReview = (formData) => async (dispatch) => {
     try {
         dispatch({ type: REVIEW_CREATE_REQUEST });
@@ -69,11 +68,10 @@ export const createReview = (formData) => async (dispatch) => {
         });
     }
 };
-// Create review action 
+// Create review action
 
-
-// Delete review action 
-export const deleteReview= (id) => async (dispatch) => {
+// Delete review action
+export const deleteReview = (id) => async (dispatch) => {
     try {
         dispatch({ type: REVIEW_DELETE_REQUEST });
 
@@ -96,18 +94,11 @@ export const deleteReview= (id) => async (dispatch) => {
         });
     }
 };
-// Delete review action 
+// Delete review action
 
-// Update review action 
+// Update review action
 export const updateReview =
-    (
-        id,
-        productId,
-        userId,
-        rating,
-        userName,
-        userComment,
-    ) =>
+    (id, productId, userId, rating, userName, userComment) =>
     async (dispatch) => {
         try {
             dispatch({ type: REVIEW_UPDATE_REQUEST });
@@ -142,30 +133,30 @@ export const updateReview =
             });
         }
     };
-// Update review action 
+// Update review action
 
 // Review edit info action
 export const getReviewEditInfo = (id) => async (dispatch) => {
     try {
         dispatch({ type: REVIEW_SHOW_REQUEST });
-        
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
-        // console.log('from action ' . id
+
+        // console.log('from action ')
         const { data } = await axios.get(`/api/review/edit/${id}`, config);
-        
+
         dispatch({ type: REVIEW_SHOW_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: REVIEW_SHOW_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };

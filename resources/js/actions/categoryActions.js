@@ -43,7 +43,7 @@ export const getCategoriesList = () => async (dispatch) => {
 };
 // Categories list action
 
-// Create category action 
+// Create category action
 export const createCategory = (formData) => async (dispatch) => {
     try {
         dispatch({ type: CATEGORY_CREATE_REQUEST });
@@ -67,10 +67,9 @@ export const createCategory = (formData) => async (dispatch) => {
         });
     }
 };
-// Create category action 
+// Create category action
 
-
-// Delete category action 
+// Delete category action
 export const deleteCategory = (id) => async (dispatch) => {
     try {
         dispatch({ type: CATEGORY_DELETE_REQUEST });
@@ -81,7 +80,10 @@ export const deleteCategory = (id) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/category/delete/${id}`, config);
+        const { data } = await axios.delete(
+            `/api/category/delete/${id}`,
+            config
+        );
 
         dispatch({ type: CATEGORY_DELETE_SUCCESS, payload: data });
     } catch (error) {
@@ -94,69 +96,63 @@ export const deleteCategory = (id) => async (dispatch) => {
         });
     }
 };
-// Delete category action 
+// Delete category action
 
-
-// Update category action 
-export const updateCategory =
-    (
-        id,
-        category_title,
-    ) =>
-    async (dispatch) => {
-        try {
-            dispatch({ type: CATEGORY_UPDATE_REQUEST });
-
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
-
-            const { data } = await axios.patch(
-                `/api/category/update/${id}`,
-                {
-                    id,
-                    category_title,
-                },
-                config
-            );
-
-            dispatch({ type: CATEGORY_UPDATE_SUCCESS, payload: data });
-        } catch (error) {
-            dispatch({
-                type: CATEGORY_UPDATE_FAIL,
-                payload:
-                    error.response && error.response.data.message
-                        ? error.response.message
-                        : error.message,
-            });
-        }
-    };
-// Update category action 
-
-// Category edit info action
-export const getCategoryEditInfo = (id) => async (dispatch) => {
+// Update category action
+export const updateCategory = (id, category_title) => async (dispatch) => {
     try {
-        dispatch({ type: CATEGORY_SHOW_REQUEST });
-        
+        dispatch({ type: CATEGORY_UPDATE_REQUEST });
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        
+
+        const { data } = await axios.patch(
+            `/api/category/update/${id}`,
+            {
+                id,
+                category_title,
+            },
+            config
+        );
+
+        dispatch({ type: CATEGORY_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: CATEGORY_UPDATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
+        });
+    }
+};
+// Update category action
+
+// Category edit info action
+export const getCategoryEditInfo = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: CATEGORY_SHOW_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
         // console.log('from action ' . id
         const { data } = await axios.get(`/api/category/edit/${id}`, config);
-        
+
         dispatch({ type: CATEGORY_SHOW_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
             type: CATEGORY_SHOW_FAIL,
             payload:
-            error.response && error.response.data.message
-            ? error.response.message
-            : error.message,
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
         });
     }
 };
