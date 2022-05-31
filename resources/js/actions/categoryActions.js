@@ -9,6 +9,9 @@ import {
     CATEGORY_LIST_FAIL,
     CATEGORY_LIST_REQUEST,
     CATEGORY_LIST_SUCCESS,
+    CATEGORY_SHOW_FAIL,
+    CATEGORY_SHOW_REQUEST,
+    CATEGORY_SHOW_SUCCESS,
     CATEGORY_UPDATE_FAIL,
     CATEGORY_UPDATE_REQUEST,
     CATEGORY_UPDATE_SUCCESS,
@@ -110,8 +113,8 @@ export const updateCategory =
                 },
             };
 
-            const { data } = await Axios.patch(
-                `/api/categories/${id}`,
+            const { data } = await axios.patch(
+                `/api/category/update/${id}`,
                 {
                     id,
                     category_title,
@@ -131,3 +134,30 @@ export const updateCategory =
         }
     };
 // Update category action 
+
+// Category edit info action
+export const getCategoryEditInfo = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: CATEGORY_SHOW_REQUEST });
+        
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        
+        // console.log('from action ' . id
+        const { data } = await axios.get(`/api/category/edit/${id}`, config);
+        
+        dispatch({ type: CATEGORY_SHOW_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: CATEGORY_SHOW_FAIL,
+            payload:
+            error.response && error.response.data.message
+            ? error.response.message
+            : error.message,
+        });
+    }
+};
+// Category edit info action

@@ -65,7 +65,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('admin.category.editCategory', compact('category'));
+        return response()->json($category);
     }
 
     /**
@@ -83,16 +83,11 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
 
-        if (!$category) {
-            return redirect('/categories')->with('successMsg', 'Category id doesn\'t exist.');
-        }
-
         $category->title = $request->category_title;
 
         $category->save();
 
-        return redirect('/categories')->with('successMsg', 'Category successfully updated.');
-    }
+        return response()->json(['success' => 'Category updated succesfully!']);    }
 
     /**
      * Remove the specified resource from storage.

@@ -2,6 +2,7 @@ import { NotificationsNone, Settings } from "@mui/icons-material";
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/navbar.css";
+import logoDashboard from "../../images/logoDashboard.png";
 
 const Navbar = () => {
     return (
@@ -14,7 +15,7 @@ const Navbar = () => {
                             textDecoration: "none",
                         }}
                     >
-                        <span className="logo">TableTennis</span>
+                        <img src={logoDashboard} className="logo" />
                     </Link>
                 </div>
                 <div className="topRight">

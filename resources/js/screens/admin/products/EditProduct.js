@@ -18,8 +18,10 @@ import Dropzone from "react-dropzone";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
 import { getProductEditInfo } from "../../../actions/productActions";
+import { updateProduct } from "../../../actions/productActions";
 import "../products/editProduct.css";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditProduct = () => {
     let { id } = useParams();
@@ -33,7 +35,7 @@ const EditProduct = () => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [images, setImages] = useState();
+    const [image, setImage] = useState();
 
     const categoryList = useSelector((state) => state.categoryList);
     const {
@@ -45,8 +47,11 @@ const EditProduct = () => {
     const saleList = useSelector((state) => state.saleList);
     const { sales, loading: loadingSales, error: errorSales } = saleList;
 
-    const productShow = useSelector((state) => state.productShow); // pe viitor pune variabile care se inteleg, nu productEdit, productEdit la ce? pui productEdit, nimic mai mult sau productShow
-    const { product, loading, error } = productShow;
+    const productShow = useSelector((state) => state.productShow);
+    const { product, loading: loadingProducts, error: errorProducts } = productShow;
+
+    const productUpdate = useSelector((state) => state.productUpdate);
+    const { success, loading, error } = productUpdate;
 
     useEffect(() => {
         dispatch(getCategoriesList());
@@ -61,11 +66,9 @@ const EditProduct = () => {
             setPrice(product.price);
             setCategoryId(product.category_id);
             setSaleId(product.sale_id);
+            setImage(product.image);
         }
     }, [dispatch, product]);
-
-    // console.log(product.categoryId);
-    // console.log(categoryId);
 
     const openDialog = () => {
         if (dropzoneRef.current) {
@@ -74,45 +77,72 @@ const EditProduct = () => {
     };
 
     const handleImages = (acceptedFiles) => {
-        setImages(acceptedFiles);
+        setImage(acceptedFiles);
     };
 
     const submitHandler = (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
 
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("categoryId", categoryId);
-        formData.append("saleId", saleId);
-        formData.append("price", price);
-        formData.append("quantity", quantity);
-        formData.append("description", description);
-
-        if (images) {
-            for (let i = 0; i < images.length; i++) {
-                formData.append(`images[${i}]`, images[i]);
-            }
-        }
-
-        dispatch(editProduct(formData));
+        dispatch(
+            updateProduct(
+                id,
+                name,
+                categoryId,
+                saleId,
+                price,
+                quantity,
+                description,
+                image,
+            )
+        );
     };
+
+    
+    function successMsg() {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Product updated successfully",
+            showDenyButton: false,
+            confirmButtonText: "See products list",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/admin/products";
+            }
+        });
+    }
+
+    function errorMsg() {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Oops...",
+            text: `${error}`,
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: "See products list",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location = "/admin/products";
+            }
+        });
+    }
 
     return (
         <>
             <div className="productEdit">
-                {loading ? (
+            {loadingProducts ? (
                     <Loader />
+                ) : error ? (
+                    <>{errorMsg()}</>
+                ) : success ? (
+                    <>{successMsg()}</>
                 ) : (
-                    //  error ? (
-                    //     <>{errorMsg()}</>
-                    // ) : success ? (
-                    //     <>{successMsg()}</>
-                    // ) : (
                     <Grid>
                         <Card id="formStyle">
                             <CardContent>
                                 <Typography gutterBottom variant="h5">
-                                    Add new product
+                                    Edit product
                                 </Typography>
                                 <form onSubmit={submitHandler}>
                                     <Grid container spacing={1}>
@@ -173,17 +203,6 @@ const EditProduct = () => {
                                                     <MenuItem value="" disabled>
                                                         Choose category title
                                                     </MenuItem>
-
-                                                    {/* {Object.keys(
-                                                        categories
-                                                    ).map((category) => {
-                                                        <MenuItem
-                                                            value={""}
-                                                            key={category.id}
-                                                        >
-                                                            {category.title}
-                                                        </MenuItem>;
-                                                    })} */}
 
                                                     {Object.keys(
                                                         categories

@@ -110,6 +110,7 @@ export const updateProduct =
         price,
         quantity,
         description,
+        image,
     ) =>
     async (dispatch) => {
         try {
@@ -121,8 +122,8 @@ export const updateProduct =
                 },
             };
 
-            const { data } = await Axios.patch(
-                `/api/products/${id}`,
+            const { data } = await axios.patch(
+                `/api/product/update/${id}`,
                 {
                     id,
                     name,
@@ -131,10 +132,10 @@ export const updateProduct =
                     price,
                     quantity,
                     description,
+                    image,
                 },
                 config
             );
-
             dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
         } catch (error) {
             dispatch({

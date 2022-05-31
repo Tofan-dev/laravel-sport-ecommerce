@@ -13,6 +13,9 @@ import {
     CATEGORY_UPDATE_REQUEST,
     CATEGORY_UPDATE_SUCCESS,
     CATEGORY_UPDATE_RESET,
+    CATEGORY_SHOW_REQUEST,
+    CATEGORY_SHOW_SUCCESS,
+    CATEGORY_SHOW_FAIL,
 } from "../constants/categoryConstants";
 
 
@@ -96,3 +99,21 @@ export const categoryUpdateReducer = (state = { category: {} }, action) => {
     }
 }
 // Update category reducers
+
+// Category edit info reducers
+export const categoryShowReducer = (state = { category: {} }, action) => {
+    switch (action.type) {
+        case CATEGORY_SHOW_REQUEST:
+            return { ...state, loading: true };
+            
+        case CATEGORY_SHOW_SUCCESS:
+            return { loading: false, category: action.payload };
+            
+        case CATEGORY_SHOW_FAIL:
+            return { loading: false, error: action.payload };
+            
+        default:
+            return state;
+    }
+};
+// Category edit info reducers

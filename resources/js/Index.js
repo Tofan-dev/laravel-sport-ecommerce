@@ -20,6 +20,7 @@ import DeleteSale from "./screens/admin/sales/DeleteSale";
 import AddReview from "./screens/admin/reviews/AddReview";
 import UserListScreen from "./screens/admin/users/UserListScreen";
 import DeleteReview from "./screens/admin/reviews/DeleteReview";
+import EditCategory from "./screens/admin/categories/EditCategory";
 const Index = () => {
     return (
         <>
@@ -44,9 +45,8 @@ const Index = () => {
 
                     {/* Categories Section */}
                         <Route path="category/add" element={<AddCategory />}/>
-                        {/* <Route path="category/edit/:id" element={<EditCategory />}/> */}
+                        <Route path="category/edit/:id" element={<EditCategory />}/>
                         <Route path="category/delete/:id" element={<DeleteCategory />}/>
-                  
                     {/* Categories Section */}
 
                     {/* Sales Section */}

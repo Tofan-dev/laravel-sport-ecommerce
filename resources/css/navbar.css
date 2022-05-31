@@ -16,13 +16,12 @@
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 35px;
-    letter-spacing: 3px;
-    color: #3454d1;
     cursor: pointer;
+    width: 250px;
+    height: 180px;
     position: relative;
-    left: 10%;
+    top: 15px;
+    right: 15px;
 }
 
 .topRight {

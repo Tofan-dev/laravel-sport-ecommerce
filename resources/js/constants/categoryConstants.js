@@ -23,3 +23,9 @@ export const CATEGORY_UPDATE_SUCCESS = "CATEGORY_UPDATE_SUCCESS";
 export const CATEGORY_UPDATE_FAIL    = "CATEGORY_UPDATE_FAIL";
 export const CATEGORY_UPDATE_RESET   = "CATEGORY_UPDATE_RESET";
 // Edit category constants 
+
+// Show category info constants
+export const CATEGORY_SHOW_REQUEST   = "CATEGORY_SHOW_REQUEST";
+export const CATEGORY_SHOW_SUCCESS   = "CATEGORY_SHOW_SUCCESS";
+export const CATEGORY_SHOW_FAIL      = "CATEGORY_SHOW_FAIL";
+// Show category info constants

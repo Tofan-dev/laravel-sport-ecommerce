@@ -108,17 +108,17 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        if (!$product) {
-            return redirect('/products');
-        }
-
         $product->name              = $request->name;
         $product->description       = $request->description;
-        $product->category_id       = $request->category;
-        $product->sale_id           = $request->sale;
+        $product->category_id       = $request->categoryId;
+        $product->sale_id           = $request->saleId;
         $product->price             = $request->price;
-        $product->priceWithDiscount = $request->priceWithDiscount;
         $product->stock             = $request->quantity;
+
+        $sale = Sale::where('id', $request->saleId)->first();
+        $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
+
+        $product->priceWithDiscount = $priceWithDiscount;
 
         // old image
         $imagePath = public_path('/storage/' . $product->image);
@@ -134,7 +134,7 @@ class ProductController extends Controller
 
             $product->image = $request->image->storeAs('productImages', $imgFileName, 'public');
         }
-
+        
         $product->save();
 
         return response()->json(['success' => 'Product updated succesfully!']);
@@ -151,8 +151,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        // dd($id);
-
+  
         $imagePath = public_path('/storage/' . $product->image);
         
         File::delete($imagePath);
