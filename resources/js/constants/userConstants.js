@@ -26,8 +26,8 @@ export const USER_UPDATE_FAIL    = "USER_UPDATE_FAIL";
 export const USER_UPDATE_RESET   = "USER_UPDATE_RESET";
 // Edit user constants 
 
-// Show userr info constants
+// Show user info constants
 export const USER_SHOW_REQUEST   = "USER_SHOW_REQUEST";
 export const USER_SHOW_SUCCESS   = "USER_SHOW_SUCCESS";
 export const USER_SHOW_FAIL      = "USER_SHOW_FAIL";
-// Show userr info constants
+// Show user info constants

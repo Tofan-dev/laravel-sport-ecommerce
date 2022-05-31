@@ -18,47 +18,44 @@ import {
     PRODUCT_SHOW_FAIL,
 } from "../constants/productConstants";
 
-
 // Product list reducers
 export const productListReducer = (state = { products: {} }, action) => {
     switch (action.type) {
         case PRODUCT_LIST_REQUEST:
             return { loading: true, products: [] };
-            
-            case PRODUCT_LIST_SUCCESS:
-                return { loading: false, products: action.payload };
-                
-                case PRODUCT_LIST_FAIL:
-                    return { loading: false, error: action.payload };
-                    
-                    default:
-                        return state;
-                    }
-                };
-// Product list reducers
 
+        case PRODUCT_LIST_SUCCESS:
+            return { loading: false, products: action.payload };
+
+        case PRODUCT_LIST_FAIL:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+// Product list reducers
 
 // Create product reducers
 export const productCreateReducer = (state = {}, action) => {
     switch (action.type) {
         case PRODUCT_CREATE_REQUEST:
             return { loading: true };
-            
+
         case PRODUCT_CREATE_SUCCESS:
             return { loading: false, success: true, product: action.payload };
-                
+
         case PRODUCT_CREATE_FAIL:
             return { loading: false, error: action.payload };
-            
+
         case PRODUCT_CREATE_RESET:
             return {};
-                
-                default:
-                    return state;
-                }
-            };
-// Create product reducers
 
+        default:
+            return state;
+    }
+};
+// Create product reducers
 
 // Delete product reducers
 export const productDeleteReducer = (state = {}, action) => {
@@ -78,12 +75,11 @@ export const productDeleteReducer = (state = {}, action) => {
 };
 // Delete product reducers
 
-
 // Update product reducers
 export const productUpdateReducer = (state = { product: {} }, action) => {
     switch (action.type) {
         case PRODUCT_UPDATE_REQUEST:
-            return { loading: true, };
+            return { loading: true };
 
         case PRODUCT_UPDATE_SUCCESS:
             return { loading: false, success: true, product: action.payload };
@@ -97,7 +93,7 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
         default:
             return state;
     }
-}
+};
 // Update product reducers
 
 // Product edit info reducers
@@ -105,13 +101,13 @@ export const productShowReducer = (state = { product: {} }, action) => {
     switch (action.type) {
         case PRODUCT_SHOW_REQUEST:
             return { ...state, loading: true };
-            
+
         case PRODUCT_SHOW_SUCCESS:
             return { loading: false, product: action.payload };
-            
+
         case PRODUCT_SHOW_FAIL:
             return { loading: false, error: action.payload };
-            
+
         default:
             return state;
     }

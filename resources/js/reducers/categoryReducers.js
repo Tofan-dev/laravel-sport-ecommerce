@@ -18,47 +18,44 @@ import {
     CATEGORY_SHOW_FAIL,
 } from "../constants/categoryConstants";
 
-
 // Category list reducers
 export const categoryListReducer = (state = { categories: {} }, action) => {
     switch (action.type) {
         case CATEGORY_LIST_REQUEST:
             return { loading: true, categories: [] };
-            
-            case CATEGORY_LIST_SUCCESS:
-                return { loading: false, categories: action.payload };
-                
-                case CATEGORY_LIST_FAIL:
-                    return { loading: false, error: action.payload };
-                    
-                    default:
-                        return state;
-                    }
-                };
-// Category list reducers
 
+        case CATEGORY_LIST_SUCCESS:
+            return { loading: false, categories: action.payload };
+
+        case CATEGORY_LIST_FAIL:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+// Category list reducers
 
 // Create category reducers
 export const categoryCreateReducer = (state = {}, action) => {
     switch (action.type) {
         case CATEGORY_CREATE_REQUEST:
             return { loading: true };
-            
-            case CATEGORY_CREATE_SUCCESS:
-                return { loading: false, success: true, category: action.payload };
-                
+
+        case CATEGORY_CREATE_SUCCESS:
+            return { loading: false, success: true, category: action.payload };
+
         case CATEGORY_CREATE_FAIL:
             return { loading: false, error: action.payload };
-            
-            case CATEGORY_CREATE_RESET:
-                return {};
-                
-                default:
-                    return state;
-                }
-            };
-// Create category reducers
 
+        case CATEGORY_CREATE_RESET:
+            return {};
+
+        default:
+            return state;
+    }
+};
+// Create category reducers
 
 // Delete category reducers
 export const categoryDeleteReducer = (state = {}, action) => {
@@ -78,12 +75,11 @@ export const categoryDeleteReducer = (state = {}, action) => {
 };
 // Delete category reducers
 
-
 // Update category reducers
 export const categoryUpdateReducer = (state = { category: {} }, action) => {
     switch (action.type) {
         case CATEGORY_UPDATE_REQUEST:
-            return { loading: true, };
+            return { loading: true };
 
         case CATEGORY_UPDATE_SUCCESS:
             return { loading: false, success: true, category: action.payload };
@@ -97,7 +93,7 @@ export const categoryUpdateReducer = (state = { category: {} }, action) => {
         default:
             return state;
     }
-}
+};
 // Update category reducers
 
 // Category edit info reducers
@@ -105,13 +101,13 @@ export const categoryShowReducer = (state = { category: {} }, action) => {
     switch (action.type) {
         case CATEGORY_SHOW_REQUEST:
             return { ...state, loading: true };
-            
+
         case CATEGORY_SHOW_SUCCESS:
             return { loading: false, category: action.payload };
-            
+
         case CATEGORY_SHOW_FAIL:
             return { loading: false, error: action.payload };
-            
+
         default:
             return state;
     }
