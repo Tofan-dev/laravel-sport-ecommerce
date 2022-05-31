@@ -21,14 +21,16 @@ import {
     saleListReducer,
     saleCreateReducer,
     saleDeleteReducer,
-    saleUpdateReducer
+    saleUpdateReducer,
+    saleShowReducer
 } from './reducers/saleReducers'
 
 import {
     reviewListReducer,
     reviewCreateReducer,
     reviewDeleteReducer,
-    reviewUpdateReducer
+    reviewUpdateReducer,
+    reviewShowReducer
 } from './reducers/reviewReducers'
 
 import {
@@ -55,11 +57,13 @@ const reducer = combineReducers({
     saleCreate     : saleCreateReducer,
     saleDelete     : saleDeleteReducer,
     saleUpdate     : saleUpdateReducer,
+    saleShow       : saleShowReducer,
 
-    reviewList       : reviewListReducer,
-    reviewCreate     : reviewCreateReducer,
-    reviewDelete     : reviewDeleteReducer,
-    reviewUpdate     : reviewUpdateReducer,
+    reviewList     : reviewListReducer,
+    reviewCreate   : reviewCreateReducer,
+    reviewDelete   : reviewDeleteReducer,
+    reviewUpdate   : reviewUpdateReducer,
+    reviewShow     : reviewShowReducer,
 
     userList       : userListReducer,
     userCreate     : userCreateReducer,

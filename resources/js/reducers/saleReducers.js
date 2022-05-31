@@ -13,6 +13,9 @@ import {
     SALE_UPDATE_REQUEST,
     SALE_UPDATE_SUCCESS,
     SALE_UPDATE_RESET,
+    SALE_SHOW_REQUEST,
+    SALE_SHOW_SUCCESS,
+    SALE_SHOW_FAIL,
 } from "../constants/saleConstants";
 
 
@@ -96,3 +99,21 @@ export const saleUpdateReducer = (state = { sale: {} }, action) => {
     }
 }
 // Update sale reducers
+
+// Sale edit info reducers
+export const saleShowReducer = (state = { sale: {} }, action) => {
+    switch (action.type) {
+        case SALE_SHOW_REQUEST:
+            return { ...state, loading: true };
+            
+        case SALE_SHOW_SUCCESS:
+            return { loading: false, sale: action.payload };
+            
+        case SALE_SHOW_FAIL:
+            return { loading: false, error: action.payload };
+            
+        default:
+            return state;
+    }
+};
+// Sale edit info reducers

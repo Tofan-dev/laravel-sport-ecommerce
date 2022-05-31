@@ -23,3 +23,9 @@ export const REVIEW_UPDATE_SUCCESS = "REVIEW_UPDATE_SUCCESS";
 export const REVIEW_UPDATE_FAIL    = "REVIEW_UPDATE_FAIL";
 export const REVIEW_UPDATE_RESET   = "REVIEW_UPDATE_RESET";
 // Edit review constants 
+
+// Show review info constants
+export const REVIEW_SHOW_REQUEST   = "REVIEW_SHOW_REQUEST";
+export const REVIEW_SHOW_SUCCESS   = "REVIEW_SHOW_SUCCESS";
+export const REVIEW_SHOW_FAIL      = "REVIEW_SHOW_FAIL";
+// Show review info constants

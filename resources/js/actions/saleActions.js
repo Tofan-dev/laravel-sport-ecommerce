@@ -9,6 +9,9 @@ import {
     SALE_LIST_FAIL,
     SALE_LIST_REQUEST,
     SALE_LIST_SUCCESS,
+    SALE_SHOW_FAIL,
+    SALE_SHOW_REQUEST,
+    SALE_SHOW_SUCCESS,
     SALE_UPDATE_FAIL,
     SALE_UPDATE_REQUEST,
     SALE_UPDATE_SUCCESS,
@@ -104,8 +107,8 @@ export const updateSale =
                 },
             };
 
-            const { data } = await Axios.patch(
-                `/api/sales/${id}`,
+            const { data } = await axios.patch(
+                `/api/sale/update/${id}`,
                 {
                     id,
                     description,
@@ -126,3 +129,29 @@ export const updateSale =
         }
     };
 // Update sale action
+
+// Sale edit info action
+export const getSaleEditInfo = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: SALE_SHOW_REQUEST });
+        
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        
+        const { data } = await axios.get(`/api/sale/edit/${id}`, config);
+        
+        dispatch({ type: SALE_SHOW_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: SALE_SHOW_FAIL,
+            payload:
+            error.response && error.response.data.message
+            ? error.response.message
+            : error.message,
+        });
+    }
+};
+// Sale edit info action

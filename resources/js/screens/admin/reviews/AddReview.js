@@ -97,7 +97,7 @@ const AddReview = () => {
 
 return (
     <>
-    <div className="productAdd">
+    <div className="reviewAdd">
         {loading ? (
             <Loader />
         ) : error ? (

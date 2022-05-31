@@ -26,7 +26,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        return view('admin.sale.addSale');
+ 
     }
 
     /**
@@ -65,7 +65,8 @@ class SaleController extends Controller
     public function edit($id)
     {
         $sale = Sale::find($id);
-        return view('admin.sale.editSale', compact('sale'));
+        return response()->json($sale);
+
     }
 
     /**
@@ -80,16 +81,12 @@ class SaleController extends Controller
  
         $sale = Sale::find($id);
 
-        if (!$sale) {
-            return redirect('/sales')->with('successMsg', 'Sale id doesn\'t exist.');
-        }
-
         $sale->description = $request->description;
         $sale->percent = $request->percent;
 
         $sale->save();
 
-        return redirect('/sales')->with('successMsg', 'Sale successfully updated.');
+        return response()->json(['success' => 'Sale updated succesfully!']);    
     }
 
     /**

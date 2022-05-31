@@ -9,6 +9,9 @@ import {
     REVIEW_LIST_FAIL,
     REVIEW_LIST_REQUEST,
     REVIEW_LIST_SUCCESS,
+    REVIEW_SHOW_FAIL,
+    REVIEW_SHOW_REQUEST,
+    REVIEW_SHOW_SUCCESS,
     REVIEW_UPDATE_FAIL,
     REVIEW_UPDATE_REQUEST,
     REVIEW_UPDATE_SUCCESS,
@@ -99,12 +102,11 @@ export const deleteReview= (id) => async (dispatch) => {
 export const updateReview =
     (
         id,
-        name,
-        categoryId,
-        saleId,
-        price,
-        quantity,
-        description,
+        productId,
+        userId,
+        rating,
+        userName,
+        userComment,
     ) =>
     async (dispatch) => {
         try {
@@ -116,16 +118,15 @@ export const updateReview =
                 },
             };
 
-            const { data } = await Axios.patch(
-                `/api/reviews/${id}`,
+            const { data } = await axios.patch(
+                `/api/review/update/${id}`,
                 {
                     id,
-                    name,
-                    categoryId,
-                    saleId,
-                    price,
-                    quantity,
-                    description,
+                    productId,
+                    userId,
+                    rating,
+                    userName,
+                    userComment,
                 },
                 config
             );
@@ -142,3 +143,30 @@ export const updateReview =
         }
     };
 // Update review action 
+
+// Review edit info action
+export const getReviewEditInfo = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: REVIEW_SHOW_REQUEST });
+        
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        
+        // console.log('from action ' . id
+        const { data } = await axios.get(`/api/review/edit/${id}`, config);
+        
+        dispatch({ type: REVIEW_SHOW_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: REVIEW_SHOW_FAIL,
+            payload:
+            error.response && error.response.data.message
+            ? error.response.message
+            : error.message,
+        });
+    }
+};
+// Review edit info action

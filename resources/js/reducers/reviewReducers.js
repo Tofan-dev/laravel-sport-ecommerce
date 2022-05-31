@@ -13,6 +13,9 @@ import {
     REVIEW_UPDATE_REQUEST,
     REVIEW_UPDATE_SUCCESS,
     REVIEW_UPDATE_RESET,
+    REVIEW_SHOW_REQUEST,
+    REVIEW_SHOW_SUCCESS,
+    REVIEW_SHOW_FAIL,
 } from "../constants/reviewConstants";
 
 
@@ -96,3 +99,21 @@ export const reviewUpdateReducer = (state = { review: {} }, action) => {
     }
 }
 // Update review reducers
+
+// Review edit info reducers
+export const reviewShowReducer = (state = { review: {} }, action) => {
+    switch (action.type) {
+        case REVIEW_SHOW_REQUEST:
+            return { ...state, loading: true };
+            
+        case REVIEW_SHOW_SUCCESS:
+            return { loading: false, review: action.payload };
+            
+        case REVIEW_SHOW_FAIL:
+            return { loading: false, error: action.payload };
+            
+        default:
+            return state;
+    }
+};
+// Review edit info reducers

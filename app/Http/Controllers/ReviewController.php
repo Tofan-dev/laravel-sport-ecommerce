@@ -16,7 +16,6 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::with('user', 'product')->get();
-        // return view('admin.review.reviews', compact('reviews'));
         return response()->json($reviews);
     }
 
@@ -66,9 +65,10 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit($id)
     {
-        //
+        $review = Review::find($id);
+        return response()->json($review);
     }
 
     /**
@@ -78,9 +78,19 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, $id)
     {
-        //
+        $review = Review::find($id);
+
+        $review->product_id        = $request->productId;
+        $review->user_id           = $request->userId;
+        $review->rating            = $request->rating;
+        $review->user_name         = $request->userName;
+        $review->user_comment      = $request->userComment;
+
+        $review->save();
+
+        return response()->json(['success' => 'Review updated succesfully!']); 
     }
 
     /**

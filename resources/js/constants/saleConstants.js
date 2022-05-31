@@ -23,3 +23,9 @@ export const SALE_UPDATE_SUCCESS = "SALE_UPDATE_SUCCESS";
 export const SALE_UPDATE_FAIL    = "SALE_UPDATE_FAIL";
 export const SALE_UPDATE_RESET   = "SALE_UPDATE_RESET";
 // Edit sale constants 
+
+// Show sale info constants
+export const SALE_SHOW_REQUEST   = "SALE_SHOW_REQUEST";
+export const SALE_SHOW_SUCCESS   = "SALE_SHOW_SUCCESS";
+export const SALE_SHOW_FAIL      = "SALE_SHOW_FAIL";
+// Show sale info constants
