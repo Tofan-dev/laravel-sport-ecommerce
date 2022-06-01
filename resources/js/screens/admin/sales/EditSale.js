@@ -7,7 +7,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../sales/editSale.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/utils/Loader";
 import Swal from "sweetalert2";
@@ -76,7 +76,7 @@ const EditSale = () => {
 
     return (
         <>
-            <div className="saleEdit">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

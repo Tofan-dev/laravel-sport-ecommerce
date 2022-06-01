@@ -1,4 +1,4 @@
-import "./widgetLg.css";
+import "../admin.css";
 
 const WidgetLg = () => {
     const Button = ({type}) =>{

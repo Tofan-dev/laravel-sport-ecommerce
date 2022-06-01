@@ -10,7 +10,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../reviews/addReview.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createReview } from "../../../actions/reviewActions";
 import { getProductsList } from "../../../actions/productActions";
@@ -97,7 +97,7 @@ const AddReview = () => {
 
 return (
     <>
-    <div className="reviewAdd">
+    <div className="mainContainer">
         {loading ? (
             <Loader />
         ) : error ? (

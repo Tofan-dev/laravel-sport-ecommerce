@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import "./deleteReview.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview } from "../../../actions/reviewActions";
 
@@ -65,7 +65,7 @@ const DeleteReview = () => {
 
     return (
         <>
-            <div className="reviewDelete"></div>
+            <div className="mainContainer"></div>
         </>
     );
 };

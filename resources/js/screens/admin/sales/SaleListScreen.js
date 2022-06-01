@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { getSalesList } from "../../../actions/saleActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
-import "./saleList.css";
+import "../admin.css";
 
 const SaleListScreen = () => {
     const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const SaleListScreen = () => {
                 return (
                     <>
                         <Link
-                            className="saleListEdit"
+                            className="buttonEdit"
                             style={{
                                 textDecoration: "none",
                             }}
@@ -57,7 +57,7 @@ const SaleListScreen = () => {
                         </Link>
 
                         <Link
-                            className="saleListDelete"
+                            className="buttonDelete"
                             style={{
                                 textDecoration: "none",
                             }}
@@ -83,7 +83,7 @@ const SaleListScreen = () => {
     // console.log(rows);
     return (
         <>
-            <div className="saleList">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

@@ -1,4 +1,4 @@
-import "./chart.css";
+import "../admin.css";
 import {
     LineChart,
     Line,

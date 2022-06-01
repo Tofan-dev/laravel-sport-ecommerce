@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { getUsersList } from "../../../actions/userActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
-import "./userListScreen.css";
+import "../admin.css";
 
 const UserListScreen = () => {
 
@@ -86,7 +86,7 @@ const UserListScreen = () => {
 
   return (
     <>
-            <div className="userList">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

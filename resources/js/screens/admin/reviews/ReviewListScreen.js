@@ -10,7 +10,7 @@ import {
 } from "../../../actions/reviewActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
-import "./reviewList.css";
+import "../admin.css";
 
 const ReviewListScreen = () => {
     const dispatch = useDispatch();
@@ -69,7 +69,7 @@ const ReviewListScreen = () => {
                 return (
                     <>
                         <Link
-                            className="reviewListEdit"
+                            className="buttonEdit"
                             style={{
                                 textDecoration: "none",
                             }}
@@ -84,7 +84,7 @@ const ReviewListScreen = () => {
                         </Link>
 
                         <Link
-                            className="reviewListDelete"
+                            className="buttonDelete"
                             style={{
                                 textDecoration: "none",
                             }}
@@ -111,7 +111,7 @@ const ReviewListScreen = () => {
 
     return (
         <>
-            <div className="reviewList">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

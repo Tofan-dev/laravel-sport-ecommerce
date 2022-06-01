@@ -7,7 +7,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../sales/addSale.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createSale } from "../../../actions/saleActions";
 import NumberFormat from "react-number-format";
@@ -71,7 +71,7 @@ const AddSale = () => {
 
     return (
         <>
-            <div className="saleAdd">
+            <div className="mainContainer">
             {loading ? (
                     <Loader />
                 ) : error ? (

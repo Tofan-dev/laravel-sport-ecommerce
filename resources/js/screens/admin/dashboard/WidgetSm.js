@@ -1,5 +1,5 @@
 import { Visibility } from "@mui/icons-material"
-import "./widgetSm.css"
+import "../admin.css";
 
 const WidgetSm = () => {
   return (

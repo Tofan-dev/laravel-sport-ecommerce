@@ -10,7 +10,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../reviews/editReview.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/utils/Loader";
 import Swal from "sweetalert2";
@@ -101,7 +101,7 @@ const EditReview = () => {
 
     return (
         <>
-            <div className="reviewEdit">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

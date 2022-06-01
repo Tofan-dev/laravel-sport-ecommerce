@@ -1,5 +1,5 @@
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material"
-import "./info.css"
+import "../admin.css";
 
 const Info = () => {
   return (
