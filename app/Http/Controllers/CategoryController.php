@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -39,6 +40,15 @@ class CategoryController extends Controller
     {
         $category = new Category;
         $category->title = $request->category_title;
+
+        if ($request->hasFile('images')) {
+            foreach ($request->images as $image) {
+                // get image original name and add currect time for an overall unique name
+                $imgFileName = time() . '_' . $image->getClientOriginalName();
+
+                $category->image = $image->storeAs('categoryImages', $imgFileName, 'public');
+            }
+        }
 
         $category->save();
 
@@ -83,6 +93,20 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->title = $request->category_title;
+        $imagePath = public_path('/storage/' . $category->image);
+
+        if (!$request->hasFile('image')) {
+            $request->except(['image']);
+        } else {
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
+            }
+
+            $imgFileName = time() . '_' . $request->image->getClientOriginalName();
+
+            $category->image = $request->image->storeAs('categoryImages', $imgFileName, 'public');
+        }
+
         $category->save();
 
         return response()->json(['success' => 'Category updated succesfully!']);
@@ -97,6 +121,10 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+
+        $imagePath = public_path('/storage/' . $category->image);
+        
+        File::delete($imagePath);
 
         if ($category) {
             $category->delete();

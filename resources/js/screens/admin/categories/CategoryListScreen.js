@@ -27,6 +27,22 @@ const CategoryListScreen = () => {
         { field: "id", headerName: "ID", width: 70 },
         { field: "title", headerName: "Title", width: 200 },
         {
+            field: "image",
+            headerName: "Image",
+            width: 90,
+            renderCell: (params) => {
+                return (
+                    <>
+                        <img
+                            className="productImage"
+                            src={`http://127.0.0.1:8000/storage/${params.row.image}`}
+                            alt="logo"
+                        />
+                    </>
+                );
+            },
+        },
+        {
             field: "created_at",
             headerName: "Created at",
             width: 105,

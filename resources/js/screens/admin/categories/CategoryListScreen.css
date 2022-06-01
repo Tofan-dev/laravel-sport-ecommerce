@@ -26,3 +26,9 @@
     cursor: pointer;
     margin-right: 20px;
 }
+
+.productImage{
+    width: 70%;
+    height: auto;
+}
+
