@@ -19,7 +19,7 @@ import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
 import { getProductEditInfo } from "../../../actions/productActions";
 import { updateProduct } from "../../../actions/productActions";
-import "../products/editProduct.css";
+import "../admin.css";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -130,7 +130,7 @@ const EditProduct = () => {
 
     return (
         <>
-            <div className="productEdit">
+            <div className="mainContainer">
             {loadingProducts ? (
                     <Loader />
                 ) : error ? (
@@ -317,7 +317,7 @@ const EditProduct = () => {
                                         </Grid>
 
                                         <img
-                                            className="image"
+                                            className="imageEdit"
                                             src={`http://127.0.0.1:8000/storage/${product.image}`}
                                             alt="logo"
                                         />

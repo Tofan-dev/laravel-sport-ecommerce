@@ -2,11 +2,11 @@ import Chart from "../dashboard/chart"
 import Info from "../dashboard/Info"
 import WidgetLg from "../dashboard/WidgetLg"
 import WidgetSm from "../dashboard/WidgetSm"
-import "./home.css"
+import "../admin.css";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="mainContainer">
         <Info/>
         <Chart />
         <div className="homeWidgets">

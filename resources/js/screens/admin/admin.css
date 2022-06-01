@@ -1,14 +1,38 @@
-.container{
-    display: flex;
+/* Form css */
+
+.mainContainer {
+    flex: 5;
 }
 
-.productList{
+#formStyle {
+    max-width: 450px;
+    padding: 20px 5px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 30px;
+}
+
+.imageEdit{
+    width:40%;
+    height: auto;
+}
+
+/* Form css */
+
+.homeWidgets{
+    display: flex;
+    margin: 20px;
+}
+
+/* List css */
+.list{
     flex: 5;
     color: white;
     border-radius: 15px;
 }
 
-.productListEdit{
+.buttonEdit{
     border: none;
     border-radius: 10px;
     padding: 5px 10px;
@@ -19,7 +43,7 @@
 }
 
 
-.productListDelete{
+.buttonDelete{
     border: none;
     border-radius: 10px;
     padding: 5px 10px;
@@ -29,8 +53,9 @@
     margin-right: 20px;
 }
 
-.productImage{
+.listImage{
     width: 70%;
     height: auto;
 }
+/* List css */
 

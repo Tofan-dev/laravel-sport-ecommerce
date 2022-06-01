@@ -10,7 +10,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../products/addProduct.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
@@ -119,7 +119,7 @@ const AddProduct = () => {
 
     return (
         <>
-            <div className="productAdd">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

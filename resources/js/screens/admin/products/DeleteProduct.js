@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import "./deleteproduct.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct } from "../../../actions/productActions";
 
@@ -65,7 +65,7 @@ const DeleteProduct = () => {
 
     return (
         <>
-            <div className="productDelete"></div>
+            <div className="mainContainer"></div>
         </>
     );
 };
