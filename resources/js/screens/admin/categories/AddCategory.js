@@ -7,7 +7,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../categories/addCategory.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createCategory } from "../../../actions/categoryActions";
 import Loader from "../../../components/utils/Loader";
@@ -87,7 +87,7 @@ const AddCategory = () => {
 
     return (
         <>
-            <div className="categoryAdd">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

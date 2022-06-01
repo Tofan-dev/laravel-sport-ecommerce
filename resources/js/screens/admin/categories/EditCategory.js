@@ -7,7 +7,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import "../categories/editCategory.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
     getCategoryEditInfo,
@@ -80,7 +80,7 @@ const EditCategory = () => {
 
     return (
         <>
-            <div className="categoryEdit">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

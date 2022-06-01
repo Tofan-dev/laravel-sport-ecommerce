@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
-import "./CategoryListScreen.css";
+import "../admin.css";
 
 const CategoryListScreen = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const CategoryListScreen = () => {
                 return (
                     <>
                         <img
-                            className="productImage"
+                            className="listImage"
                             src={`http://127.0.0.1:8000/storage/${params.row.image}`}
                             alt="logo"
                         />
@@ -59,7 +59,7 @@ const CategoryListScreen = () => {
                 return (
                     <>
                         <Link
-                            className="categoryListEdit"
+                            className="buttonEdit"
                             style={{
                                 textDecoration: "none",
                             }}
@@ -74,7 +74,7 @@ const CategoryListScreen = () => {
                         </Link>
 
                         <Link
-                            className="categoryListDelete"
+                            className="buttonDelete"
                             style={{
                                 textDecoration: "none",
                             }}
@@ -101,7 +101,7 @@ const CategoryListScreen = () => {
 
     return (
         <>
-            <div className="categoryList">
+            <div className="mainContainer">
                 {loading ? (
                     <Loader />
                 ) : error ? (

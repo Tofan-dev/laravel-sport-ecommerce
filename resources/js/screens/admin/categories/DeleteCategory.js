@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import "./deleteCategory.css";
+import "../admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCategory } from "../../../actions/categoryActions";
 
@@ -65,7 +65,7 @@ const DeleteCategory = () => {
 
     return(
     <>
-        <div className="categoryDelete"></div>
+        <div className="mainContainer"></div>
     </>
     )
 };
