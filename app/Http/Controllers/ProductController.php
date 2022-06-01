@@ -59,7 +59,7 @@ class ProductController extends Controller
         $product->priceWithDiscount = $priceWithDiscount;
 
         if ($request->hasFile('images')) {
-            foreach($request->images as $image) {
+            foreach ($request->images as $image) {
                 // get image original name and add currect time for an overall unique name
                 $imgFileName = time() . '_' . $image->getClientOriginalName();
 
@@ -134,7 +134,7 @@ class ProductController extends Controller
 
             $product->image = $request->image->storeAs('productImages', $imgFileName, 'public');
         }
-        
+
         $product->save();
 
         return response()->json(['success' => 'Product updated succesfully!']);
@@ -151,7 +151,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-  
+
         $imagePath = public_path('/storage/' . $product->image);
         
         File::delete($imagePath);

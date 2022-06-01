@@ -17,11 +17,9 @@
 
 .logo {
     cursor: pointer;
-    width: 250px;
-    height: 180px;
+    width: 14%;
+    height: auto;
     position: relative;
-    top: 15px;
-    right: 15px;
 }
 
 .topRight {

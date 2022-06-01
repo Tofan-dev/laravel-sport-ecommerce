@@ -7,7 +7,7 @@ const WidgetSm = () => {
         <span className="widgetSmTitle">New Join Members</span>
         <ul className="widgetSmList">
             <li className="widgetSmListItem">
-                <img src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
+                <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
             <div className="widgetSmUser">
                 <span className="widgetSmUsername">Marcel Pavel</span>
                 <span className="widgetSmUserTitle">Muzician</span>
@@ -19,7 +19,7 @@ const WidgetSm = () => {
             </li>
             
             <li className="widgetSmListItem">
-                <img src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
+                <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
             <div className="widgetSmUser">
                 <span className="widgetSmUsername">Marcel Pavel</span>
                 <span className="widgetSmUserTitle">Muzician</span>

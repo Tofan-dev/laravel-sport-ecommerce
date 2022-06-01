@@ -19,7 +19,7 @@ const WidgetLg = () => {
                <tbody>
                <tr className="widgetLgTr">
                    <td className="widgetLgUser">
-                        <img src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
+                        <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
                         <span className="widgetLgName">Marcel Pavel</span>
                    </td>
                    <td className="widgetLgDate"> 2 May 2022</td>
@@ -30,7 +30,7 @@ const WidgetLg = () => {
                </tr>
                <tr className="widgetLgTr">
                    <td className="widgetLgUser">
-                        <img src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
+                        <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
                         <span className="widgetLgName">Costel</span>
                    </td>
                    <td className="widgetLgDate"> 2 May 2022</td>
@@ -41,7 +41,7 @@ const WidgetLg = () => {
                </tr>
                <tr className="widgetLgTr">
                    <td className="widgetLgUser">
-                        <img src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
+                        <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
                         <span className="widgetLgName">Mirel</span>
                    </td>
                    <td className="widgetLgDate"> 2 May 2022</td>

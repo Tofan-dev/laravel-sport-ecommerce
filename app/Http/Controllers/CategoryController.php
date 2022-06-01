@@ -82,12 +82,11 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::find($id);
-
         $category->title = $request->category_title;
-
         $category->save();
 
-        return response()->json(['success' => 'Category updated succesfully!']);    }
+        return response()->json(['success' => 'Category updated succesfully!']);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -103,5 +102,6 @@ class CategoryController extends Controller
             $category->delete();
         }
 
-        return response()->json(['success' => 'Category deleted succesfully!']);    }
+        return response()->json(['success' => 'Category deleted succesfully!']);
+    }
 }

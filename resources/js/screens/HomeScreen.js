@@ -12,7 +12,7 @@ const HomeScreen = () => {
             alignItems="center"
             justifyContent="center"
         >
-            <Link to="/admin" style={{ textDecoration: 'none' }} >
+            <Link to="/admin" style={{ textDecoration: "none" }}>
                 <Button
                     variant="contained"
                     size="large"
@@ -27,19 +27,21 @@ const HomeScreen = () => {
                     Admin Panel
                 </Button>
             </Link>
-            <Button
-                variant="contained"
-                size="large"
-                startIcon={<ShopIcon />}
-                sx={{
-                    backgroundColor: "#1C6DD0",
-                    "&:hover": {
-                        backgroundColor: "#144c91",
-                    },
-                }}
-            >
-                Shop Page
-            </Button>
+            <Link to="/shop" style={{ textDecoration: "none" }}>
+                <Button
+                    variant="contained"
+                    size="large"
+                    startIcon={<ShopIcon />}
+                    sx={{
+                        backgroundColor: "#1C6DD0",
+                        "&:hover": {
+                            backgroundColor: "#144c91",
+                        },
+                    }}
+                >
+                    Shop Page
+                </Button>
+            </Link>
         </Grid>
     );
 };

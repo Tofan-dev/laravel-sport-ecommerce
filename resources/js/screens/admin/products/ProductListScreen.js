@@ -58,6 +58,7 @@ const ProductListScreen = () => {
                 return (
                     <>
                         <img
+                            className="productImage"
                             src={`http://127.0.0.1:8000/storage/${params.row.image}`}
                             alt="logo"
                         />
