@@ -19,6 +19,8 @@ const CategoryListScreen = () => {
         dispatch(getCategoriesList());
     }, [dispatch]);
 
+    console.log(categories);
+    
     function getDate(params) {
         return `${params.row.created_at || "-"}`;
     }
