@@ -26,19 +26,11 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;
+    background-color: white;
     position: relative;
     &:hover ${Info} {
         opacity: 1;
     }
-`;
-
-const Circle = styled.div`
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: white;
-    position: absolute;
 `;
 
 const Image = styled.img`
@@ -65,7 +57,6 @@ const Icon = styled.div`
 const ProductItem = ({ item }) => {
     return (
         <Container>
-            <Circle />
             <Image src={`http://127.0.0.1:8000/storage/${item.image}`}/>
             <Info>
                 <Icon>

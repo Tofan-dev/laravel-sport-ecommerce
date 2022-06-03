@@ -4,11 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Product from "./ProductItem";
 
-const Container = styled.div`
+const ProductContainer = styled.div`
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 0px 300px;
+`;
+
+const Container = styled.div`
+    background-color: white;
+`;
+
+const Title = styled.h1`
+    font-size: 30px;
+    padding-top: 10vh;
+    display: block;
+    text-align: center;
 `;
 
 const Products = () => {
@@ -25,11 +37,12 @@ const Products = () => {
 
     return (
         <Container>
-            <Container>
+            <Title>Produse</Title>
+            <ProductContainer>
                 {productsArray.map((item) => (
                     <Product item={item} key={item.id} />
                 ))}
-            </Container>
+            </ProductContainer>
         </Container>
     );
 };

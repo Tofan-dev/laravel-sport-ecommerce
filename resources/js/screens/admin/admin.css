@@ -92,8 +92,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3454d1;
-    border-radius: 100px;
+    background: black;
 }
 
 .info {

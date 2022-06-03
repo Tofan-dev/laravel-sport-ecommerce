@@ -6,9 +6,21 @@ import { useEffect } from "react";
 // import { mobile } from "../responsive";
 
 const Container = styled.div`
+    background-color: white;
+`;
+
+const CategoriesContainer = styled.div`
     display: flex;
-    padding: 20px;
+    padding: 10px;
     justify-content: space-between;
+    margin: 0px 300px;
+`;
+
+const Title = styled.h1`
+    font-size: 30px;
+    padding-top: 10vh;
+    display: block;
+    text-align: center;
 `;
 
 const Categories = () => {
@@ -25,9 +37,12 @@ const Categories = () => {
 
     return (
         <Container>
-            {categoriesArray.map((item) => (
-                <CategoryItem item={item} key={item.id} />
-            ))}
+            <Title>Categorii</Title>
+            <CategoriesContainer>
+                {categoriesArray.map((item) => (
+                    <CategoryItem item={item} key={item.id} />
+                ))}
+            </CategoriesContainer>
         </Container>
     );
 };

@@ -7,7 +7,7 @@ import { sliderItems } from "./SliderData";
 
 const Container = styled.div`
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     display: flex;
     position: relative;
     overflow: hidden;
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 
 const Slide = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     display: flex;
     align-items: center;
     background-color: #${(props) => props.bg};
@@ -49,11 +49,14 @@ const Slide = styled.div`
 
 const ImgContainer = styled.div`
     height: 100%;
-    flex: 1;
+    flex: 2;
 `;
 
 const Image = styled.img`
-    height: 80%;
+    height: 97%;
+    padding-top: 10px;
+    padding-left: 40px;
+    transform: skew(-5deg);
 `;
 
 const InfoContainer = styled.div`
