@@ -320,13 +320,21 @@ const EditProduct = () => {
                                                 alt="NoImage"
                                             />
 
-                                            <input
-                                                type="file"
-                                                className="addImageButton"
-                                                onChange={(e) =>
-                                                    setImage(e.target.files[0])
-                                                }
-                                            />
+                                            <div class="file-input">
+                                                <input
+                                                    type="file"
+                                                    id="file"
+                                                    class="file"
+                                                    onChange={(e) =>
+                                                        setImage(
+                                                            e.target.files[0]
+                                                        )
+                                                    }
+                                                />
+                                                <label for="file">
+                                                    Upload image
+                                                </label>
+                                            </div>
                                         </Grid>
 
                                         <Grid item xs={12}>

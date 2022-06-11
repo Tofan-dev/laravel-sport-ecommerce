@@ -289,14 +289,21 @@ const AddProduct = () => {
                                         </Grid>
 
                                         <Grid xs={12} item>
-                                            <h4 className="inputText">Image</h4>
-                                            <input
-                                                type="file"
-                                                className="addImageButton"
-                                                onChange={(e) =>
-                                                    setImage(e.target.files[0])
-                                                }
-                                            />
+                                        <div class="file-input">
+                                                <input
+                                                    type="file"
+                                                    id="file"
+                                                    class="file"
+                                                    onChange={(e) =>
+                                                        setImage(
+                                                            e.target.files[0]
+                                                        )
+                                                    }
+                                                />
+                                                <label for="file">
+                                                    Upload image
+                                                </label>
+                                            </div>
                                         </Grid>
                                         <br />
                                         <Grid item xs={12}>
