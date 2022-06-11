@@ -32,7 +32,7 @@ const ProductListScreen = () => {
     }
 
     const columns = [
-        { field: "id", headerName: "ID", width: 70 },
+        { field: "id", headerName: "ID", width: 40 },
         {
             field: "category",
             headerName: "Category Title",

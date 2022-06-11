@@ -16,10 +16,9 @@ import Dropzone from "react-dropzone";
 
 const AddCategory = () => {
     const dispatch = useDispatch();
-    const dropzoneRef = createRef();
 
     const [title, setTitle] = useState("");
-    const [images, setImages] = useState();
+    const [image, setImage] = useState();
 
     const categoryCreate = useSelector((state) => state.categoryCreate);
     const { loading, success, error } = categoryCreate;
@@ -30,23 +29,11 @@ const AddCategory = () => {
         const formData = new FormData();
         formData.append("category_title", title);
 
-        if (images) {
-            for (let i = 0; i < images.length; i++) {
-                formData.append(`images[${i}]`, images[i]);
-            }
+        if (image) {
+            formData.append("image", image);
         }
 
         dispatch(createCategory(formData));
-    };
-
-    const openDialog = () => {
-        if (dropzoneRef.current) {
-            dropzoneRef.current.open();
-        }
-    };
-
-    const handleImages = (acceptedFiles) => {
-        setImages(acceptedFiles);
     };
 
     function successMsg() {
@@ -117,76 +104,14 @@ const AddCategory = () => {
                                         </Grid>
 
                                         <Grid xs={12} item>
-                                            <Dropzone
-                                                ref={dropzoneRef}
-                                                noClick
-                                                noKeyboard
-                                                onDrop={handleImages}
-                                            >
-                                                {({
-                                                    getRootProps,
-                                                    getInputProps,
-                                                    acceptedFiles,
-                                                }) => {
-                                                    return (
-                                                        <div className="drop">
-                                                            <div
-                                                                {...getRootProps(
-                                                                    {
-                                                                        className:
-                                                                            "dropzone",
-                                                                    }
-                                                                )}
-                                                            >
-                                                                <input
-                                                                    {...getInputProps()}
-                                                                />
-                                                                <p>
-                                                                    Drag and
-                                                                    drop the
-                                                                    product
-                                                                    images here:
-                                                                </p>
-                                                                <Button
-                                                                    variant="contained"
-                                                                    type="button"
-                                                                    color="primary"
-                                                                    onClick={
-                                                                        openDialog
-                                                                    }
-                                                                >
-                                                                    Open File
-                                                                </Button>
-                                                            </div>
-                                                            <aside>
-                                                                <h4>Files</h4>
-                                                                <ul>
-                                                                    {acceptedFiles.map(
-                                                                        (
-                                                                            file
-                                                                        ) => (
-                                                                            <li
-                                                                                key={
-                                                                                    file.path
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    file.path
-                                                                                }{" "}
-                                                                                -{" "}
-                                                                                {
-                                                                                    file.size
-                                                                                }{" "}
-                                                                                bytes
-                                                                            </li>
-                                                                        )
-                                                                    )}
-                                                                </ul>
-                                                            </aside>
-                                                        </div>
-                                                    );
-                                                }}
-                                            </Dropzone>
+                                            <h4 className="inputText">Image</h4>
+                                            <input
+                                                type="file"
+                                                className="addImageButton"
+                                                onChange={(e) =>
+                                                    setImage(e.target.files[0])
+                                                }
+                                            />
                                         </Grid>
                                         <br />
                                         <Grid item xs={12}>

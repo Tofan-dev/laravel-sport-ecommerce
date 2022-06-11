@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Button,
     Card,
@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import NumberFormat from "react-number-format";
-import Dropzone from "react-dropzone";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
 import { getProductEditInfo } from "../../../actions/productActions";
@@ -27,7 +26,6 @@ const EditProduct = () => {
     let { id } = useParams();
 
     const dispatch = useDispatch();
-    const dropzoneRef = createRef();
 
     const [name, setName] = useState("");
     const [categoryId, setCategoryId] = useState("");
@@ -48,7 +46,11 @@ const EditProduct = () => {
     const { sales, loading: loadingSales, error: errorSales } = saleList;
 
     const productShow = useSelector((state) => state.productShow);
-    const { product, loading: loadingProducts, error: errorProducts } = productShow;
+    const {
+        product,
+        loading: loadingProducts,
+        error: errorProducts,
+    } = productShow;
 
     const productUpdate = useSelector((state) => state.productUpdate);
     const { success, loading, error } = productUpdate;
@@ -66,38 +68,29 @@ const EditProduct = () => {
             setPrice(product.price);
             setCategoryId(product.category_id);
             setSaleId(product.sale_id);
-            setImage(product.image);
+            // setImage(product.image);
         }
     }, [dispatch, product]);
 
-    const openDialog = () => {
-        if (dropzoneRef.current) {
-            dropzoneRef.current.open();
-        }
-    };
-
-    const handleImages = (acceptedFiles) => {
-        setImage(acceptedFiles);
-    };
-
     const submitHandler = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        dispatch(
-            updateProduct(
-                id,
-                name,
-                categoryId,
-                saleId,
-                price,
-                quantity,
-                description,
-                image,
-            )
-        );
+        const formData = new FormData();
+        formData.append("_method", "PATCH");
+        formData.append("name", name);
+        formData.append("categoryId", categoryId);
+        formData.append("saleId", saleId);
+        formData.append("price", price);
+        formData.append("quantity", quantity);
+        formData.append("description", description);
+
+        if (image) {
+            formData.append("image", image);
+        }
+
+        dispatch(updateProduct(id, formData));
     };
 
-    
     function successMsg() {
         Swal.fire({
             position: "center",
@@ -131,7 +124,7 @@ const EditProduct = () => {
     return (
         <>
             <div className="mainContainer">
-            {loadingProducts ? (
+                {loadingProducts ? (
                     <Loader />
                 ) : error ? (
                     <>{errorMsg()}</>
@@ -144,7 +137,10 @@ const EditProduct = () => {
                                 <Typography gutterBottom variant="h5">
                                     Edit product
                                 </Typography>
-                                <form onSubmit={submitHandler}>
+                                <form
+                                    onSubmit={submitHandler}
+                                    encType="multipart/form-data"
+                                >
                                     <Grid container spacing={1}>
                                         <Grid xs={12} item>
                                             <TextField
@@ -316,83 +312,21 @@ const EditProduct = () => {
                                             />
                                         </Grid>
 
-                                        <img
-                                            className="imageEdit"
-                                            src={`http://127.0.0.1:8000/storage/${product.image}`}
-                                            alt="logo"
-                                        />
-
                                         <Grid xs={12} item>
-                                            <Dropzone
-                                                ref={dropzoneRef}
-                                                noClick
-                                                noKeyboard
-                                                onDrop={handleImages}
-                                            >
-                                                {({
-                                                    getRootProps,
-                                                    getInputProps,
-                                                    acceptedFiles,
-                                                }) => {
-                                                    return (
-                                                        <div className="drop">
-                                                            <div
-                                                                {...getRootProps(
-                                                                    {
-                                                                        className:
-                                                                            "dropzone",
-                                                                    }
-                                                                )}
-                                                            >
-                                                                <input
-                                                                    {...getInputProps()}
-                                                                />
-                                                                <p>
-                                                                    Drag and
-                                                                    drop the
-                                                                    product
-                                                                    images here
-                                                                </p>
-                                                                <Button
-                                                                    variant="contained"
-                                                                    type="button"
-                                                                    onClick={
-                                                                        openDialog
-                                                                    }
-                                                                >
-                                                                    Open File
-                                                                    Dialog
-                                                                </Button>
-                                                            </div>
-                                                            <aside>
-                                                                <h4>Files</h4>
-                                                                <ul>
-                                                                    {acceptedFiles.map(
-                                                                        (
-                                                                            file
-                                                                        ) => (
-                                                                            <li
-                                                                                key={
-                                                                                    file.path
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    file.path
-                                                                                }{" "}
-                                                                                -{" "}
-                                                                                {
-                                                                                    file.size
-                                                                                }{" "}
-                                                                                bytes
-                                                                            </li>
-                                                                        )
-                                                                    )}
-                                                                </ul>
-                                                            </aside>
-                                                        </div>
-                                                    );
-                                                }}
-                                            </Dropzone>
+                                            <h4>Product Image</h4>
+                                            <img
+                                                className="imageEdit"
+                                                src={`http://127.0.0.1:8000/storage/${product.image}`}
+                                                alt="NoImage"
+                                            />
+
+                                            <input
+                                                type="file"
+                                                className="addImageButton"
+                                                onChange={(e) =>
+                                                    setImage(e.target.files[0])
+                                                }
+                                            />
                                         </Grid>
 
                                         <Grid item xs={12}>

@@ -23,13 +23,10 @@ const EditCategory = () => {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState("");
+    const [image, setImage] = useState();
 
     const categoryShow = useSelector((state) => state.categoryShow);
-    const {
-        category,
-        loading: loadingCategories,
-        error: errorCategories,
-    } = categoryShow;
+    const { category } = categoryShow;
 
     const categoryUpdate = useSelector((state) => state.categoryUpdate);
     const { success, loading, error } = categoryUpdate;
@@ -45,7 +42,15 @@ const EditCategory = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        dispatch(updateCategory(id, title));
+        const formData = new FormData();
+        formData.append("_method", "PATCH");
+        formData.append("title", title);
+
+        if (image) {
+            formData.append("image", image);
+        }
+
+        dispatch(updateCategory(id, formData));
     };
 
     function successMsg() {
@@ -94,7 +99,10 @@ const EditCategory = () => {
                                 <Typography gutterBottom variant="h5">
                                     EDIT CATEGORY
                                 </Typography>
-                                <form onSubmit={submitHandler}>
+                                <form
+                                    onSubmit={submitHandler}
+                                    encType="multipart/form-data"
+                                >
                                     <Grid container spacing={1}>
                                         <Grid xs={12} item>
                                             <TextField
@@ -109,7 +117,22 @@ const EditCategory = () => {
                                                 }
                                             />
                                         </Grid>
+                                        <Grid xs={12} item>
+                                            <h4>Category Image</h4>
+                                            <img
+                                                className="imageEdit"
+                                                src={`http://127.0.0.1:8000/storage/${category.image}`}
+                                                alt="NoImage"
+                                            />
 
+                                            <input
+                                                type="file"
+                                                className="addImageButton"
+                                                onChange={(e) =>
+                                                    setImage(e.target.files[0])
+                                                }
+                                            />
+                                        </Grid>
                                         <Grid item xs={12}>
                                             <Button
                                                 type="submit"

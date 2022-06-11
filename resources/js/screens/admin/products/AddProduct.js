@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/utils/Loader";
 import Message from "../../../components/utils/Message";
 import NumberFormat from "react-number-format";
-import Dropzone from "react-dropzone";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import { getSalesList } from "../../../actions/saleActions";
 import { createProduct } from "../../../actions/productActions";
@@ -23,7 +22,6 @@ import Swal from "sweetalert2";
 
 const AddProduct = () => {
     const dispatch = useDispatch();
-    const dropzoneRef = createRef();
 
     const [name, setName] = useState("");
     const [categoryId, setCategoryId] = useState("");
@@ -31,7 +29,7 @@ const AddProduct = () => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
-    const [images, setImages] = useState();
+    const [image, setImage] = useState();
 
     const categoryList = useSelector((state) => state.categoryList);
     const {
@@ -50,16 +48,6 @@ const AddProduct = () => {
         dispatch(getCategoriesList());
         dispatch(getSalesList());
     }, [dispatch]);
-
-    const openDialog = () => {
-        if (dropzoneRef.current) {
-            dropzoneRef.current.open();
-        }
-    };
-
-    const handleImages = (acceptedFiles) => {
-        setImages(acceptedFiles);
-    };
 
     function successMsg() {
         Swal.fire({
@@ -108,10 +96,8 @@ const AddProduct = () => {
         formData.append("quantity", quantity);
         formData.append("description", description);
 
-        if (images) {
-            for (let i = 0; i < images.length; i++) {
-                formData.append(`images[${i}]`, images[i]);
-            }
+        if (image) {
+            formData.append("image", image);
         }
 
         dispatch(createProduct(formData));
@@ -134,7 +120,7 @@ const AddProduct = () => {
                                     ADD NEW PRODUCT
                                 </Typography>
                                 <br />
-                                <form onSubmit={submitHandler}>
+                                <form onSubmit={submitHandler} encType="multipart/form-data">
                                     <Grid container spacing={1}>
                                         <Grid xs={12} item>
                                             <TextField
@@ -303,76 +289,14 @@ const AddProduct = () => {
                                         </Grid>
 
                                         <Grid xs={12} item>
-                                            <Dropzone
-                                                ref={dropzoneRef}
-                                                noClick
-                                                noKeyboard
-                                                onDrop={handleImages}
-                                            >
-                                                {({
-                                                    getRootProps,
-                                                    getInputProps,
-                                                    acceptedFiles,
-                                                }) => {
-                                                    return (
-                                                        <div className="drop">
-                                                            <div
-                                                                {...getRootProps(
-                                                                    {
-                                                                        className:
-                                                                            "dropzone",
-                                                                    }
-                                                                )}
-                                                            >
-                                                                <input
-                                                                    {...getInputProps()}
-                                                                />
-                                                                <p>
-                                                                    Drag and
-                                                                    drop the
-                                                                    product
-                                                                    images here:
-                                                                </p>
-                                                                <Button
-                                                                    variant="contained"
-                                                                    type="button"
-                                                                    color="primary"
-                                                                    onClick={
-                                                                        openDialog
-                                                                    }
-                                                                >
-                                                                    Open File
-                                                                </Button>
-                                                            </div>
-                                                            <aside>
-                                                                <h4>Files</h4>
-                                                                <ul>
-                                                                    {acceptedFiles.map(
-                                                                        (
-                                                                            file
-                                                                        ) => (
-                                                                            <li
-                                                                                key={
-                                                                                    file.path
-                                                                                }
-                                                                            >
-                                                                                {
-                                                                                    file.path
-                                                                                }{" "}
-                                                                                -{" "}
-                                                                                {
-                                                                                    file.size
-                                                                                }{" "}
-                                                                                bytes
-                                                                            </li>
-                                                                        )
-                                                                    )}
-                                                                </ul>
-                                                            </aside>
-                                                        </div>
-                                                    );
-                                                }}
-                                            </Dropzone>
+                                            <h4 className="inputText">Image</h4>
+                                            <input
+                                                type="file"
+                                                className="addImageButton"
+                                                onChange={(e) =>
+                                                    setImage(e.target.files[0])
+                                                }
+                                            />
                                         </Grid>
                                         <br />
                                         <Grid item xs={12}>

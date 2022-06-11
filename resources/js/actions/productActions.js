@@ -100,43 +100,25 @@ export const deleteProduct = (id) => async (dispatch) => {
 // Delete product action
 
 // Update product action
-export const updateProduct =
-    (id, name, categoryId, saleId, price, quantity, description, image) =>
-    async (dispatch) => {
-        try {
-            dispatch({ type: PRODUCT_UPDATE_REQUEST });
+export const updateProduct = (id, formData) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_UPDATE_REQUEST });
 
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
-
-            const { data } = await axios.patch(
-                `/api/product/update/${id}`,
-                {
-                    id,
-                    name,
-                    categoryId,
-                    saleId,
-                    price,
-                    quantity,
-                    description,
-                    image,
-                },
-                config
-            );
-            dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
-        } catch (error) {
-            dispatch({
-                type: PRODUCT_UPDATE_FAIL,
-                payload:
-                    error.response && error.response.data.message
-                        ? error.response.message
-                        : error.message,
-            });
-        }
-    };
+        const { data } = await axios.post(
+            `/api/product/update/${id}`,
+            formData
+        );
+        dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_UPDATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
+        });
+    }
+};
 // Update product action
 
 // Product edit info action

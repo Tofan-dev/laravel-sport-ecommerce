@@ -18,7 +18,6 @@ class Product extends Model
         'price',
         'priceWithDiscount',
         'stock',
-        'image',
         'rating',
         'total_reviews',
     ];

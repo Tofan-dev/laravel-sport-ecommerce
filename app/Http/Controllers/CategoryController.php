@@ -41,13 +41,8 @@ class CategoryController extends Controller
         $category = new Category;
         $category->title = $request->category_title;
 
-        if ($request->hasFile('images')) {
-            foreach ($request->images as $image) {
-                // get image original name and add currect time for an overall unique name
-                $imgFileName = time() . '_' . $image->getClientOriginalName();
-
-                $category->image = $image->storeAs('categoryImages', $imgFileName, 'public');
-            }
+        if ($request->hasFile('image')) {
+            $category->image = $this->saveImageToCategory($request->file('image'));
         }
 
         $category->save();
@@ -87,24 +82,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'category_title' => 'required',
-        ]);
-
         $category = Category::find($id);
-        $category->title = $request->category_title;
-        $imagePath = public_path('/storage/' . $category->image);
+        $category->title = $request->title;
 
         if (!$request->hasFile('image')) {
             $request->except(['image']);
         } else {
-            if (File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
+            $this->checkIfImageExist($category);
 
-            $imgFileName = time() . '_' . $request->image->getClientOriginalName();
-
-            $category->image = $request->image->storeAs('categoryImages', $imgFileName, 'public');
+            $category->image = $this->saveImageToCategory($request->file('image'));
         }
 
         $category->save();
@@ -132,4 +118,38 @@ class CategoryController extends Controller
 
         return response()->json(['success' => 'Category deleted succesfully!']);
     }
+
+    /**
+     * Save image to disk
+     * 
+     * @param object $image
+     * 
+     * @return string|null
+     */
+    private function saveImageToCategory(object $image): ?string
+    {
+        if ($image) {
+            $imgFileName = time() . '_' . $image->getClientOriginalName();
+            return $image->storeAs('categoryImages', $imgFileName, 'public');
+        }
+        
+        return "no-image";
+    }
+
+    /**
+     * Check if image already exist on disk and deletes it
+     * 
+     * @param Category $category
+     * 
+     * @return void
+     */
+    private function checkIfImageExist(Category $category): void
+    {
+        $imagePath = public_path('/storage/' . $category->image);
+
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
+    }
+
 }

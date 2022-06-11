@@ -99,23 +99,13 @@ export const deleteCategory = (id) => async (dispatch) => {
 // Delete category action
 
 // Update category action
-export const updateCategory = (id, category_title) => async (dispatch) => {
+export const updateCategory = (id, formData) => async (dispatch) => {
     try {
         dispatch({ type: CATEGORY_UPDATE_REQUEST });
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-
-        const { data } = await axios.patch(
+        const { data } = await axios.post(
             `/api/category/update/${id}`,
-            {
-                id,
-                category_title,
-            },
-            config
+            formData
         );
 
         dispatch({ type: CATEGORY_UPDATE_SUCCESS, payload: data });

@@ -57,14 +57,9 @@ class ProductController extends Controller
         $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
 
         $product->priceWithDiscount = $priceWithDiscount;
-
-        if ($request->hasFile('images')) {
-            foreach ($request->images as $image) {
-                // get image original name and add currect time for an overall unique name
-                $imgFileName = time() . '_' . $image->getClientOriginalName();
-
-                $product->image = $image->storeAs('productImages', $imgFileName, 'public');
-            }
+        
+        if ($request->hasFile('image')) {
+            $product->image = $this->saveImageToProduct($request->file('image'));
         }
 
         $product->save();
@@ -120,19 +115,12 @@ class ProductController extends Controller
 
         $product->priceWithDiscount = $priceWithDiscount;
 
-        // old image
-        $imagePath = public_path('/storage/' . $product->image);
-
         if (!$request->hasFile('image')) {
             $request->except(['image']);
         } else {
-            if (File::exists($imagePath)) {
-                File::delete($imagePath);
-            }
+            $this->checkIfImageExist($product);
 
-            $imgFileName = time() . '_' . $request->image->getClientOriginalName();
-
-            $product->image = $request->image->storeAs('productImages', $imgFileName, 'public');
+            $product->image = $this->saveImageToProduct($request->file('image'));
         }
 
         $product->save();
@@ -163,5 +151,38 @@ class ProductController extends Controller
         return response()->json(['success' => 'Product deleted succesfully!']);
 
         // return redirect('/products')->with('successMsg', 'Product successfully deleted.');
+    }
+
+    /**
+     * Save image to disk
+     * 
+     * @param object $image
+     * 
+     * @return string|null
+     */
+    private function saveImageToProduct(object $image): ?string
+    {
+        if ($image) {
+            $imgFileName = time() . '_' . $image->getClientOriginalName();
+            return $image->storeAs('productImages', $imgFileName, 'public');
+        }
+        
+        return "no-image";
+    }
+
+    /**
+     * Check if image already exist on disk and deletes it
+     * 
+     * @param Product $product
+     * 
+     * @return void
+     */
+    private function checkIfImageExist(Product $product): void
+    {
+        $imagePath = public_path('/storage/' . $product->image);
+
+        if (File::exists($imagePath)) {
+            File::delete($imagePath);
+        }
     }
 }
