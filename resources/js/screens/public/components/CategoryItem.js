@@ -49,7 +49,7 @@ const CategoryItem = ({item}) => {
           <Image src={`http://127.0.0.1:8000/storage/${item.image}`} />
           <Info>
             <Title>{item.title}</Title>
-            <Button>SEE ALL PRODUCTS</Button>
+            <Button>VEZI TOATE PRODUSELE</Button>
           </Info>
         </Container>
       );

@@ -54,10 +54,13 @@ class ProductController extends Controller
         $product->stock             = $request->quantity;
 
         $sale = Sale::where('id', $request->saleId)->first();
-        $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
+        if ($sale->percent != 0)
+            $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
+        else
+            $priceWithDiscount = $request->price;
 
         $product->priceWithDiscount = $priceWithDiscount;
-        
+
         if ($request->hasFile('image')) {
             $product->image = $this->saveImageToProduct($request->file('image'));
         }
@@ -141,7 +144,7 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $imagePath = public_path('/storage/' . $product->image);
-        
+
         File::delete($imagePath);
 
         if ($product) {
@@ -166,7 +169,7 @@ class ProductController extends Controller
             $imgFileName = time() . '_' . $image->getClientOriginalName();
             return $image->storeAs('productImages', $imgFileName, 'public');
         }
-        
+
         return "no-image";
     }
 

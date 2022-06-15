@@ -6,7 +6,7 @@ import Dashboard from "./screens/admin/dashboard/Dashboard";
 import HomeScreen from "./screens/HomeScreen";
 import ProductListScreen from "./screens/admin/products/ProductListScreen";
 import store from "./store";
-import Home from "./screens/admin/home/Home"
+import Home from "./screens/admin/home/Home";
 import AddProduct from "./screens/admin/products/AddProduct";
 import EditProduct from "./screens/admin/products/EditProduct";
 import CategoryListScreen from "./screens/admin/categories/CategoryListScreen";
@@ -26,7 +26,7 @@ import EditReview from "./screens/admin/reviews/EditReview";
 import ShopPage from "./screens/public/pages/ShopPage";
 import Product from "./screens/public/pages/Product";
 import ProductList from "./screens/public/pages/ProductList";
-
+import Pages from "./screens/public/pages/Pages";
 
 const Index = () => {
     return (
@@ -36,53 +36,95 @@ const Index = () => {
                     <Route path="/" element={<HomeScreen />} exact />
 
                     {/* Admin Section */}
-                    <Route path="/admin" element={<Dashboard />} exact >
+                    <Route path="/admin" element={<Dashboard />} exact>
                         <Route path="" element={<Home />} />
-                        <Route path="products" element={<ProductListScreen />} exact/>
-                        <Route path="categories" element={<CategoryListScreen />} exact />
-                        <Route path="sales" element={<SaleListScreen />} exact />
-                        <Route path="reviews" element={<ReviewListScreen />} exact />
-                        <Route path="users" element={<UserListScreen />} exact />
-                   
-                    {/* Products Section */}
-                        <Route path="product/add" element={<AddProduct />}/>
-                        <Route path="product/edit/:id" element={<EditProduct />}/>
-                        <Route path="product/delete/:id" element={<DeleteProduct />}/>
-                    {/* Products Section */}
+                        <Route
+                            path="products"
+                            element={<ProductListScreen />}
+                            exact
+                        />
+                        <Route
+                            path="categories"
+                            element={<CategoryListScreen />}
+                            exact
+                        />
+                        <Route
+                            path="sales"
+                            element={<SaleListScreen />}
+                            exact
+                        />
+                        <Route
+                            path="reviews"
+                            element={<ReviewListScreen />}
+                            exact
+                        />
+                        <Route
+                            path="users"
+                            element={<UserListScreen />}
+                            exact
+                        />
 
-                    {/* Categories Section */}
-                        <Route path="category/add" element={<AddCategory />}/>
-                        <Route path="category/edit/:id" element={<EditCategory />}/>
-                        <Route path="category/delete/:id" element={<DeleteCategory />}/>
-                    {/* Categories Section */}
+                        {/* Products Section */}
+                        <Route path="product/add" element={<AddProduct />} />
+                        <Route
+                            path="product/edit/:id"
+                            element={<EditProduct />}
+                        />
+                        <Route
+                            path="product/delete/:id"
+                            element={<DeleteProduct />}
+                        />
+                        {/* Products Section */}
 
-                    {/* Sales Section */}
-                        <Route path="sale/add" element={<AddSale />}/>
-                        <Route path="sale/delete/:id" element={<DeleteSale />}/>
-                        <Route path="sale/edit/:id" element={<EditSale />}/>
-                  
-                    {/* Sales Section */}
+                        {/* Categories Section */}
+                        <Route path="category/add" element={<AddCategory />} />
+                        <Route
+                            path="category/edit/:id"
+                            element={<EditCategory />}
+                        />
+                        <Route
+                            path="category/delete/:id"
+                            element={<DeleteCategory />}
+                        />
+                        {/* Categories Section */}
 
-                    {/* Reviews Section */}
-                        <Route path="review/add" element={<AddReview />}/>
-                        <Route path="review/delete/:id" element={<DeleteReview />}/>
-                        <Route path="review/edit/:id" element={<EditReview />}/>
-                    {/* Reviews Section */}
-                    
-                    
+                        {/* Sales Section */}
+                        <Route path="sale/add" element={<AddSale />} />
+                        <Route
+                            path="sale/delete/:id"
+                            element={<DeleteSale />}
+                        />
+                        <Route path="sale/edit/:id" element={<EditSale />} />
+
+                        {/* Sales Section */}
+
+                        {/* Reviews Section */}
+                        <Route path="review/add" element={<AddReview />} />
+                        <Route
+                            path="review/delete/:id"
+                            element={<DeleteReview />}
+                        />
+                        <Route
+                            path="review/edit/:id"
+                            element={<EditReview />}
+                        />
+                        {/* Reviews Section */}
                     </Route>
                     {/* Admin Section */}
 
                     {/* Shop Section */}
 
-                    <Route path="/shop" element={<ShopPage />} exact  />
-                    <Route path="/product" element={<Product />} exact />
-                    <Route path="/products" element={<ProductList />} exact />
-                   
-                    
+                    <Route path="/shop" element={<Pages />} exact>
+                        <Route path="" element={<ShopPage />} />
+                        <Route path="product" element={<Product />} exact />
+                        <Route
+                            path="products"
+                            element={<ProductList />}
+                            exact
+                        />
+                    </Route>
 
                     {/* Shop Section */}
-
                 </Routes>
             </Router>
         </>

@@ -1,6 +1,4 @@
 import {
-    FavoriteBorderOutlined,
-    SearchOutlined,
     ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { Button } from "@mui/material";
@@ -23,22 +21,14 @@ const Container = styled.div`
     flex: 1 0 10%;
     margin: 5px;
     border: 1px solid black;
+    padding-bottom: 30px;
 `;
 
 const Image = styled.img`
     max-width: 80%;
+    max-height: 70%;
 `;
 
-const Icon = styled.div`
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-`;
 
 const ProductItem = ({ item }) => {
     return (

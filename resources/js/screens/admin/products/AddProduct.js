@@ -256,7 +256,7 @@ const AddProduct = () => {
                                             <NumberFormat
                                                 variant="outlined"
                                                 name="price"
-                                                label="Price €"
+                                                label="Price LEI"
                                                 fullWidth
                                                 customInput={TextField}
                                                 decimalScale={2}
