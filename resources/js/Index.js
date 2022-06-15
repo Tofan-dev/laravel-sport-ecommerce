@@ -27,6 +27,8 @@ import ShopPage from "./screens/public/pages/ShopPage";
 import Product from "./screens/public/pages/Product";
 import ProductList from "./screens/public/pages/ProductList";
 import Pages from "./screens/public/pages/Pages";
+import Login from "./screens/public/pages/Login";
+import Register from "./screens/public/pages/Register";
 
 const Index = () => {
     return (
@@ -112,6 +114,9 @@ const Index = () => {
                     </Route>
                     {/* Admin Section */}
 
+                    <Route path="/login" element={<Login />} exact />
+                    <Route path="/register" element={<Register />} exact />
+                    
                     {/* Shop Section */}
 
                     <Route path="/shop" element={<Pages />} exact>

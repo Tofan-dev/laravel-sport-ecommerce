@@ -1,10 +1,19 @@
-import { Facebook, Instagram, MailOutline, Phone, Room, Twitter } from "@mui/icons-material";
+import {
+    Facebook,
+    Instagram,
+    MailOutline,
+    Phone,
+    Room,
+    Twitter,
+} from "@mui/icons-material";
 import styled from "styled-components";
 import { mobile } from "./Responsive";
+import logo from "../../../../images/logoDashboard.png";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
     ${mobile({ flexDirection: "column" })};
 `;
 
@@ -47,19 +56,6 @@ const Title = styled.h3`
     margin-bottom: 30px;
 `;
 
-const List = styled.ul`
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-`;
-
-const ListItem = styled.li`
-    width: 50%;
-    margin-bottom: 10px;
-`;
-
 const Right = styled.div`
     flex: 1;
     padding: 20px;
@@ -79,10 +75,7 @@ const Footer = () => {
     return (
         <Container>
             <Left>
-                <Logo>RocketPro</Logo>
-                <Desc>
-                    Best shop
-                </Desc>
+                <Title>Social-media</Title>
                 <SocialContainer>
                     <SocialIcon color="3B5999">
                         <Facebook />
@@ -96,22 +89,20 @@ const Footer = () => {
                 </SocialContainer>
             </Left>
             <Center>
-                <Title>Useful Links</Title>
-                <List>
-                    <ListItem>Home</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                    <ListItem>Exemplu</ListItem>
-                </List>
+                <Link
+                    to="/"
+                    style={{
+                        textDecoration: "none",
+                    }}
+                >
+                    <img src={logo} style={{width: "500px"}}/>
+                </Link>
             </Center>
             <Right>
                 <Title>Contact</Title>
                 <ContactItem>
-                    <Room style={{ marginRight: "10px" }} /> Strada Principala, Iasi
+                    <Room style={{ marginRight: "10px" }} /> str. Otilia Cazimir
+                    nr. 12-14, Iași
                 </ContactItem>
                 <ContactItem>
                     <Phone style={{ marginRight: "10px" }} /> +40 123 456 789

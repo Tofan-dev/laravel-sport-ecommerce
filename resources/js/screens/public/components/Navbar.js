@@ -34,7 +34,7 @@ const SearchContainer = styled.div`
     justify-content: space-between;
     border: 1px solid lightgray;
     ${mobile({ width: "100%" })};
- `;
+`;
 
 const Input = styled.input`
     border: none;
@@ -66,7 +66,7 @@ const MenuItem = styled.div`
 const Logo = styled.img`
     width: 250px;
     ${mobile({ width: "140px" })};
-`
+`;
 
 const Navbar = () => {
     return (
@@ -94,12 +94,30 @@ const Navbar = () => {
                             textDecoration: "none",
                         }}
                     >
-                        <Logo src={logoDashboard}/>
+                        <Logo src={logoDashboard} />
                     </Link>
                 </Center>
                 <Right>
-                    <MenuItem>REGISTER</MenuItem>
-                    <MenuItem>SIGN IN</MenuItem>
+                    <MenuItem>
+                        <Link
+                            to="/register"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                        >
+                            REGISTER
+                        </Link>
+                    </MenuItem>
+                    <MenuItem>
+                        <Link
+                            to="/login"
+                            style={{
+                                textDecoration: "none",
+                            }}
+                        >
+                            SIGN IN
+                        </Link>
+                    </MenuItem>
                     <MenuItem>
                         <Badge
                             badgeContent={4}
