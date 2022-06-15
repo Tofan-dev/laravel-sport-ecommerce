@@ -6,6 +6,9 @@ const Container = styled.div`
   margin: 3px;
   height: 40vh;
   position: relative;
+  flex-wrap: wrap;
+  flex: 1 0 25%; 
+  margin: 5px;
 `;
 
 const Image = styled.img`
@@ -46,7 +49,7 @@ const CategoryItem = ({item}) => {
           <Image src={`http://127.0.0.1:8000/storage/${item.image}`} />
           <Info>
             <Title>{item.title}</Title>
-            <Button>SHOP NOW</Button>
+            <Button>SEE ALL PRODUCTS</Button>
           </Info>
         </Container>
       );

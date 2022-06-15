@@ -23,10 +23,10 @@ import DeleteReview from "./screens/admin/reviews/DeleteReview";
 import EditCategory from "./screens/admin/categories/EditCategory";
 import EditSale from "./screens/admin/sales/EditSale";
 import EditReview from "./screens/admin/reviews/EditReview";
-
-import ProductList from "./screens/public/pages/ProductList";
 import ShopPage from "./screens/public/pages/ShopPage";
 import Product from "./screens/public/pages/Product";
+import ProductList from "./screens/public/pages/ProductList";
+
 
 const Index = () => {
     return (
@@ -74,9 +74,12 @@ const Index = () => {
                     {/* Admin Section */}
 
                     {/* Shop Section */}
-                    <Route path="/shop" element={<ShopPage />} exact />
-                    <Route path="/category" element={<ProductList />} exact/>
-                    <Route path="/product" element={<Product />} exact/>
+
+                    <Route path="/shop" element={<ShopPage />} exact  />
+                    <Route path="/product" element={<Product />} exact />
+                    <Route path="/products" element={<ProductList />} exact />
+                   
+                    
 
                     {/* Shop Section */}
 

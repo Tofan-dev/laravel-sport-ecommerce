@@ -1,25 +1,16 @@
-
-import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@mui/icons-material";
+import {
+    FavoriteBorderOutlined,
+    SearchOutlined,
+    ShoppingCartOutlined,
+} from "@mui/icons-material";
+import { Button } from "@mui/material";
 import styled from "styled-components";
 
 const Info = styled.div`
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease;
-    cursor: pointer;
+    margin-top: auto;
 `;
 
 const Container = styled.div`
-    flex: 1;
     margin: 5px;
     min-width: 280px;
     height: 350px;
@@ -28,14 +19,14 @@ const Container = styled.div`
     justify-content: center;
     background-color: white;
     position: relative;
-    &:hover ${Info} {
-        opacity: 1;
-    }
+    flex-wrap: wrap;
+    flex: 1 0 10%;
+    margin: 5px;
+    border: 1px solid black;
 `;
 
 const Image = styled.img`
-    height: 75%;
-    z-index: 2;
+    max-width: 80%;
 `;
 
 const Icon = styled.div`
@@ -47,27 +38,19 @@ const Icon = styled.div`
     align-items: center;
     justify-content: center;
     margin: 10px;
-    transition: all 0.5s ease;
-    &:hover {
-        background-color: #e9f5f5;
-        transform: scale(1.1);
-    }
 `;
 
 const ProductItem = ({ item }) => {
     return (
         <Container>
-            <Image src={`http://127.0.0.1:8000/storage/${item.image}`}/>
+            <Image src={`http://127.0.0.1:8000/storage/${item.image}`} />
             <Info>
-                <Icon>
-                    <ShoppingCartOutlined />
-                </Icon>
-                <Icon>
-                    <SearchOutlined />
-                </Icon>
-                <Icon>
-                    <FavoriteBorderOutlined />
-                </Icon>
+                <h2> {item.name}</h2>
+                <h5> {item.priceWithDiscount} LEI</h5>
+                <br/>
+                <Button variant="contained" endIcon={<ShoppingCartOutlined />}>
+                    Adaugă în coș
+                </Button>
             </Info>
         </Container>
     );

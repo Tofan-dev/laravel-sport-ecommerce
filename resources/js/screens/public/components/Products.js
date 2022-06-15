@@ -10,6 +10,9 @@ const ProductContainer = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0px 300px;
+    flex-wrap: wrap;
+    flex: 1 0 25%;
+    margin: 5px;
 `;
 
 const Container = styled.div`
