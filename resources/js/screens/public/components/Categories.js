@@ -3,7 +3,7 @@ import CategoryItem from "./CategoryItem";
 import { getCategoriesList } from "../../../actions/categoryActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-// import { mobile } from "../responsive";
+import { mobile } from "./Responsive";
 
 const Container = styled.div`
     background-color: white;
@@ -17,6 +17,7 @@ const CategoriesContainer = styled.div`
     flex-wrap: wrap;
     flex: 1 0 25%;
     margin: 5px;
+    ${mobile({ padding: "0px", flexDirection: "column" })};
 `;
 
 const Title = styled.h1`

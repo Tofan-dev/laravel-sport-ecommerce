@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Products from "../components/Products";
 import CategoriesShowcase from "../components/CategoriesShowcase";
-// import { mobile }from "../responsive";
 
 const Container = styled.div``;
 

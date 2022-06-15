@@ -1,11 +1,10 @@
-import {
-    ShoppingCartOutlined,
-} from "@mui/icons-material";
 import { Button } from "@mui/material";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Info = styled.div`
     margin-top: auto;
+    text-align: center;
 `;
 
 const Container = styled.div`
@@ -29,20 +28,34 @@ const Image = styled.img`
     max-height: 70%;
 `;
 
-
 const ProductItem = ({ item }) => {
     return (
-        <Container>
-            <Image src={`http://127.0.0.1:8000/storage/${item.image}`} />
-            <Info>
-                <h2> {item.name}</h2>
-                <h5> {item.priceWithDiscount} LEI</h5>
-                <br/>
-                <Button variant="contained" endIcon={<ShoppingCartOutlined />}>
-                    Adaugă în coș
-                </Button>
-            </Info>
-        </Container>
+        <>
+            <Container>
+                <Image src={`http://127.0.0.1:8000/storage/${item.image}`} />
+                <Info>
+                    <h2> {item.name}</h2>
+                    <h5> {item.priceWithDiscount} LEI</h5>
+                    <br />
+                    <Button variant="contained">
+                        <Link
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}
+                            to={{
+                                pathname: `/shop/product/${item.id}`,
+                                state: {
+                                    id: item.id,
+                                },
+                            }}
+                        >
+                            Vezi detalii
+                        </Link>
+                    </Button>
+                </Info>
+            </Container>
+        </>
     );
 };
 

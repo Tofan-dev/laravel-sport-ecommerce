@@ -116,7 +116,7 @@ const Index = () => {
 
                     <Route path="/shop" element={<Pages />} exact>
                         <Route path="" element={<ShopPage />} />
-                        <Route path="product" element={<Product />} exact />
+                        <Route path="product/:id" element={<Product />} exact />
                         <Route
                             path="products"
                             element={<ProductList />}
