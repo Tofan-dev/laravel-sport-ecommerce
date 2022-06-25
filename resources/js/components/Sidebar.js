@@ -13,19 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "../../css/sidebar.css";
 
 const Sidebar = () => {
-    const navigate = useNavigate();
-
-    const userLogin = useSelector((state) => state.userLogin);
-    const { userInfo } = userLogin;
-
-    const redirect = location.search ? location.search.split("=")[1] : "/login";
-
-    useEffect(() => {
-        if (!userInfo) {
-            navigate(redirect);
-        }
-    }, [userInfo, redirect]);
-
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">

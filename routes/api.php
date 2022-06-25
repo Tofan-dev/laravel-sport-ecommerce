@@ -30,6 +30,7 @@ Route::post('/products', [ProductController::class, 'store']);
 Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
 Route::patch('/product/update/{id}', [ProductController::class, 'update']);
 Route::delete('/product/delete/{id}', [ProductController::class, 'destroy']);
+Route::get('/palete', [ProductController::class, 'getProductByPalete']);
 // Product routes
 
 // Category routes
@@ -64,7 +65,6 @@ Route::patch('/user/update/{id}', [UserController::class, 'update']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 // User routes
 
-// astea sa nu le bagi in grupul auth:api ca nu are logica, inca nu esti logat
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 

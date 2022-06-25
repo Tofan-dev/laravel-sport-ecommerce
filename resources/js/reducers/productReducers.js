@@ -16,6 +16,10 @@ import {
     PRODUCT_SHOW_REQUEST,
     PRODUCT_SHOW_SUCCESS,
     PRODUCT_SHOW_FAIL,
+    PALETE_LIST_FAIL,
+    PALETE_LIST_REQUEST,
+    PALETE_LIST_RESET,
+    PALETE_LIST_SUCCESS,
 } from "../constants/productConstants";
 
 // Product list reducers
@@ -113,3 +117,22 @@ export const productShowReducer = (state = { product: {} }, action) => {
     }
 };
 // Product edit info reducers
+
+export const paleteListReducer = (state = { palete: {} }, action) => {
+    switch (action.type) {
+        case PALETE_LIST_REQUEST:
+            return { loading: true, palete: [] };
+
+        case PALETE_LIST_SUCCESS:
+            return { loading: false, palete: action.payload };
+
+        case PALETE_LIST_FAIL:
+            return { loading: false, error: action.payload };
+
+        case PALETE_LIST_RESET:
+            return {};
+
+        default:
+            return state;
+    }
+};

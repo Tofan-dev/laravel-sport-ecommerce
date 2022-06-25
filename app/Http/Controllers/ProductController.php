@@ -192,4 +192,19 @@ class ProductController extends Controller
             File::delete($imagePath);
         }
     }
+
+    public function getProductByPalete()
+    {
+        // find parent category by title
+        $category = Category::where('title', 'Palete Pingpong')->firstOrFail();
+
+        // if category doesnt exist return error message
+        if (!$category) return response()->json(['message' => 'Category does not exist..']);
+
+        // get all products that has parent_category_id same as $category->id
+        $products = Product::where('category_id', $category->id)->get();
+
+        // return collection
+        return response()->json($products, 200);
+    }
 }

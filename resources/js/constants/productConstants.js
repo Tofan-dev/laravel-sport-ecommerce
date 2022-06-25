@@ -31,3 +31,8 @@ export const PRODUCT_SHOW_REQUEST   = "PRODUCT_SHOW_REQUEST";
 export const PRODUCT_SHOW_SUCCESS   = "PRODUCT_SHOW_SUCCESS";
 export const PRODUCT_SHOW_FAIL      = "PRODUCT_SHOW_FAIL";
 // Show product info constants
+
+export const PALETE_LIST_REQUEST    = "PALETE_LIST_REQUEST";
+export const PALETE_LIST_SUCCESS    = "PALETE_LIST_SUCCESS";
+export const PALETE_LIST_FAIL       = "PALETE_LIST_FAIL";
+export const PALETE_LIST_RESET      = "PALETE_LIST_RESET";

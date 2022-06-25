@@ -15,6 +15,9 @@ import {
     PRODUCT_UPDATE_FAIL,
     PRODUCT_UPDATE_REQUEST,
     PRODUCT_UPDATE_SUCCESS,
+    PALETE_LIST_FAIL,
+    PALETE_LIST_REQUEST,
+    PALETE_LIST_SUCCESS,
 } from "../constants/productConstants";
 
 // Products list action
@@ -147,3 +150,28 @@ export const getProductEditInfo = (id) => async (dispatch) => {
     }
 };
 // Product edit info action
+
+export const getPalete = () => async (dispatch) => {
+    try {
+        dispatch({ type: PALETE_LIST_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        // console.log("from actions");
+        const { data } = await axios.get("/api/palete", config);
+
+        dispatch({ type: PALETE_LIST_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: PALETE_LIST_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.message
+                    : error.message,
+        });
+    }
+};

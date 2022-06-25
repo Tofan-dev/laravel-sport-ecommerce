@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "./Responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     flex: 1;
@@ -50,7 +51,18 @@ const CategoryItem = ({ item }) => {
             <Image src={`http://127.0.0.1:8000/storage/${item.image}`} />
             <Info>
                 <Title>{item.title}</Title>
-                <Button>VEZI TOATE PRODUSELE</Button>
+
+                <Link
+                    style={{
+                        textDecoration: "none",
+                        color: "white",
+                    }}
+                    to={{
+                        pathname: `/shop/products`,
+                    }}
+                >
+                    <Button>Vezi toate produsele</Button>
+                </Link>
             </Info>
         </Container>
     );
