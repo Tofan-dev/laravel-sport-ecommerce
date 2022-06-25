@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
@@ -62,3 +63,14 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::patch('/user/update/{id}', [UserController::class, 'update']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 // User routes
+
+// astea sa nu le bagi in grupul auth:api ca nu are logica, inca nu esti logat
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+Route::group(['middleware' => 'auth:api'], function () {
+    # User routes
+    Route::get('logout', [AuthController::class, 'logout']);
+
+    // aici iti pui toate routele la care userul trb sa fie logat sa poata sa le vada (sa intre in screenuri)
+});

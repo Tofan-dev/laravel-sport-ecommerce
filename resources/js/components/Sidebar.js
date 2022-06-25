@@ -7,10 +7,25 @@ import {
     LoyaltyOutlined,
     ReviewsOutlined,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "../../css/sidebar.css";
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const redirect = location.search ? location.search.split("=")[1] : "/login";
+
+    useEffect(() => {
+        if (!userInfo) {
+            navigate(redirect);
+        }
+    }, [userInfo, redirect]);
+
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
@@ -122,6 +137,18 @@ const Sidebar = () => {
                                     sx={{ fontSize: "30px" }}
                                 />
                                 Users
+                            </li>
+                        </Link>
+
+                        <Link
+                            to="/register"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}
+                        >
+                            <li className="sidebarListItem">               
+                                Register new admin
                             </li>
                         </Link>
                     </ul>

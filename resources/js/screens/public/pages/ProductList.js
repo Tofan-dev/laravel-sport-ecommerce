@@ -4,10 +4,6 @@ import CategoriesShowcase from "../components/CategoriesShowcase";
 
 const Container = styled.div``;
 
-const Title = styled.h1`
-    margin: 20px;
-`;
-
 const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -34,9 +30,9 @@ const ProductList = () => {
         <> 
             <CategoriesShowcase />
             <Container>
-                <Title>Produse</Title>
+                {/* <Title>Produse</Title> */}
                 <FilterContainer>
-                    <Filter>
+                    {/* <Filter>
                         <FilterText>Filtrează produse:</FilterText>
                         <Select>
                             <Option value="" disabled>
@@ -59,7 +55,7 @@ const ProductList = () => {
                             <Option>L</Option>
                             <Option>XL</Option>
                         </Select>
-                    </Filter>
+                    </Filter> */}
                     <Filter>
                         <FilterText>Sortează:</FilterText>
                         <Select>

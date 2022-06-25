@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -98,26 +98,6 @@ const Navbar = () => {
                     </Link>
                 </Center>
                 <Right>
-                    <MenuItem>
-                        <Link
-                            to="/register"
-                            style={{
-                                textDecoration: "none",
-                            }}
-                        >
-                            REGISTER
-                        </Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link
-                            to="/login"
-                            style={{
-                                textDecoration: "none",
-                            }}
-                        >
-                            SIGN IN
-                        </Link>
-                    </MenuItem>
                     <MenuItem>
                         <Badge
                             badgeContent={4}

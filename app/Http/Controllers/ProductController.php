@@ -114,7 +114,11 @@ class ProductController extends Controller
         $product->stock             = $request->quantity;
 
         $sale = Sale::where('id', $request->saleId)->first();
-        $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
+        
+        if ($sale->percent != 0)
+            $priceWithDiscount = $request->price - ($request->price * $sale->percent / 100);
+        else
+            $priceWithDiscount = $request->price;
 
         $product->priceWithDiscount = $priceWithDiscount;
 

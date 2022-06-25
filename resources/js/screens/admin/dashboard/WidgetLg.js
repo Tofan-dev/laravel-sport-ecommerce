@@ -6,7 +6,7 @@ const WidgetLg = () => {
     }
     return (
         <div className="widgetLg">
-           <h3 className="widgetLgTitle">Latest transcations</h3>
+           <h3 className="widgetLgTitle">Latest transactions</h3>
            <table className="widgetLgTable">
                <thead>
                <tr className="widgetLgTr">
@@ -30,8 +30,8 @@ const WidgetLg = () => {
                </tr>
                <tr className="widgetLgTr">
                    <td className="widgetLgUser">
-                        <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
-                        <span className="widgetLgName">Costel</span>
+                        <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/_processed_/1/1/csm_man-holger-von-der-heide-interview-header_02ae36db18.jpg" />
+                        <span className="widgetLgName">Costel Jurcă</span>
                    </td>
                    <td className="widgetLgDate"> 2 May 2022</td>
                    <td className="widgetLgAmount"> $123.32</td>
@@ -41,8 +41,8 @@ const WidgetLg = () => {
                </tr>
                <tr className="widgetLgTr">
                    <td className="widgetLgUser">
-                        <img className="avatar" src="https://www.mantruckandbus.com/fileadmin/media/bilder/02_19/219_05_busbusiness_interviewHeader_1485x1254.jpg" />
-                        <span className="widgetLgName">Mirel</span>
+                        <img className="avatar" src="https://static01.nyt.com/images/2019/11/17/books/review/17Salam/Salam1-superJumbo.jpg" />
+                        <span className="widgetLgName">Mirabela Popescu</span>
                    </td>
                    <td className="widgetLgDate"> 2 May 2022</td>
                    <td className="widgetLgAmount"> $123.32</td>

@@ -27,8 +27,8 @@ import ShopPage from "./screens/public/pages/ShopPage";
 import Product from "./screens/public/pages/Product";
 import ProductList from "./screens/public/pages/ProductList";
 import Pages from "./screens/public/pages/Pages";
-import Login from "./screens/public/pages/Login";
-import Register from "./screens/public/pages/Register";
+import LoginScreen from "./screens/public/pages/auth/LoginScreen";
+import RegisterScreen from "./screens/public/pages/auth/RegisterScreen";
 
 const Index = () => {
     return (
@@ -36,6 +36,8 @@ const Index = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<HomeScreen />} exact />
+                    <Route path="/login" element={<LoginScreen />} />
+                    <Route path="/register" element={<RegisterScreen />} exact/>
 
                     {/* Admin Section */}
                     <Route path="/admin" element={<Dashboard />} exact>
@@ -114,9 +116,6 @@ const Index = () => {
                     </Route>
                     {/* Admin Section */}
 
-                    <Route path="/login" element={<Login />} exact />
-                    <Route path="/register" element={<Register />} exact />
-                    
                     {/* Shop Section */}
 
                     <Route path="/shop" element={<Pages />} exact>

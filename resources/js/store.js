@@ -37,7 +37,9 @@ import {
     userListReducer,
     userCreateReducer,
     userDeleteReducer,
-    userUpdateReducer
+    userUpdateReducer,
+    userLoginReducer,
+    userRegisterReducer
 } from './reducers/userReducers'
 
 const reducer = combineReducers({
@@ -69,9 +71,27 @@ const reducer = combineReducers({
     userCreate     : userCreateReducer,
     userDelete     : userDeleteReducer,
     userUpdate     : userUpdateReducer,
+    userRegister   : userRegisterReducer,
+    userLogin      : userLoginReducer,
 });
 
-const initialState = {};
+const userInfoFromStorage = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
+
+const initialState = {
+    userLogin: {
+        userInfo: userInfoFromStorage,
+    },
+
+    cart: {
+        cartItems: cartItemsFromStorage
+    }
+};
 
 const store = configureStore({
     reducer,
